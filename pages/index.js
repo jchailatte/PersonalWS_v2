@@ -1,10 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme)=>(
-{
+import { Canvas, useFrame } from 'react-three-fiber';
+import { OrbitControls } from '@react-three/drei';
+import FantasySky from '../components/models/Fantasysky'
+import Lantern from '../components/models/Lantern'
 
-
+const useStyles = makeStyles((theme) => ({
+        root: {
+            height: '100vh',
+            width: '100vw'
+        }
 }));
 
 // export async function getStaticProps(context){
@@ -20,12 +26,27 @@ const useStyles = makeStyles((theme)=>(
 export default function Index(props) {
     const classes = useStyles();
 
-    
-    return(
+
+    return (
         <React.Fragment>
-            
+            {/* dont forget headers */}
+            <div className={classes.root}>
+                <Canvas
+                    colorManagement
+                    shadowMap
+                    camera={{ position: [-5, 4, 4], fov: 40 }}
+                >
 
-
+                    <ambientLight intensity={2} />
+                    <pointLight position={[40, 40, 40]} />
+                    <OrbitControls />
+                    <Suspense fallback={null}>
+                        {/* models go here*/}
+                        <FantasySky />
+                        <Lantern />
+                    </Suspense>
+                </Canvas>
+            </div>
 
 
         </React.Fragment>

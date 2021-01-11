@@ -1,6 +1,6 @@
     const withTM = require('next-transpile-modules')([
         'three',
-        'drei'
+        '@react-three/drei'
     ]);
 
 
