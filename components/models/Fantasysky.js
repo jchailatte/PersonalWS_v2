@@ -7,11 +7,17 @@ title: Fantasy Sky Background
 */
 
 import React, { useRef } from 'react'
+import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei/useGLTF'
 
 export default function Model(props) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/fantasysky.glb')
+
+    useFrame(state => {
+        group.current.rotation.y += 0.001
+    })
+
     return (
         <group ref={group} {...props} dispose={null}>
             <mesh

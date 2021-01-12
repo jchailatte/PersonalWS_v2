@@ -1,16 +1,17 @@
-import React, { Suspense, useState, useEffect, useRef } from 'react';
+import React, { Suspense, useMemo, useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Canvas, useFrame } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 import FantasySky from '../components/models/Fantasysky'
 import Lantern from '../components/models/Lantern'
+import Effects from '../components/three/Effects'
 
 const useStyles = makeStyles((theme) => ({
-        root: {
-            height: '100vh',
-            width: '100vw'
-        }
+    root: {
+        height: '100vh',
+        width: '100vw'
+    }
 }));
 
 // export async function getStaticProps(context){
@@ -26,6 +27,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Index(props) {
     const classes = useStyles();
 
+    const lanterns = useMemo(()=>{
+        new Array(24).fill().map((_,i)=>({
+            position: [],
+            factor: 0.1 + Math.random(),
+            rotation: Math.random() < 0.5 ? Math.random() * 0.1 : Math.random() * -0.01,
+        }))
+
+    })
+
 
     return (
         <React.Fragment>
@@ -34,7 +44,7 @@ export default function Index(props) {
                 <Canvas
                     colorManagement
                     shadowMap
-                    camera={{ position: [-5, 4, 4], fov: 40 }}
+                    camera={{ position: [10, 7, 5], fov: 80 }}
                 >
 
                     <ambientLight intensity={2} />
@@ -44,6 +54,7 @@ export default function Index(props) {
                         {/* models go here*/}
                         <FantasySky />
                         <Lantern />
+                        {/* <Effects/> */}
                     </Suspense>
                 </Canvas>
             </div>
