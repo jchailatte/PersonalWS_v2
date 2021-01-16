@@ -1,11 +1,12 @@
-import React, { Suspense, useMemo, useState, useEffect, useRef } from 'react';
+import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Canvas, useFrame } from 'react-three-fiber';
+import { Canvas, useFrame, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
+
 import FantasySky from '../components/models/Fantasysky'
 import Lantern from '../components/models/Lantern'
-import Effects from '../components/three/Effects'
+import BloomEffect from '../components/three/BloomEffect'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,18 +25,23 @@ const useStyles = makeStyles((theme) => ({
 //     }
 // }
 
+function Lanterns(){
+
+    const { camera } = useThree();
+
+    useLayoutEffect(()=>{
+        camera.layers.enable(0);
+        camera.layers.enable(1);
+    },[])
+
+    return(
+        <Lantern/>
+    )
+}
+
+
 export default function Index(props) {
     const classes = useStyles();
-
-    const lanterns = useMemo(()=>{
-        new Array(24).fill().map((_,i)=>({
-            position: [],
-            factor: 0.1 + Math.random(),
-            rotation: Math.random() < 0.5 ? Math.random() * 0.1 : Math.random() * -0.01,
-        }))
-
-    })
-
 
     return (
         <React.Fragment>
@@ -46,16 +52,15 @@ export default function Index(props) {
                     shadowMap
                     camera={{ position: [10, 7, 5], fov: 80 }}
                 >
-
                     <ambientLight intensity={2} />
-                    <pointLight position={[40, 40, 40]} />
+                    {/* <pointLight position={[40, 40, 40]} /> */}
+                    {/* <fog attach="fog" args={["white", 50, 200]}/> */}
                     <OrbitControls />
                     <Suspense fallback={null}>
-                        {/* models go here*/}
                         <FantasySky />
-                        <Lantern />
-                        {/* <Effects/> */}
+                        <Lanterns />
                     </Suspense>
+                    <BloomEffect/>
                 </Canvas>
             </div>
 

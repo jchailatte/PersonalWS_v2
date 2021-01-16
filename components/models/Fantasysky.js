@@ -14,7 +14,7 @@ export default function Model(props) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/fantasysky.glb')
 
-    useFrame(state => {
+    useFrame(() => {
         group.current.rotation.y += 0.001
     })
 

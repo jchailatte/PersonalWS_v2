@@ -7,8 +7,9 @@ title: Lanterns lowpoly models homework 11
 */
 
 import React, { useRef } from 'react'
-import { useFrame } from 'react-three-fiber'
+import { useFrame, useThree } from 'react-three-fiber'
 import { useGLTF, Torus } from '@react-three/drei'
+import { MeshLambertMaterial } from 'three'
 
 export default function Model(props) {
     const group = useRef()
@@ -22,16 +23,29 @@ export default function Model(props) {
 
     return (
         <group ref={group} {...props} dispose={null}>
+            <pointLight 
+                distance={1000} 
+                intensity={1} 
+                color="cyan"
+                layers={1}
+            />
             <Torus
                 position={[0, 0.5, 0]}
                 scale={[0.5,0.5,0.5]}
+                rotation ={[Math.PI/2, 0,0]}
+                layers={1}
             >
-                <meshBasicMaterial attach="material" color="white"/>
+                <meshLambertMaterial
+                    color="cyan"
+                    emissive="cyan"
+                    attach="material" 
+                />
             </Torus>
             <mesh
                 material={materials.paper}
                 geometry={nodes.JapaneseLantern_paper_0.geometry}
                 position={[0, 0.66, 0]}
+                layers={1}
             />
             <mesh
                 material={materials.goldenrope}
