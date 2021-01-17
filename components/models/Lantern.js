@@ -11,7 +11,7 @@ import { useFrame, useThree } from 'react-three-fiber'
 import { useGLTF, Torus } from '@react-three/drei'
 import { MeshLambertMaterial } from 'three'
 
-export default function Model(props) {
+export default function Model({ x, y, z }) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/lantern.glb')
 
@@ -22,7 +22,7 @@ export default function Model(props) {
     })
 
     return (
-        <group ref={group} {...props} dispose={null}>
+        <group ref={group} dispose={null} position={[x, y , z]}>
             <pointLight 
                 distance={1000} 
                 intensity={1} 

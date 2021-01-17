@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Canvas, useFrame, useThree } from 'react-three-fiber';
+import { Canvas, useFrame, useThree, extend } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import FantasySky from '../components/models/Fantasysky'
@@ -28,17 +28,22 @@ const useStyles = makeStyles((theme) => ({
 function Lanterns(){
 
     const { camera } = useThree();
+    //may change this from useMemo if implementing the onHover draggy thing
+    const data = useMemo(()=>{
+        return new Array(20).fill().map((_,i)=>({
+            x: Math.random() * 140-70,
+            y: Math.random() * 140-70,
+            z: Math.random() * 140-70
+        }))
+    }, [])
 
     useLayoutEffect(()=>{
         camera.layers.enable(0);
         camera.layers.enable(1);
     },[])
 
-    return(
-        <Lantern/>
-    )
+    return data.map((props,i) => <Lantern key={i} {...props} />)
 }
-
 
 export default function Index(props) {
     const classes = useStyles();
@@ -60,7 +65,7 @@ export default function Index(props) {
                         <FantasySky />
                         <Lanterns />
                     </Suspense>
-                    <BloomEffect/>
+                    <BloomEffect layer={1}/>
                 </Canvas>
             </div>
 

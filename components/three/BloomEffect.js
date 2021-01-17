@@ -9,12 +9,10 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader'
 
 extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass, })
 
-export default function BloomEffect() {
+export default function BloomEffect({layer = 0}) {
     const { scene, gl, size, camera } = useThree()
     const bloomLayer = new THREE.Layers();
-    bloomLayer.set(1);
-    const composer = useRef()
-    const bloomComposer = useRef()
+    bloomLayer.set(layer);
 
     const aspect = useMemo(() => new THREE.Vector2(size.width, size.height), [size])
 
@@ -57,10 +55,10 @@ export default function BloomEffect() {
         const finalPass = new ShaderPass(material, 'baseTexture')
         finalPass.needsSwap = true
         finalComposer.addPass(finalPass)
-        // const fxaa = new ShaderPass(FXAAShader)
-        // fxaa.material.uniforms['resolution'].value.x = 1 / size.width
-        // fxaa.material.uniforms['resolution'].value.y = 1 / size.height
-        // finalComposer.addPass(fxaa)
+        const fxaa = new ShaderPass(FXAAShader)
+        fxaa.material.uniforms['resolution'].value.x = 1 / size.width
+        fxaa.material.uniforms['resolution'].value.y = 1 / size.height
+        finalComposer.addPass(fxaa)
         return [comp, finalComposer]
     }, []);
 
@@ -76,7 +74,5 @@ export default function BloomEffect() {
         final.render();
     }, 1)
 
-    return (
-        null
-    )
+    return (null)
 }
