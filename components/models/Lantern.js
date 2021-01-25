@@ -7,11 +7,11 @@ title: Lanterns lowpoly models homework 11
 */
 
 import React, { useRef } from 'react'
-import { useFrame, useThree } from 'react-three-fiber'
+import PropTypes from 'prop-types'
+import { useFrame } from 'react-three-fiber'
 import { useGLTF, Torus } from '@react-three/drei'
-import { MeshLambertMaterial } from 'three'
 
-export default function Model({ x, y, z }) {
+function Lantern({ x, y, z }) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/lantern.glb')
 
@@ -24,9 +24,9 @@ export default function Model({ x, y, z }) {
     return (
         <group ref={group} dispose={null} position={[x, y , z]}>
             <pointLight 
-                distance={1000} 
+                distance={100} 
                 intensity={1} 
-                color="cyan"
+                color="white"
                 layers={1}
             />
             <Torus
@@ -36,8 +36,8 @@ export default function Model({ x, y, z }) {
                 layers={1}
             >
                 <meshLambertMaterial
-                    color="cyan"
-                    emissive="cyan"
+                    color="white"
+                    emissive="white"
                     attach="material" 
                 />
             </Torus>
@@ -56,6 +56,7 @@ export default function Model({ x, y, z }) {
                 material={materials.redrope}
                 geometry={nodes.JapaneseLantern_redrope_0.geometry}
                 position={[0, 1.28, 0]}
+                layers={1}
             />
             <mesh
                 material={materials.lambert1}
@@ -72,3 +73,11 @@ export default function Model({ x, y, z }) {
 }
 
 useGLTF.preload('/models/lantern.glb')
+
+Lantern.propTypes = {
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    z: PropTypes.number.isRequired
+}
+
+export default Lantern;

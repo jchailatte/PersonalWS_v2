@@ -6,7 +6,9 @@ import { OrbitControls } from '@react-three/drei';
 
 import FantasySky from '../components/models/Fantasysky'
 import Lantern from '../components/models/Lantern'
-import BloomEffect from '../components/three/BloomEffect'
+import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect'
+import Text from '../components/models/Text';
+import BinaryHalo from '../components/models/Binaryhalo'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,9 +33,9 @@ function Lanterns(){
     //may change this from useMemo if implementing the onHover draggy thing
     const data = useMemo(()=>{
         return new Array(20).fill().map((_,i)=>({
-            x: Math.random() * 140-70,
-            y: Math.random() * 140-70,
-            z: Math.random() * 140-70
+            x: Math.random() * 130-70,
+            y: Math.random() * 130-70,
+            z: Math.random() * 130-70
         }))
     }, [])
 
@@ -48,6 +50,7 @@ function Lanterns(){
 export default function Index(props) {
     const classes = useStyles();
 
+    const ref = useRef();
     return (
         <React.Fragment>
             {/* dont forget headers */}
@@ -55,17 +58,17 @@ export default function Index(props) {
                 <Canvas
                     colorManagement
                     shadowMap
-                    camera={{ position: [10, 7, 5], fov: 80 }}
+                    camera={{ position: [0, 0, 5], fov: 80 }}
                 >
-                    <ambientLight intensity={2} />
-                    {/* <pointLight position={[40, 40, 40]} /> */}
-                    {/* <fog attach="fog" args={["white", 50, 200]}/> */}
+                    <ambientLight/>
+                    {/* <fog attach="fog" args={["black", 100, 20]}/> */}
                     <OrbitControls />
                     <Suspense fallback={null}>
                         <FantasySky />
                         <Lanterns />
+                        <BinaryHalo/>
                     </Suspense>
-                    <BloomEffect layer={1}/>
+                    <SelectiveBloomEffect layer={1}/>
                 </Canvas>
             </div>
 
