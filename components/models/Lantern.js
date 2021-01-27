@@ -10,19 +10,20 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF, Torus } from '@react-three/drei'
+import { StoreMallDirectorySharp } from '@material-ui/icons'
 
-function Lantern({ x, y, z }) {
+function Lantern(props) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/lantern.glb')
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        group.current.rotation.y = group.current.rotation.y + 0.01;
-        group.current.position.y = group.current.position.y + Math.sin(time)/30;
+        group.current.rotation.y = group.current.rotation.y + (0.01 * props.rotation);
+        group.current.position.y = group.current.position.y + Math.sin(time * props.yOffset)/30;
     })
 
     return (
-        <group ref={group} dispose={null} position={[x, y , z]}>
+        <group ref={group} dispose={null} position={[props.x, props.y , props.z]}>
             <pointLight 
                 distance={100} 
                 intensity={1} 

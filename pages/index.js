@@ -32,10 +32,12 @@ function Lanterns(){
     const { camera } = useThree();
     //may change this from useMemo if implementing the onHover draggy thing
     const data = useMemo(()=>{
-        return new Array(20).fill().map((_,i)=>({
-            x: Math.random() * 130-70,
-            y: Math.random() * 130-70,
-            z: Math.random() * 130-70
+        return new Array(30).fill().map((_,i)=>({
+            x: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
+            y: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
+            z: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
+            yOffset: Math.random(),
+            rotation: Math.round(Math.random()) ? -1 : 1
         }))
     }, [])
 
@@ -66,7 +68,10 @@ export default function Index(props) {
                     <Suspense fallback={null}>
                         <FantasySky />
                         <Lanterns />
-                        <BinaryHalo/>
+                        <BinaryHalo 
+                            color="teal"
+                            emissive="blue"
+                        />
                     </Suspense>
                     <SelectiveBloomEffect layer={1}/>
                 </Canvas>

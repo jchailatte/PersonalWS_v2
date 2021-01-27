@@ -7,13 +7,14 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader'
+import { Select } from '@material-ui/core'
 
 extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass, })
 
-function SelectiveBloomEffect({layer = 0}) {
+function SelectiveBloomEffect(props) {
     const { scene, gl, size, camera } = useThree();
     const bloomLayer = new THREE.Layers();
-    bloomLayer.set(layer);
+    bloomLayer.set(props.layer);
 
     const materials = {};
     const darkMaterial = new THREE.MeshBasicMaterial({ color: 'black' });
@@ -80,6 +81,10 @@ function SelectiveBloomEffect({layer = 0}) {
 //add proptypes for bloom strength and stuff
 SelectiveBloomEffect.propTypes = {
     layer: PropTypes.number,
+}
+
+SelectiveBloomEffect.defaultProps = {
+    layer: 0,
 }
 
 export default SelectiveBloomEffect; 
