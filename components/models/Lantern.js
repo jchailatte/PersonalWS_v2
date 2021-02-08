@@ -9,45 +9,51 @@ title: Lanterns lowpoly models homework 11
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
-import { useGLTF, Torus } from '@react-three/drei'
-import { StoreMallDirectorySharp } from '@material-ui/icons'
+import { useGLTF, Octahedron } from '@react-three/drei'
 
 function Lantern(props) {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/lantern.glb')
+    const color = "teal";
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
         group.current.rotation.y = group.current.rotation.y + (0.01 * props.rotation);
-        group.current.position.y = group.current.position.y + Math.sin(time * props.yOffset)/30;
+        group.current.position.y = group.current.position.y + Math.sin(time + (props.yOffset * 60)) / 30;
     })
 
     return (
-        <group ref={group} dispose={null} position={[props.x, props.y , props.z]}>
-            <pointLight 
-                distance={100} 
-                intensity={1} 
+        <group ref={group} dispose={null} position={[props.x, props.y, props.z]}>
+            <pointLight
+                distance={100}
+                intensity={1}
                 color="white"
                 layers={1}
             />
-            <Torus
+            <Octahedron
                 position={[0, 0.5, 0]}
-                scale={[0.5,0.5,0.5]}
-                rotation ={[Math.PI/2, 0,0]}
+                scale={[0.5, 1, 0.5]}
                 layers={1}
             >
                 <meshLambertMaterial
                     color="white"
                     emissive="white"
-                    attach="material" 
+                    attach="material"
                 />
-            </Torus>
+            </Octahedron>
             <mesh
-                material={materials.paper}
                 geometry={nodes.JapaneseLantern_paper_0.geometry}
                 position={[0, 0.66, 0]}
                 layers={1}
-            />
+            >
+                <meshStandardMaterial
+                    {...materials.paper}
+                    emissive={color}
+                    color={color}
+                    transparent={true}
+                    opacity={0.3}
+                />
+            </mesh>
             <mesh
                 material={materials.goldenrope}
                 geometry={nodes.JapaneseLantern_goldenrope_0.geometry}
@@ -67,7 +73,7 @@ function Lantern(props) {
             <mesh
                 material={materials.wood}
                 geometry={nodes.JapaneseLantern_wood_0.geometry}
-                position={[0, 0.84, 0]} 
+                position={[0, 0.84, 0]}
             />
         </group>
     )

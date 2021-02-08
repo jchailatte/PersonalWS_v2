@@ -1,14 +1,16 @@
 import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Canvas, useFrame, useThree, extend } from 'react-three-fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from 'react-three-fiber';
+import { OrbitControls, Line } from '@react-three/drei';
 
-import FantasySky from '../components/models/Fantasysky'
-import Lantern from '../components/models/Lantern'
-import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect'
-import Text from '../components/models/Text';
-import BinaryHalo from '../components/models/Binaryhalo'
+import FantasySky from '../components/models/FantasySky';
+import Lantern from '../components/models/Lantern';
+import BinaryHalo from '../components/models/BinaryHalo';
+import Hud from '../components/models/Hud';
+import Hud2 from '../components/models/Hud2';
+
+import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function Lanterns(){
 
     const { camera } = useThree();
+
     //may change this from useMemo if implementing the onHover draggy thing
     const data = useMemo(()=>{
         return new Array(30).fill().map((_,i)=>({
@@ -62,7 +65,6 @@ export default function Index(props) {
                     shadowMap
                     camera={{ position: [0, 0, 5], fov: 80 }}
                 >
-                    <ambientLight/>
                     {/* <fog attach="fog" args={["black", 100, 20]}/> */}
                     <OrbitControls />
                     <Suspense fallback={null}>
@@ -72,6 +74,8 @@ export default function Index(props) {
                             color="teal"
                             emissive="blue"
                         />
+                        {/* <Hud/>             */}
+                        <Hud2/>
                     </Suspense>
                     <SelectiveBloomEffect layer={1}/>
                 </Canvas>
