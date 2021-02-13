@@ -6,7 +6,7 @@ source: https://sketchfab.com/3d-models/rhetorician-a89f035291d843069d73988cc0e2
 title: Rhetorician
 */
 
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei/useGLTF'
