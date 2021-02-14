@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei/useGLTF'
 
-function BinaryHalo(props) {
+const BinaryHalo = (props) => {
     const group = useRef();
     const halo1 = useRef();
     const halo2 = useRef();
@@ -77,7 +77,7 @@ BinaryHalo.propTypes = {
 }
 
 BinaryHalo.defaultProps = {
-    scale: [30,30,30]
+    scale: [30, 30, 30]
 }
 
 export default BinaryHalo;

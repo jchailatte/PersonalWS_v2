@@ -1,25 +1,28 @@
-import { useMemo, forwardRef } from 'react';
-import PropTypes from 'prop-types'
-import { useLoader } from 'react-three-fiber';
+import { useMemo, forwardRef, useRef } from 'react';
+import PropTypes from 'prop-types';
+import * as THREE from 'three';
+import { useFrame, useLoader } from 'react-three-fiber';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
-function SVGExtrude (props) {
+const SVGExtrude = forwardRef((props, ref) => {
     const data = useLoader(SVGLoader, props.url);
     const shapes = useMemo(() => data.paths.flatMap((g) => g.toShapes(true)), [data]);
 
     return (
-        <group position={props.position} scale={props.scale} dispose={null}>
+        <group position={props.position} scale={props.scale} dispose={null} ref={ref}>
             {
-                shapes.map((shape, i) => (
-                    <mesh layers={props.layer} key={i}>
-                        <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, bevelEnabled: props.bevelEnabled }]}/>
-                        <meshBasicMaterial attach="material" color={props.color} />
-                    </mesh>
-                ))
+                shapes.map((shape, i) => {
+                    return (   
+                        <mesh layers={props.layer} key={i} >
+                            <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, bevelEnabled: props.bevelEnabled }]} />
+                            <meshBasicMaterial attach="material" color={props.color} />
+                        </mesh>
+                    )
+                })
             }
         </group>
-    )   
-};
+    )
+});
 
 SVGExtrude.propTypes = {
     position: PropTypes.array,

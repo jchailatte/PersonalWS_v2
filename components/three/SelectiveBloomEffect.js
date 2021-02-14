@@ -7,11 +7,10 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader'
-import { Select } from '@material-ui/core'
 
 extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass, })
 
-function SelectiveBloomEffect(props) {
+const SelectiveBloomEffect = (props) => {
     const { scene, gl, size, camera } = useThree();
     const bloomLayer = new THREE.Layers();
     bloomLayer.set(props.layer);

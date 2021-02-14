@@ -8,7 +8,6 @@ import FantasySky from '../components/models/FantasySky';
 import Lantern from '../components/models/Lantern';
 import BinaryHalo from '../components/models/BinaryHalo';
 import Hud from '../components/models/Hud';
-import Hud2 from '../components/models/Hud2';
 
 import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
@@ -29,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
 //     }
 // }
 
-function Lanterns(){
+const Lanterns = () => {
 
     const { camera } = useThree();
 
     //may change this from useMemo if implementing the onHover draggy thing
-    const data = useMemo(()=>{
-        return new Array(30).fill().map((_,i)=>({
+    const data = useMemo(() => {
+        return new Array(30).fill().map((_, i) => ({
             x: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
             y: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
             z: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
@@ -44,15 +43,15 @@ function Lanterns(){
         }))
     }, [])
 
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         camera.layers.enable(0);
         camera.layers.enable(1);
-    },[])
+    }, [])
 
-    return data.map((props,i) => <Lantern key={i} {...props} />)
+    return data.map((props, i) => <Lantern key={i} {...props} />)
 }
 
-export default function Index(props) {
+const Index = (props) => {
     const classes = useStyles();
 
     const ref = useRef();
@@ -70,14 +69,13 @@ export default function Index(props) {
                     <Suspense fallback={null}>
                         <FantasySky />
                         <Lanterns />
-                        <BinaryHalo 
+                        <BinaryHalo
                             color="teal"
                             emissive="blue"
                         />
-                        {/* <Hud/>             */}
-                        <Hud2/>
+                        <Hud />
                     </Suspense>
-                    <SelectiveBloomEffect layer={1}/>
+                    <SelectiveBloomEffect layer={1} />
                 </Canvas>
             </div>
 
@@ -85,3 +83,5 @@ export default function Index(props) {
         </React.Fragment>
     )
 };
+
+export default Index;

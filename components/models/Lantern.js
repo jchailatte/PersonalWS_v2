@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF, Octahedron } from '@react-three/drei'
 
-function Lantern(props) {
+const Lantern = (props) => {
     const group = useRef()
     const { nodes, materials } = useGLTF('/models/lantern.glb')
     const color = "teal";
