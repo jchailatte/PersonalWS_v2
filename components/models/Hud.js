@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { useFrame } from 'react-three-fiber';
+import * as THREE from 'three';
+import { useFrame, useLoader, useUpdate } from 'react-three-fiber';
 import { Text, Line, Plane } from '@react-three/drei';
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+
 
 import SVGExtrude from '../three/SVGExtrude';
 
@@ -20,7 +23,7 @@ const Screen = (props) => {
                 <planeGeometry attach="geometry" args={[verticalVertices - 1, horizontalVertices - 1]} />
                 <meshPhongMaterial attach="material" color="cyan" depthTest={false} />
             </mesh>
-            <SVGExtrude position={[-verticalVertices / 2, -horizontalVertices / 2, 0]} scale={[.08, .055, .05]} url={'/svgs/hud/border.svg'} />
+            <SVGExtrude position={[0, 0, 0]} scale={[.0825, .055, .05]} url={'/svgs/hud/border.svg'} recenter={true} />
         </React.Fragment>
     )
 }
@@ -44,8 +47,8 @@ const HUDCorner = (props) => {
 
     return (
         <React.Fragment>
-            <SVGExtrude position={[-5, -13, -1]} scale={[-.1, .1, .1]} url={'/svgs/hud/hudcorner1.svg'} color="#008b8b" layer={1} depth={10} ref={corner1} />
-            <SVGExtrude position={[5, 13, -1]} scale={[.1, -.1, .1]} url={'/svgs/hud/hudcorner1.svg'} color="#008b8b" layer={1} depth={10} ref={corner2} />
+            <SVGExtrude position={[-6, -13, -1]} scale={[-.1, .1, .1]} url={'/svgs/hud/hudcorner1.svg'} color="#008b8b" layer={1} depth={10} ref={corner1} />
+            <SVGExtrude position={[6, 13, -1]} scale={[.1, -.1, .1]} url={'/svgs/hud/hudcorner1.svg'} color="#008b8b" layer={1} depth={10} ref={corner2} />
         </React.Fragment>
     )
 }
@@ -55,17 +58,17 @@ const HUDCircle = (props) => {
     const circle1 = useRef();
     const circle2 = useRef();
 
-    useFrame((state)=>{
+    useFrame((state) => {
         const time = state.clock.getElapsedTime();
 
-        if(circle1.current != null) {
+        if (circle1.current != null) {
             circle1.current.rotation.z = circle1.current.rotation.z + 0.01;
         }
     })
 
     return (
         <React.Fragment>
-            <SVGExtrude position={[9, 0, 0]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle0.svg'} layer={1} ref={circle1}/>
+            <SVGExtrude position={[0, 0, 0]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle0.svg'} layer={1} ref={circle1} recenter={true} />
             <SVGExtrude position={[10.5, 1.5, 2]} scale={[.1, .1, .1]} url={'/svgs/hud/hudcircle2.svg'} layer={1} />
         </React.Fragment>
 
