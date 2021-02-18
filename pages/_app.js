@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -30,8 +30,8 @@ export default function App(props) {
                 {/* <link rel="icon" href='/graphics/logo.ico'/> */}
             </Head>
             <ThemeProvider theme={theme}>
-                <CssBaseline/>
-                <Component {...pageProps}/>
+                <CssBaseline />
+                <Component {...pageProps} />
             </ThemeProvider>
         </React.Fragment>
     )

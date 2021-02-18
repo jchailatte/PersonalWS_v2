@@ -12,8 +12,8 @@ import { useFrame } from 'react-three-fiber'
 import { useGLTF, Octahedron } from '@react-three/drei'
 
 const Lantern = (props) => {
-    const group = useRef()
     const { nodes, materials } = useGLTF('/models/lantern.glb')
+    const group = useRef()
     const color = "teal";
 
     useFrame((state) => {

@@ -9,14 +9,14 @@ title: Rhetorician
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
-import { useGLTF } from '@react-three/drei/useGLTF'
+import { useGLTF } from '@react-three/drei'
 
 const BinaryHalo = (props) => {
+    const { nodes, materials } = useGLTF('/models/binaryhalo.glb');
     const group = useRef();
     const halo1 = useRef();
     const halo2 = useRef();
     const halo3 = useRef();
-    const { nodes, materials } = useGLTF('/models/binaryhalo.glb');
 
     useFrame((state) => {
         halo1.current.rotation.z = halo1.current.rotation.z - 0.0015;

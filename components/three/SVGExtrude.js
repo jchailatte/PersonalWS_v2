@@ -31,8 +31,8 @@ const SVGExtrude = forwardRef((props, ref) => {
             {
                 shapes.map((shape, i) => (
                     <mesh layers={props.layer} key={i} >
-                        <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, bevelEnabled: props.bevelEnabled }]} />
-                        <meshBasicMaterial attach="material" color={props.color} />
+                        <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, ...props.extrudeSettings }]} />
+                        {props.children}
                     </mesh>
                 ))
             }
@@ -44,10 +44,9 @@ SVGExtrude.propTypes = {
     position: PropTypes.array,
     scale: PropTypes.array,
     url: PropTypes.string.isRequired,
-    color: PropTypes.string,
     depth: PropTypes.number,
     layer: PropTypes.number,
-    bevelEnabled: PropTypes.bool,
+    extrudeSettings: PropTypes.object,
     recenter: PropTypes.bool,
 }
 
@@ -55,9 +54,8 @@ SVGExtrude.defaultProps = {
     position: [0, 0, 0],
     scale: [1, 1, 1],
     depth: 2,
-    color: "cyan",
     layer: 0,
-    bevelEnabled: false,
+    extrudeSettings: { bevelEnabled: false },
     recenter: false,
 }
 

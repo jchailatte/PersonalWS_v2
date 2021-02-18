@@ -2,7 +2,7 @@ import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect 
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Canvas, useFrame, useThree } from 'react-three-fiber';
-import { OrbitControls, Line } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 
 import FantasySky from '../components/models/FantasySky';
 import Lantern from '../components/models/Lantern';
@@ -62,9 +62,10 @@ const Index = (props) => {
                 <Canvas
                     colorManagement
                     shadowMap
-                    camera={{ position: [0, 0, 5], fov: 80 }}
+                    camera={{ position: [0, 0, 15], fov: 80 }}
                 >
                     {/* <fog attach="fog" args={["black", 100, 20]}/> */}
+                    <ambientLight/>
                     <OrbitControls />
                     <Suspense fallback={null}>
                         <FantasySky />
@@ -77,9 +78,7 @@ const Index = (props) => {
                     </Suspense>
                     <SelectiveBloomEffect layer={1} />
                 </Canvas>
-            </div>
-
-
+             </div>
         </React.Fragment>
     )
 };

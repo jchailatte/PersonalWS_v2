@@ -12,7 +12,8 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <meta name="theme-color" content={theme.palette.primary.main} />
-    
+                    <link rel="preconnect" href="https://fonts.gstatic.com" />
+                    <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet" />
                 </Head>
                 <body>
                     <Main />
@@ -46,16 +47,16 @@ MyDocument.getInitialProps = async (ctx) => {
     // 1. app.getInitialProps
     // 2. page.getInitialProps
     // 3. app.render
-      // 4. page.render
+    // 4. page.render
 
     // Render app and page and get the context of the page with collected side effects.
     const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     ctx.renderPage = () =>
-    originalRenderPage({
-        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
+        originalRenderPage({
+            enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+        });
 
     const initialProps = await Document.getInitialProps(ctx);
 

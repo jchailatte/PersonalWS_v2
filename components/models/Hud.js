@@ -1,9 +1,7 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame, useLoader, useUpdate } from 'react-three-fiber';
-import { Text, Line, Plane } from '@react-three/drei';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
-
+import { Text, Line, Plane, Billboard } from '@react-three/drei';
 
 import SVGExtrude from '../three/SVGExtrude';
 
@@ -18,13 +16,15 @@ const verticalVertices = 40;
 const Screen = (props) => {
     //note: the psuedo-wireframe effect is only working with react-three-fiber@5.3.17 atm
     return (
-        <React.Fragment>
+        <Fragment>
             <mesh position={[0, 0, 0]}>
                 <planeGeometry attach="geometry" args={[verticalVertices - 1, horizontalVertices - 1]} />
                 <meshPhongMaterial attach="material" color="cyan" depthTest={false} />
             </mesh>
-            <SVGExtrude position={[0, 0, 0]} scale={[.0825, .055, .05]} url={'/svgs/hud/border.svg'} recenter={true} />
-        </React.Fragment>
+            <SVGExtrude position={[0, 0, 0]} scale={[.0825, .055, .05]} url={'/svgs/hud/border.svg'} recenter={true} >
+                <meshBasicMaterial attach="material" color="cyan" />
+            </SVGExtrude>
+        </Fragment>
     )
 }
 
@@ -34,29 +34,35 @@ const HUDCorner = (props) => {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
+        const wave = Math.sin(time) / 100;
 
         if (corner1.current != null) {
-            corner1.current.position.x = corner1.current.position.x + Math.sin(time) / 80;
-            corner1.current.position.y = corner1.current.position.y + Math.sin(time) / 80;
+            corner1.current.position.x = corner1.current.position.x + wave;
+            corner1.current.position.y = corner1.current.position.y + wave;
         }
         if (corner2.current != null) {
-            corner2.current.position.x = corner2.current.position.x - Math.sin(time) / 80;
-            corner2.current.position.y = corner2.current.position.y - Math.sin(time) / 80;
+            corner2.current.position.x = corner2.current.position.x - wave;
+            corner2.current.position.y = corner2.current.position.y - wave;
         }
     })
 
     return (
-        <React.Fragment>
-            <SVGExtrude position={[-6, -13, -1]} scale={[-.1, .1, .1]} url={'/svgs/hud/hudcorner1.svg'} color="#008b8b" layer={1} depth={10} ref={corner1} />
-            <SVGExtrude position={[6, 13, -1]} scale={[.1, -.1, .1]} url={'/svgs/hud/hudcorner1.svg'} color="#008b8b" layer={1} depth={10} ref={corner2} />
-        </React.Fragment>
+        <Fragment>
+            <SVGExtrude position={[-5, -12, -1]} scale={[-0.1, 0.1, 0.1]} url={'/svgs/hud/hudcorner1.svg'} layer={1} depth={10} ref={corner1} >
+                <meshBasicMaterial attach="material" color="#008b8b" />
+            </SVGExtrude>
+            <SVGExtrude position={[5, 12, -1]} scale={[0.1, -0.1, 0.1]} url={'/svgs/hud/hudcorner1.svg'} layer={1} depth={10} ref={corner2} >
+                <meshBasicMaterial attach="material" color="#008b8b" />
+            </SVGExtrude>
+        </Fragment>
     )
 }
 
 const HUDCircle = (props) => {
-
     const circle1 = useRef();
     const circle2 = useRef();
+
+    const logo = useLoader(THREE.TextureLoader, '/graphics/general/logo.png')
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
@@ -64,14 +70,40 @@ const HUDCircle = (props) => {
         if (circle1.current != null) {
             circle1.current.rotation.z = circle1.current.rotation.z + 0.01;
         }
+        if (circle2.current != null) {
+            circle2.current.rotation.z = circle2.current.rotation.z - 0.01;
+        }
     })
 
     return (
-        <React.Fragment>
-            <SVGExtrude position={[0, 0, 0]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle0.svg'} layer={1} ref={circle1} recenter={true} />
-            <SVGExtrude position={[10.5, 1.5, 2]} scale={[.1, .1, .1]} url={'/svgs/hud/hudcircle2.svg'} layer={1} />
-        </React.Fragment>
+        <Fragment>
+            <SVGExtrude position={[15, 5, 0]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle0.svg'} layer={1} recenter={true} ref={circle1} >
+                <meshBasicMaterial attach="material" color="cyan" />
+            </SVGExtrude>
+            <SVGExtrude position={[15, 5, 1]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle2.svg'} layer={1} recenter={true} ref={circle2} >
+                <meshBasicMaterial attach="material" color="cyan" />
+            </SVGExtrude>
+            <Billboard position={[15, 5, 0.5]} follow={true} args={[5, 5]} lockX={true} lockY={true}>
+                <meshStandardMaterial attach="material" map={logo} transparent />
+            </Billboard>
+        </Fragment>
 
+    )
+}
+
+const HUDTitle = (props) => {
+    return (
+        <Fragment>
+            <Text
+                color="cyan"
+                fontSize={2}
+                anchorX="center"
+                anchorY="center"
+                position={[-10, 10, 0.1]}
+            >
+                Jonathan Chai
+            </Text>
+        </Fragment>
     )
 }
 
@@ -88,12 +120,13 @@ const Lattice = (props) => {
 
 const Hud = (props) => {
     return (
-        <React.Fragment>
+        <Fragment>
             <Lattice />
             <Screen />
             <HUDCorner />
             <HUDCircle />
-        </React.Fragment>
+            <HUDTitle />
+        </Fragment>
     )
 }
 
