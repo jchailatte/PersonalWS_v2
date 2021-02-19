@@ -13,6 +13,17 @@ const verticalVertices = 40;
 
 //rmber to optimize geometries and materials later either with useMemo or useResource
 
+const Lattice = (props) => {
+    const data = useMemo(() => {
+        return new Array(horizontalVertices + 1).fill().map((_, i) => ({
+            points: [[verticalVertices / 2, i - horizontalVertices / 2, -1], [-verticalVertices / 2, i - horizontalVertices / 2, -1]],
+        })).concat(new Array(verticalVertices + 1).fill().map((_, i) => ({
+            points: [[i - verticalVertices / 2, horizontalVertices / 2, -1], [i - verticalVertices / 2, -horizontalVertices / 2, -1]],
+        })))
+    }, []);
+    return data.map((props, i) => <Line key={i} {...props} lineWidth={0.5} color="cyan" layers={1} />)
+}
+
 const Screen = (props) => {
     //note: the psuedo-wireframe effect is only working with react-three-fiber@5.3.17 atm
     return (
@@ -34,7 +45,7 @@ const HUDCorner = (props) => {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        const wave = Math.sin(time) / 100;
+        const wave = Math.sin(time) * 0.01;
 
         if (corner1.current != null) {
             corner1.current.position.x = corner1.current.position.x + wave;
@@ -48,11 +59,11 @@ const HUDCorner = (props) => {
 
     return (
         <Fragment>
-            <SVGExtrude position={[-5, -12, -1]} scale={[-0.1, 0.1, 0.1]} url={'/svgs/hud/hudcorner1.svg'} layer={1} depth={10} ref={corner1} >
-                <meshBasicMaterial attach="material" color="#008b8b" />
+            <SVGExtrude position={[-5, -12, -1]} scale={[-0.1, 0.1, 0.1]} url={'/svgs/hud/hudcorner1.svg'} layer={1} depth={10} center={true} ref={corner1} >
+                <meshPhongMaterial attach="material" color="black" emissive="#008b8b" shininess={10} />
             </SVGExtrude>
-            <SVGExtrude position={[5, 12, -1]} scale={[0.1, -0.1, 0.1]} url={'/svgs/hud/hudcorner1.svg'} layer={1} depth={10} ref={corner2} >
-                <meshBasicMaterial attach="material" color="#008b8b" />
+            <SVGExtrude position={[5, 12, -1]} scale={[0.1, -0.1, 0.1]} url={'/svgs/hud/hudcorner1.svg'} layer={1} depth={10} center={true} ref={corner2} >
+                <meshPhongMaterial attach="material" color="black" emissive="#008b8b" shininess={10} />
             </SVGExtrude>
         </Fragment>
     )
@@ -78,10 +89,10 @@ const HUDCircle = (props) => {
     return (
         <Fragment>
             <SVGExtrude position={[15, 5, 0]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle0.svg'} layer={1} recenter={true} ref={circle1} >
-                <meshBasicMaterial attach="material" color="cyan" />
+                <meshPhongMaterial attach="material" color="cyan" emissive="blue" />
             </SVGExtrude>
             <SVGExtrude position={[15, 5, 1]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle2.svg'} layer={1} recenter={true} ref={circle2} >
-                <meshBasicMaterial attach="material" color="cyan" />
+                <meshPhongMaterial attach="material" color="cyan" />
             </SVGExtrude>
             <Billboard position={[15, 5, 0.5]} follow={true} args={[5, 5]} lockX={true} lockY={true}>
                 <meshStandardMaterial attach="material" map={logo} transparent />
@@ -95,11 +106,14 @@ const HUDTitle = (props) => {
     return (
         <Fragment>
             <Text
-                color="cyan"
+                color="#008b8b"
                 fontSize={2}
                 anchorX="center"
                 anchorY="center"
-                position={[-10, 10, 0.1]}
+                position={[-12, 10, 0.1]}
+                outlineColor="#000000"
+                font="/fonts/Iceland-Regular.ttf"
+                layers={0}
             >
                 Jonathan Chai
             </Text>
@@ -107,16 +121,7 @@ const HUDTitle = (props) => {
     )
 }
 
-const Lattice = (props) => {
-    const data = useMemo(() => {
-        return new Array(horizontalVertices + 1).fill().map((_, i) => ({
-            points: [[verticalVertices / 2, i - horizontalVertices / 2, -1], [-verticalVertices / 2, i - horizontalVertices / 2, -1]],
-        })).concat(new Array(verticalVertices + 1).fill().map((_, i) => ({
-            points: [[i - verticalVertices / 2, horizontalVertices / 2, -1], [i - verticalVertices / 2, -horizontalVertices / 2, -1]],
-        })))
-    }, []);
-    return data.map((props, i) => <Line key={i} {...props} lineWidth={0.5} color="cyan" layers={1} />)
-}
+
 
 const Hud = (props) => {
     return (
