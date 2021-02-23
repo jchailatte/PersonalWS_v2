@@ -29,10 +29,8 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const Lanterns = () => {
-
     const { camera } = useThree();
 
-    //may change this from useMemo if implementing the onHover draggy thing
     const data = useMemo(() => {
         return new Array(30).fill().map((_, i) => ({
             x: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
