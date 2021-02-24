@@ -1,9 +1,11 @@
-import React, { Fragment, useEffect, useMemo, useRef } from 'react';
+import React, { Fragment, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { useFrame, useLoader, useUpdate } from 'react-three-fiber';
-import { Text, Line, Plane, Billboard } from '@react-three/drei';
+import { useFrame, useLoader } from 'react-three-fiber';
+import { Text, Line, Billboard } from '@react-three/drei';
 
 import SVGExtrude from '../three/SVGExtrude';
+
+import paths from '../../public/json/paths.json'
 
 
 //potential colors:
@@ -15,6 +17,14 @@ const Hud = (props) => {
     const horizontalVertices = 20;
     const verticalVertices = 40;
     const fontType = "/fonts/Iceland-Regular.ttf";
+
+    const [level, setLevel] = useState(Object.keys(paths));
+    console.log(level);
+
+    const buttons = new Array(6).fill().map((_, i) => ({
+        text: `Option ${i+1}`,
+        position: [-13, 5 - (2*i), 0.5]
+    }));
 
     const Lattice = (props) => {
         const data = useMemo(() => {
@@ -35,9 +45,9 @@ const Hud = (props) => {
                     <planeGeometry attach="geometry" args={[verticalVertices - 1, horizontalVertices - 1]} />
                     <meshPhongMaterial attach="material" color="cyan" depthTest={false} />
                 </mesh>
-                <mesh position={[0, 0, 0.1]}>
-                    <planeGeometry attach="geometry" args={[15, 15]} />
-                    <meshPhongMaterial attach="material" color="black" shininess={1} />
+                <mesh position={[1, 0, 0.1]}>
+                    <planeGeometry attach="geometry" args={[17, 15]} />
+                    <meshPhongMaterial attach="material" color="cyan" shininess={1} transparent={true} opacity={0.5}/>
                 </mesh>
                 <SVGExtrude position={[0, 0, 0]} scale={[.0825, .055, .05]} url={'/svgs/hud/border.svg'} recenter={true} >
                     <meshBasicMaterial attach="material" color="cyan" />
@@ -119,7 +129,7 @@ const Hud = (props) => {
                     font={fontType}
                     layers={0}
                 >
-                    Projects
+                    {props.text}
                 </Text>
                 <SVGExtrude position={props.position} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/button0.svg'} layer={0} recenter={true} >
                     <meshPhongMaterial attach="material" color="cyan" />
@@ -144,8 +154,8 @@ const Hud = (props) => {
                 layers={0}
             >
                 Jonathan Chai
-                </Text>            
-            <HUDButton position={[-13, 5, 0.5]} />
+            </Text>            
+            {buttons.map((props, i) => <HUDButton {...props} key={i}/>)}
         </Fragment>
     )
 }

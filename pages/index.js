@@ -60,7 +60,7 @@ const Index = (props) => {
                 <Canvas
                     colorManagement
                     shadowMap
-                    camera={{ position: [0, 0, 15], fov: 80 }}
+                    camera={{ position: [1, 0, 15], fov: 80 }}
                 >
                     {/* <fog attach="fog" args={["black", 100, 20]}/> */}
                     <ambientLight/>
