@@ -27,7 +27,7 @@ const SVGExtrude = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => internalRef.current, []);
 
     return (
-        <group position={props.position} scale={props.scale} dispose={null} ref={internalRef}>
+        <group position={props.position} scale={props.scale} rotation={props.rotation} dispose={null} ref={internalRef}>
             {
                 shapes.map((shape, i) => (
                     <mesh layers={props.layer} key={i} >
@@ -43,6 +43,7 @@ const SVGExtrude = forwardRef((props, ref) => {
 SVGExtrude.propTypes = {
     position: PropTypes.array,
     scale: PropTypes.array,
+    rotation: PropTypes.array,
     url: PropTypes.string.isRequired,
     depth: PropTypes.number,
     layer: PropTypes.number,
@@ -53,6 +54,7 @@ SVGExtrude.propTypes = {
 SVGExtrude.defaultProps = {
     position: [0, 0, 0],
     scale: [1, 1, 1],
+    rotation: [0, 0, 0],
     depth: 2,
     layer: 0,
     extrudeSettings: { bevelEnabled: false },

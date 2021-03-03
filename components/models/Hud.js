@@ -18,12 +18,9 @@ const Hud = (props) => {
     const verticalVertices = 40;
     const fontType = "/fonts/Iceland-Regular.ttf";
 
-    const [level, setLevel] = useState(Object.keys(paths));
-    console.log(level);
-
-    const buttons = new Array(6).fill().map((_, i) => ({
-        text: `Option ${i+1}`,
-        position: [-13, 5 - (2*i), 0.5]
+    const buttons = new Array(5).fill().map((_, i) => ({
+        text: `Option ${i + 1}`,
+        position: [-13, 6 - (3 * i), 0.5]
     }));
 
     const Lattice = (props) => {
@@ -47,7 +44,7 @@ const Hud = (props) => {
                 </mesh>
                 <mesh position={[1, 0, 0.1]}>
                     <planeGeometry attach="geometry" args={[17, 15]} />
-                    <meshPhongMaterial attach="material" color="cyan" shininess={1} transparent={true} opacity={0.5}/>
+                    <meshPhongMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />
                 </mesh>
                 <SVGExtrude position={[0, 0, 0]} scale={[.0825, .055, .05]} url={'/svgs/hud/border.svg'} recenter={true} >
                     <meshBasicMaterial attach="material" color="cyan" />
@@ -60,19 +57,20 @@ const Hud = (props) => {
         const corner1 = useRef();
         const corner2 = useRef();
 
-        useFrame((state) => {
-            const time = state.clock.getElapsedTime();
-            const wave = Math.sin(time) * 0.01;
+        // useFrame((state) => {
+        //     const time = state.clock.getElapsedTime();
+        //     const wave = Math.sin(time) * 0.01;
 
-            if (corner1.current != null) {
-                corner1.current.position.x = corner1.current.position.x + wave;
-                corner1.current.position.y = corner1.current.position.y + wave;
-            }
-            if (corner2.current != null) {
-                corner2.current.position.x = corner2.current.position.x - wave;
-                corner2.current.position.y = corner2.current.position.y - wave;
-            }
-        })
+        //     if (corner1.current != null) {
+        //         corner1.current.position.x = corner1.current.position.x + wave;
+        //         corner1.current.position.y = corner1.current.position.y + wave;
+        //     }
+        //     if (corner2.current != null) {
+        //         corner2.current.position.x = corner2.current.position.x - wave;
+        //         corner2.current.position.y = corner2.current.position.y - wave;
+        //     }
+        // })
+
 
         return (
             <Fragment>
@@ -104,10 +102,10 @@ const Hud = (props) => {
         return (
             <Fragment>
                 <SVGExtrude position={[15, 5, 0]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle0.svg'} layer={1} recenter={true} ref={circle1} >
-                    <meshPhongMaterial attach="material" color="cyan" emissive="blue" />
+                    <meshPhongMaterial attach="material" color="black" emissive="cyan" shininess={10} />
                 </SVGExtrude>
                 <SVGExtrude position={[15, 5, 1]} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/hudcircle2.svg'} layer={1} recenter={true} ref={circle2} >
-                    <meshPhongMaterial attach="material" color="cyan" />
+                    <meshPhongMaterial attach="material" color="black" emissive="cyan" shininess={10} />
                 </SVGExtrude>
                 <Billboard position={[15, 5, 0.5]} follow={true} args={[5, 5]} lockX={true} lockY={true}>
                     <meshStandardMaterial attach="material" map={logo} transparent />
@@ -125,13 +123,92 @@ const Hud = (props) => {
                     fontSize={1.5}
                     anchorX="center"
                     anchorY="center"
-                    position={[props.position[0] - 1, props.position[1] + 1, props.position[2]]}
+                    position={[props.position[0] - 1, props.position[1] + 1, props.position[2] + 0.1]}
                     font={fontType}
                     layers={0}
                 >
                     {props.text}
                 </Text>
                 <SVGExtrude position={props.position} scale={[0.1, 0.1, 0.1]} url={'/svgs/hud/button0.svg'} layer={0} recenter={true} >
+                    <meshPhongMaterial attach="material" color="cyan" />
+                </SVGExtrude>
+                <mesh position={props.position}>
+                    <planeGeometry attach="geometry" args={[9, 1.5]} />
+                    <meshPhongMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />
+                </mesh>
+            </Fragment>
+        )
+    }
+
+    const HUDOptions = (props) => {
+        const [level, setLevel] = useState(Object.keys(paths));
+        const [selected, setSelected] = useState(0);
+        const options = level.length;
+
+        const Option = (props) => {
+            const nextLevel = level[props.route];
+
+            return (
+                <Text
+                    color="#008b8b"
+                    fontSize={2}
+                    anchorX="center"
+                    anchorY="center"
+                    position={[0, 7 - (3 * props.order), 0.5]}
+                    font={fontType}
+                >
+                    {props.route.charAt(0).toUpperCase() + props.route.slice(1)}
+                </Text>
+            )
+        }
+
+        return (
+            <Fragment>
+                {level.map((route, i) =>
+                    <Option route={route} order={i} key={i} />
+                )}
+                <Text
+                    color="#008b8b"
+                    fontSize={2}
+                    anchorX="center"
+                    anchorY="center"
+                    position={[0, 7 - (3 * selected), 0.5]}
+                    font={fontType}
+                >
+                    [                  ]
+                </Text>
+                {options < 5 &&
+                    [...Array(5 - options)].map((_, i) =>
+                        <Text
+                            color="#008b8b"
+                            fontSize={2}
+                            anchorX="center"
+                            anchorY="center"
+                            position={[0, 7 - (3 * (i + options)), 0.5]}
+                            font={fontType}
+                            key={i}
+                        >
+                            - - - - -
+                        </Text>
+                    )
+                }
+            </Fragment>
+        )
+    }
+
+    const HUDControl = (props) => {
+        return (
+            <Fragment>
+                <SVGExtrude position={[15.5, -5, 0.5]} scale={[0.02, 0.02, 0.02]} url={'/svgs/hud/arrow.svg'} layer={0} >
+                    <meshPhongMaterial attach="material" color="cyan" />
+                </SVGExtrude>
+                <SVGExtrude position={[13, -5, 0.5]} scale={[-0.02, 0.02, 0.02]} url={'/svgs/hud/arrow.svg'} layer={0} >
+                    <meshPhongMaterial attach="material" color="cyan" />
+                </SVGExtrude>
+                <SVGExtrude position={[15.5, -2.5, 0.5]} scale={[0.02, 0.02, 0.02]} rotation={[0, 0, Math.PI / 2]} url={'/svgs/hud/arrow.svg'} layer={0} >
+                    <meshPhongMaterial attach="material" color="cyan" />
+                </SVGExtrude>
+                <SVGExtrude position={[15.5, -5, 0.5]} scale={[-0.02, 0.02, 0.02]} rotation={[0, 0, Math.PI / 2]} url={'/svgs/hud/arrow.svg'} layer={0}>
                     <meshPhongMaterial attach="material" color="cyan" />
                 </SVGExtrude>
             </Fragment>
@@ -151,12 +228,13 @@ const Hud = (props) => {
                 anchorY="center"
                 position={[-12, 10, 0.5]}
                 font={fontType}
-                layers={0}
             >
                 Jonathan Chai
-            </Text>            
-            {buttons.map((props, i) => <HUDButton {...props} key={i}/>)}
-        </Fragment>
+            </Text>
+            <HUDOptions />
+            <HUDControl />
+            {buttons.map((props, i) => <HUDButton {...props} key={i} />)}
+        </Fragment >
     )
 }
 

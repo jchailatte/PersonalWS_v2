@@ -13,7 +13,7 @@ function addPage(page) {
 
 function generateJsonmap(pages) {
     const paths = pages.map((page) => {
-        return page.replace('pages/', '').replace('.js', '').replace('/index', '');
+        return page.replace('pages/', '').replace('.js', '').replace('index', '');
     });
 
     const output = {};
