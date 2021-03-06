@@ -4,6 +4,8 @@ import * as THREE from 'three';
 import { useLoader, useUpdate } from 'react-three-fiber';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
+//potentially add mesh props and group props
+
 const SVGExtrude = forwardRef((props, ref) => {
     const data = useLoader(SVGLoader, props.url);
     const shapes = useMemo(() => data.paths.flatMap((g) => g.toShapes(true)), [data]);
@@ -30,7 +32,7 @@ const SVGExtrude = forwardRef((props, ref) => {
         <group position={props.position} scale={props.scale} rotation={props.rotation} dispose={null} ref={internalRef}>
             {
                 shapes.map((shape, i) => (
-                    <mesh layers={props.layer} key={i} >
+                    <mesh layers={props.layer} key={i} onClick={props.onClick}>
                         <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, ...props.extrudeSettings }]} />
                         {props.children}
                     </mesh>
@@ -49,6 +51,7 @@ SVGExtrude.propTypes = {
     layer: PropTypes.number,
     extrudeSettings: PropTypes.object,
     recenter: PropTypes.bool,
+    onClick: PropTypes.func,
 }
 
 SVGExtrude.defaultProps = {
