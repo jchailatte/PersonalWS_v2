@@ -29,15 +29,18 @@ const SVGExtrude = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => internalRef.current, []);
 
     return (
-        <group position={props.position} scale={props.scale} rotation={props.rotation} dispose={null} ref={internalRef}>
-            {
-                shapes.map((shape, i) => (
-                    <mesh layers={props.layer} key={i} onClick={props.onClick}>
-                        <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, ...props.extrudeSettings }]} />
-                        {props.children}
-                    </mesh>
-                ))
-            }
+        <group
+            position={props.position}
+            scale={props.scale}
+            rotation={props.rotation}
+            ref={internalRef}
+        >
+            {shapes.map((shape, i) => (
+                <mesh layers={props.layer} key={i} onClick={props.onClick}>
+                    <extrudeGeometry attach="geometry" args={[shape, { depth: props.depth, ...props.extrudeSettings }]} />
+                    {props.children}
+                </mesh>
+            ))}
         </group>
     )
 });

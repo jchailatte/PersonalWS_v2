@@ -19,17 +19,21 @@ const BinaryHalo = (props) => {
     const halo3 = useRef();
 
     useFrame((state) => {
+        const time = state.clock.getElapsedTime();
+        group.current.rotation.y = (props.direction * Math.sin(time/4));
+        group.current.rotation.x = (props.direction * Math.cos(time/4)) + 5;
+
         halo1.current.rotation.z = halo1.current.rotation.z - 0.0015;
         halo2.current.rotation.z = halo2.current.rotation.z + 0.002;
         halo3.current.rotation.z = halo3.current.rotation.z + 0.0005;
-    })
+    });
 
     return (
         <group
             ref={group}
-            dispose={null}
-            rotation={[-Math.PI / 2, 0, 0]}
+            rotation={props.rotation}
             scale={props.scale}
+            position={props.position}
         >
             <mesh
                 geometry={nodes.nimbus002_0.geometry}
@@ -73,11 +77,16 @@ useGLTF.preload('/models/binaryhalo.glb')
 BinaryHalo.propTypes = {
     color: PropTypes.string.isRequired,
     emissive: PropTypes.string.isRequired,
-    scale: PropTypes.array
+    scale: PropTypes.array,
+    direction: PropTypes.number,
+    rotation: PropTypes.array,
+    position: PropTypes.array,
 }
 
 BinaryHalo.defaultProps = {
-    scale: [30, 30, 30]
+    scale: [30, 30, 30],
+    direction: 1,
+    rotation: [Math.PI/2, 0,0]
 }
 
 export default BinaryHalo;

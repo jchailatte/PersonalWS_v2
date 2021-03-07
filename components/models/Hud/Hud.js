@@ -4,7 +4,7 @@ import { useFrame, useLoader, useUpdate } from 'react-three-fiber';
 import { Text } from '@react-three/drei';
 
 import SVGExtrude from '../../three/SVGExtrude';
-import Lattice from './Lattice';
+import HUDScreen from './HudScreen';
 import HUDLogo from './HudLogo';
 import HUDFrame from './HudFrame';
 
@@ -14,16 +14,18 @@ import paths from '../../../public/json/paths.json'
 //potential colors:
 // cyan, slate gray, white, dark cyan ( 008b8b)
 
-//rmber to optimize geometries and materials later either with useMemo or useResource
+//rmber to optimize geometries and materials later either with useMemo 
+//potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
 
 //redo the nesting so unneccesary components dont rerender
+
 
 const Hud = (props) => {
     const horizontalVertices = 20;
     const verticalVertices = 40;
     const fontType = "/fonts/Iceland-Regular.ttf";
 
-    const [prevLevel, setPrevLevel] = useState({});
+    const [prevLevel, setPrevLevel] = useState([]);
     const [level, setLevel] = useState(paths);
     const [selected, setSelected] = useState(0);
     const options = Object.keys(level).length;
@@ -61,26 +63,20 @@ const Hud = (props) => {
 
     const HUDOptions = (props) => {
 
-        const Option = (props) => {
-
-            return (
-                <Text
-                    color="#008b8b"
-                    fontSize={2}
-                    anchorX="center"
-                    anchorY="center"
-                    position={[0, 7 - (3 * props.order), 0.5]}
-                    font={fontType}
-                >
-                    {props.route.charAt(0).toUpperCase() + props.route.slice(1)}
-                </Text>
-            )
-        }
-
         return (
             <Fragment>
                 {Object.keys(level).map((route, i) =>
-                    <Option route={route} order={i} key={i} />
+                    <Text
+                        color="#008b8b"
+                        fontSize={2}
+                        anchorX="center"
+                        anchorY="center"
+                        position={[0, 7 - (3 * i), 0.5]}
+                        font={fontType}
+                        key={i}
+                    >
+                        {route.charAt(0).toUpperCase() + route.slice(1)}
+                    </Text>
                 )}
                 <Text
                     color="#008b8b"
@@ -120,8 +116,9 @@ const Hud = (props) => {
         }
 
         const selectDown = () => {
-            console.log(options);
             if (selected + 1 < options) {
+                console.log(`Optoions: ${options}`)
+                console.log(`Selected: ${selected + 1}`)
                 setSelected(selected + 1);
             }
         }
@@ -131,7 +128,7 @@ const Hud = (props) => {
             console.log(nextLevel);
 
             if (Object.keys(nextLevel).length != 0) {
-                setPrevLevel({...prevLevel, ...level});
+                //                setPrevLevel({ ...prevLevel, ...level });
                 setLevel(nextLevel);
                 setSelected(0);
             }
@@ -140,7 +137,7 @@ const Hud = (props) => {
         const selectLeft = () => {
             console.log(prevLevel);
 
-            if(Object.keys(prevLevel).length != 0){
+            if (Object.keys(prevLevel).length != 0) {
 
             }
         }
@@ -148,7 +145,7 @@ const Hud = (props) => {
         return (
             <Fragment>
                 <SVGExtrude
-                    position={[16, -5.5, 0.5]}
+                    position={[props.position[0] + 0.5, props.position[1], props.position[2]]}
                     scale={[0.02, 0.02, 0.02]}
                     url={'/svgs/hud/arrow.svg'}
                     onClick={(e) => selectRight()}
@@ -157,7 +154,7 @@ const Hud = (props) => {
                     <meshPhongMaterial attach="material" color="cyan" />
                 </SVGExtrude>
                 <SVGExtrude
-                    position={[12.5, -5.5, 0.5]}
+                    position={[props.position[0] - 3, props.position[1], props.position[2]]}
                     scale={[-0.02, 0.02, 0.02]}
                     url={'/svgs/hud/arrow.svg'}
                     layer={0}
@@ -165,7 +162,7 @@ const Hud = (props) => {
                     <meshPhongMaterial attach="material" color="cyan" />
                 </SVGExtrude>
                 <SVGExtrude
-                    position={[15.5, -2.5, 0.5]}
+                    position={[props.position[0], props.position[1] + 3, props.position[2]]}
                     scale={[0.02, 0.02, 0.02]}
                     rotation={[0, 0, Math.PI / 2]}
                     url={'/svgs/hud/arrow.svg'}
@@ -174,7 +171,7 @@ const Hud = (props) => {
                     <meshPhongMaterial attach="material" color="cyan" />
                 </SVGExtrude>
                 <SVGExtrude
-                    position={[15.5, -6, 0.5]}
+                    position={[props.position[0], props.position[1] - 0.5, props.position[2]]}
                     scale={[-0.02, 0.02, 0.02]}
                     rotation={[0, 0, Math.PI / 2]}
                     url={'/svgs/hud/arrow.svg'}
@@ -188,19 +185,9 @@ const Hud = (props) => {
 
     return (
         <Fragment>
-            <Lattice horizontalVertices={horizontalVertices} verticalVertices={verticalVertices} />
+            <HUDScreen horizontalVertices={horizontalVertices} verticalVertices={verticalVertices} />
             <HUDLogo position={[15, 5, 0]} logo={'/graphics/general/logo.png'} />
             <HUDFrame />
-
-
-            <mesh position={[0, 0, 0]}>
-                <planeGeometry attach="geometry" args={[verticalVertices - 1, horizontalVertices - 1]} />
-                <meshPhongMaterial attach="material" color="cyan" depthTest={false} />
-            </mesh>
-            <mesh position={[1, 0, 0.1]}>
-                <planeGeometry attach="geometry" args={[17, 15]} />
-                <meshPhongMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />
-            </mesh>
 
             <Text
                 color="#008b8b"
@@ -212,8 +199,10 @@ const Hud = (props) => {
             >
                 Jonathan Chai
             </Text>
+
+
             <HUDOptions />
-            <HUDControl />
+            <HUDControl position={[15.5, -5.5, 0.5]} />
             {buttons.map((props, i) => <HUDButton {...props} key={i} />)}
         </Fragment >
     )

@@ -58,25 +58,33 @@ const Index = (props) => {
             {/* dont forget headers */}
             <div className={classes.root}>
                 <Canvas
+                    concurrent
                     colorManagement
                     shadowMap
                     camera={{ position: [1, 0, 15], fov: 80 }}
                 >
                     {/* <fog attach="fog" args={["black", 100, 20]}/> */}
-                    <ambientLight/>
+                    <ambientLight />
                     <OrbitControls />
                     <Suspense fallback={null}>
                         <FantasySky />
                         <Lanterns />
+
                         <BinaryHalo
                             color="teal"
                             emissive="blue"
+                            direction={1}
+                        />
+                        <BinaryHalo
+                            color="teal"
+                            emissive="blue"
+                            direction={-1}
                         />
                         <Hud />
                     </Suspense>
                     <SelectiveBloomEffect layer={1} />
                 </Canvas>
-             </div>
+            </div>
         </React.Fragment>
     )
 };

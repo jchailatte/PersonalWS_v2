@@ -23,7 +23,7 @@ const Lantern = (props) => {
     })
 
     return (
-        <group ref={group} dispose={null} position={[props.x, props.y, props.z]}>
+        <group ref={group} position={[props.x, props.y, props.z]}>
             <pointLight
                 distance={100}
                 intensity={1}
