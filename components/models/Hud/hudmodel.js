@@ -3,12 +3,12 @@ import { Text } from '@react-three/drei';
 import { useThree, useFrame } from 'react-three-fiber';
 
 import SVGExtrude from '../../three/SVGExtrude';
-import HUDScreen from './HudScreen';
-import HUDLogo from './HudLogo';
-import HUDFrame from './HudFrame';
-import HUDArrow from './HudArrow';
-import HUDButton from './HudButton';
-import HUDSelect from './HudSelect';
+import HUDScreen from './hudscreen';
+import HUDLogo from './hudlogo';
+import HUDFrame from './hudframe';
+import HUDArrow from './hudarrow';
+import HUDButton from './hudbutton';
+import HUDSelect from './hudselect';
 
 import paths from '../../../public/json/paths.json'
 
