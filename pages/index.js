@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Canvas, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import FantasySky from '../components/models/fantasysky';
-import Lantern from '../components/models/lantern';
-import BinaryHalo from '../components/models/binaryhalo';
+import FantasySky from '../components/models/fantasysky.js';
+import Lantern from '../components/models/lantern.js';
+import BinaryHalo from '../components/models/binaryhalo.js';
 import Hud from '../components/models/hud/hud';
 
 import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
