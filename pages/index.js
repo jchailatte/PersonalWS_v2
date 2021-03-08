@@ -7,7 +7,7 @@ import { OrbitControls } from '@react-three/drei';
 import FantasySky from '../components/models/fantasyskymodel.js';
 import Lantern from '../components/models/lanternmodel.js';
 import BinaryHalo from '../components/models/binaryhalomodel.js';
-import Hud from '../components/models/hud/hudmodel';
+import Hud from '../components/models/hud/hudmodel.js';
 
 import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
