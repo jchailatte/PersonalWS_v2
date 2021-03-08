@@ -2,13 +2,12 @@ import React, { Fragment, useMemo, useRef, useState } from 'react';
 import { Text } from '@react-three/drei';
 import { useThree, useFrame } from 'react-three-fiber';
 
-import SVGExtrude from '../../three/SVGExtrude';
-import HUDScreen from './hudscreen';
-import HUDLogo from './hudlogo';
-import HUDFrame from './hudframe';
-import HUDArrow from './hudarrow';
-import HUDButton from './hudbutton';
-import HUDSelect from './hudselect';
+import HUDScreen from './hudscreen.js';
+import HUDLogo from './hudlogo.js';
+import HUDFrame from './hudframe.js';
+import HUDArrow from './hudarrow.js';
+import HUDButton from './hudbutton.js';
+import HUDSelect from './hudselect.js';
 
 import paths from '../../../public/json/paths.json'
 
