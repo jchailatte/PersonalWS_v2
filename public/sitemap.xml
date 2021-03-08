@@ -4,6 +4,10 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>http://localhost:3000/contact</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>http://localhost:3000</loc>
     <changefreq>monthly</changefreq>
   </url>

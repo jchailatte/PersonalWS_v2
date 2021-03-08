@@ -14,20 +14,20 @@ import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100vh',
+        //fix the little gap when switching to mobile
+        height: 'calc(100vh - 64px)',
         width: '100vw'
     }
 }));
 
-// export async function getStaticProps(context){
-//     return{
-//         props:{
-//             selected: 'Home',
-//             quote: "Making a choice doesn't have to have any meaning, but it might have some. We live on Earth, not for any meaning, but to be meaningful.",
-//             by: 'Jiang Ye',
-//         }
-//     }
-// }
+export async function getStaticProps(context){
+    return{
+        props:{
+            selected: 'Home',
+            padding: false,
+        }
+    }
+}
 
 const Lanterns = () => {
     const { camera } = useThree();
