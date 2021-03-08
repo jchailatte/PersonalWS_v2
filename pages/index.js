@@ -1,6 +1,5 @@
 import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useRouter } from 'next/router';
 
 import { Canvas, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
