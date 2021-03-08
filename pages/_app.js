@@ -27,7 +27,7 @@ export default function App(props) {
     return (
         <React.Fragment>
             <Head>
-                <meta http-equiv="Content-Security-Policy" content="worker-src: 'blob:';" ></meta>
+                <meta http-equiv="Content-Security-Policy" content="worker-src 'blob:';" ></meta>
                 <title key="title">Jonathan Chai</title>
                 <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
                 <meta name="description" key="description" content="A little personal website for me or as I like to call it, my developer sandbox" key="description"></meta>
