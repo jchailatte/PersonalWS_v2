@@ -18,10 +18,6 @@ const HUDScreen = (props) => {
                 <planeGeometry attach="geometry" args={[props.verticalVertices - 1, props.horizontalVertices - 1]} />
                 <meshPhongMaterial attach="material" color="cyan" depthTest={false} />
             </mesh>
-            <mesh position={[1, 0, 0.1]}>
-                <planeGeometry attach="geometry" args={[17, 15]} />
-                <meshPhongMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />
-            </mesh>
         </Fragment>
     )
 }

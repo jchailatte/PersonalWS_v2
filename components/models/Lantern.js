@@ -11,6 +11,8 @@ import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF, Octahedron } from '@react-three/drei'
 
+//potentially memoize lanterns(with usememo or react.memo) or instance it maybe? 
+
 const Lantern = (props) => {
     const { nodes, materials } = useGLTF('/models/lantern.glb')
     const group = useRef()
@@ -77,7 +79,7 @@ const Lantern = (props) => {
             />
         </group>
     )
-}
+};
 
 useGLTF.preload('/models/lantern.glb')
 

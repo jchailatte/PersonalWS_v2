@@ -24,9 +24,11 @@ const HUDLogo = (props) => {
     return (
         <Fragment>
             <SVGExtrude
-                position={props.position}
-                scale={[0.1, 0.1, 0.1]}
-                url={'/svgs/hud/hudcircle0.svg'}
+                groupProps={{
+                    position: props.position,
+                    scale: [0.1, 0.1, 0.1]
+                }}
+                url={"/svgs/hud/hudcircle0.svg"}
                 layer={1}
                 recenter={true}
                 ref={circle1}
@@ -34,8 +36,10 @@ const HUDLogo = (props) => {
                 {material}
             </SVGExtrude>
             <SVGExtrude
-                position={[props.position[0], props.position[1], props.position[2] + 1]}
-                scale={[0.1, 0.1, 0.1]}
+                groupProps={{
+                    position: [props.position[0], props.position[1], props.position[2] + 1],
+                    scale: [0.1, 0.1, 0.1]
+                }}
                 url={'/svgs/hud/hudcircle2.svg'}
                 layer={1}
                 recenter={true}
