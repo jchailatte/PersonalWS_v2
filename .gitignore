@@ -1,3 +1,8 @@
+#Large Files
+public/graphics/riot
+
+#-------------
+
 # Logs
 logs
 *.log

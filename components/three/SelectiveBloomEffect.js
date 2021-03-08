@@ -76,7 +76,6 @@ const SelectiveBloomEffect = (props) => {
     return (null);
 }
 
-
 //add proptypes for bloom strength and stuff
 SelectiveBloomEffect.propTypes = {
     layer: PropTypes.number,

@@ -2,6 +2,8 @@ import { Fragment, useMemo } from 'react';
 import { Line } from '@react-three/drei';
 import PropTypes from 'prop-types';
 
+//might replace the lattice design with a sci fi svg design
+
 const HUDScreen = (props) => {
     const data = useMemo(() => {
         return new Array(props.horizontalVertices + 1).fill().map((_, i) => ({
@@ -13,7 +15,7 @@ const HUDScreen = (props) => {
 
     return (
         <Fragment>
-            {data.map((props, i) => <Line key={i} {...props} lineWidth={0.5} color="cyan" layers={1} />)}
+            {data.map((props, i) => <Line key={"line" + i} {...props} lineWidth={0.5} color="cyan" layers={1} />)}
             <mesh position={[0, 0, 0]}>
                 <planeGeometry attach="geometry" args={[props.verticalVertices - 1, props.horizontalVertices - 1]} />
                 <meshPhongMaterial attach="material" color="cyan" depthTest={false} />

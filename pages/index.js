@@ -1,7 +1,8 @@
 import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
 
-import { Canvas, useFrame, useThree } from 'react-three-fiber';
+import { Canvas, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import FantasySky from '../components/models/FantasySky';
@@ -46,19 +47,23 @@ const Lanterns = () => {
         camera.layers.enable(1);
     }, [])
 
-    return data.map((props, i) => <Lantern key={i} {...props} />)
+    return data.map((props, i) => <Lantern key={"lantern"+i} {...props} />)
 }
 
 const Index = (props) => {
     const classes = useStyles();
 
+    // const router = useRouter();
+    // console.log(router);
+    
     const ref = useRef();
     return (
         <React.Fragment>
             {/* dont forget headers */}
             <div className={classes.root}>
                 <Canvas
-                    concurrent
+                    //concurrent is causing the triple render (dunno if performance boost or not?)
+                    //concurrent
                     colorManagement
                     shadowMap
                     camera={{ position: [1, 0, 15], fov: 80 }}
@@ -80,7 +85,9 @@ const Index = (props) => {
                             emissive="blue"
                             direction={-1}
                         />
-                        <Hud />
+                        <Hud 
+                        //router={router}
+                        />
                     </Suspense>
                     <SelectiveBloomEffect layer={1} />
                 </Canvas>

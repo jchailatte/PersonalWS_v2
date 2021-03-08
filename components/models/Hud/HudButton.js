@@ -50,7 +50,7 @@ HUDButton.propTypes = {
     position: PropTypes.array,
     fontType: PropTypes.string,
     text: PropTypes.string,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func
 }
 
 HUDButton.defaultProps = {

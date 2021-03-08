@@ -583,7 +583,7 @@ export default function Index(props) {
                             </Typography>
                         </Paper>
                     </Grid>
-                    <Grid item container xs={12} justify="space-evenly" style={{ paddingTop: '20px' }}>
+                    <Grid item container xs={12} justify="space-evenly" style={{ paddingTop: '20px', paddingRight: '30px' }}>
                         {positions.map((pos, key) => (
                             <Grid item key={key}>
                                 <Card className={classes.champCards} style={{ backgroundColor: '' }}>
@@ -609,7 +609,7 @@ export default function Index(props) {
                                 Team 2
                             </Typography>
                         </Paper>
-                        <Grid item container xs={12} justify="space-evenly" style={{ paddingTop: '20px' }}>
+                        <Grid item container xs={12} justify="space-evenly" style={{ paddingTop: '20px', paddingLeft: '30px' }}>
                             {positions.map((pos, key) => (
                                 <Grid item key={key}>
                                     <Card className={classes.champCards} style={{ backgroundColor: '#0C223F' }}>

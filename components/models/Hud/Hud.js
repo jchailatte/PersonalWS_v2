@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo, useRef, useState } from 'react';
 import { Text } from '@react-three/drei';
-import { useRouter } from 'next/router';
+import { useThree, useFrame } from 'react-three-fiber';
 
 import SVGExtrude from '../../three/SVGExtrude';
 import HUDScreen from './HudScreen';
@@ -18,16 +18,15 @@ import paths from '../../../public/json/paths.json'
 //rmber to optimize geometries and materials later either with useMemo 
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
 
-//redo the nesting so unneccesary components dont rerender
-
-
 const Hud = (props) => {
     const horizontalVertices = 20;
     const verticalVertices = 40;
     const controlPosition = [15.5, -5.5, 0.5];
     const fontType = "/fonts/Iceland-Regular.ttf";
 
-    const router = useRouter();
+    //weird camera issue causing duplicate keys -> maybe cause of another use of camera in index.js?
+    //prob will fix itself when i convert to useFrame
+    const { camera } = useThree();
     const [prevLevel, setPrevLevel] = useState([]);
     const [level, setLevel] = useState(paths);
     const [selected, setSelected] = useState(0);
@@ -70,10 +69,21 @@ const Hud = (props) => {
         }
     }
 
-    const select = () => {
-        const route = "/" + prevLevel.join('/') + Object.keys(level)[selected];
-        console.log(route);
-        router.push(route);
+    const selectSelect = () => {
+        //figure out the workaround at some point zzz
+        //try testing if it will work without Selective Bloom first though since that might be the issue
+        const route = prevLevel.join('/') + "/" + Object.keys(level)[selected];
+        window.location.href = route;
+        //props.router.push();
+    }
+
+    const recenter = () => {
+        //turn this into a smooth animation later
+
+        camera.position.x = 1;
+        camera.position.y = 0;
+        camera.position.z = 15;
+        camera.updateProjectionMatrix();
     }
 
     return (
@@ -81,20 +91,36 @@ const Hud = (props) => {
             <HUDScreen horizontalVertices={horizontalVertices} verticalVertices={verticalVertices} />
             <HUDLogo position={[15, 5, 0]} logo={'/graphics/general/logo.png'} />
             <HUDFrame />
-
-
             {Object.keys(level).map((route, i) =>
-                <Text
-                    color="#008b8b"
-                    fontSize={2}
-                    anchorX="center"
-                    anchorY="center"
-                    position={[0, 7 - (3 * i), 0.5]}
-                    font={fontType}
-                    key={i}
-                >
-                    {route.charAt(0).toUpperCase() + route.slice(1)}
-                </Text>
+                //note: rmber to truncate strings later on :D
+                //oh and fix the ">" to look nicer future me
+                <Fragment>
+                    <Text
+                        color="#008b8b"
+                        fontSize={2}
+                        anchorX="center"
+                        anchorY="center"
+                        position={[0, 7 - (3 * i), 0.5]}
+                        font={fontType}
+                        key={"route" + i}
+                    >
+                        {route.charAt(0).toUpperCase() + route.slice(1)}
+                    </Text>
+
+                    {Object.keys(level[route]).length != 0 ?
+                        <Text
+                            color="#008b8b"
+                            fontSize={2}
+                            anchorX="center"
+                            anchorY="center"
+                            position={[0, 7 - (3 * i), 0.5]}
+                            font={fontType}
+                            key={">" + i}
+                            text="                            >"   
+                        >
+                        </Text>
+                        : null}
+                </Fragment>
             )}
             <Text
                 color="#008b8b"
@@ -115,15 +141,15 @@ const Hud = (props) => {
                         anchorY="center"
                         position={[0, 7 - (3 * (i + options)), 0.5]}
                         font={fontType}
-                        key={i}
+                        key={"dashed" + i}
                     >
                         - - - - -
                     </Text>
                 )
             }
-            <HUDSelect 
-                position={[15.5, -5.5, 0.5]} 
-                onClick={(e)=>select()}
+            <HUDSelect
+                position={[15.5, -5.5, 0.5]}
+                onClick={(e) => selectSelect()}
             />
             <HUDArrow
                 groupProps={{
@@ -154,6 +180,11 @@ const Hud = (props) => {
                     rotation: [0, 0, Math.PI / 2]
                 }}
                 onClick={(e) => selectDown()}
+            />
+            <HUDButton
+                text={"Recenter"}
+                position={[-13, 6, 0.5]}
+                onClick={(e) => recenter()}
             />
         </Fragment >
     )
