@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     appBar: {
+        height: '64px',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -82,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     contentShift: {
         filter: "brightness(50%)"
     },
-    fontstyle:{
+    fontstyle: {
         fontFamily: "Iceland",
         fontSize: '22px',
     },
@@ -117,12 +118,12 @@ const sbitems =
             icon: <CodeIcon />,
             href: '/projects',
         },
-        {
-            text: 'Contact Me',
-            icon: <EmailIcon />,
-            href: '/contact',
-        },
-];
+        // {
+        //     text: 'Contact Me',
+        //     icon: <EmailIcon />,
+        //     href: '/contact',
+        // },
+    ];
 
 const footer =
     [
@@ -130,13 +131,11 @@ const footer =
             text: 'GitHub',
             icon: <GithubIcon />,
             href: 'https://github.com/jchailatte',
-            target: "_blank"
         },
         {
             text: 'LinkedIn',
             icon: <LinkedInIcon />,
             href: 'https://www.linkedin.com/in/jchailatte/',
-            target: "_blank"
         }
     ];
 
@@ -197,8 +196,10 @@ const Sidebar = (props) => {
                         <Link href={item.href} key={index}>
                             <ListItem button component='a'
                                 selected={item.text === props.selected}
+                                onClick={handleDrawerClose}
                                 className={classes.opennested}
                                 disabled={item.disable}
+                                key={index}
                             >
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText
@@ -216,7 +217,7 @@ const Sidebar = (props) => {
                     {footer.map((item, index) => (
                         <ListItem button component='a'
                             href={item.href}
-                            target={item.target}
+                            target="_blank"
                             className={classes.opennested}
                             disabled={item.disable}
                             key={index}
@@ -230,7 +231,7 @@ const Sidebar = (props) => {
             <main
                 className={clsx(classes.content, {
                     [classes.contentShift]: open,
-                    [classes.padding] : props.padding,
+                    [classes.padding]: props.padding,
                 })}
                 id="content"
             >
@@ -247,7 +248,7 @@ Sidebar.propTypes = {
 }
 
 Sidebar.defaultProps = {
-    padding:true
+    padding: true
 }
 
 export default Sidebar;
