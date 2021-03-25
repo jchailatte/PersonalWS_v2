@@ -49,7 +49,7 @@ const HUDLogo = (props) => {
             </SVGExtrude>
             <mesh position={[15, 5, 0.5]}>
                 <planeGeometry attach="geometry" args={[5, 5]} />
-                <meshStandardMaterial attach="material" map={logo} transparent />
+                <meshStandardMaterial attach="material" side={THREE.DoubleSide} map={logo} transparent />
             </mesh>
         </Fragment>
     )

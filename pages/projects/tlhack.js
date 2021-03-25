@@ -131,16 +131,16 @@ const useStyles = makeStyles((theme) => ({
     },
     wave1: {
         backgroundSize: '50% 80px',
-        backgroundImage: `url("/graphics/1blue.png")`
+        backgroundImage: `url("/graphics/tlhack/1blue.png")`
     },
     wave2: {
         backgroundSize: '50% 100px',
-        backgroundImage: `url("/graphics/2blue.png")`,
+        backgroundImage: `url("/graphics/tlhack/2blue.png")`,
         animation: '$wavy 12s linear infinite',
     },
     wave3: {
         backgroundSize: '50% 80px',
-        backgroundImage: `url("/graphics/3blue.png")`,
+        backgroundImage: `url("/graphics/tlhack/3blue.png")`,
         animation: '$wavy 18s linear infinite'
     },
     sffont: {
@@ -288,48 +288,49 @@ const positions = [
 export default function Index(props) {
 
     const classes = useStyles();
+    const portrait = "/graphics/tlhack/portraitbg.jpg"
 
     const champData = champions[0].data;
     const initialState = {
         Top1: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Jung1: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Mid1: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Bot1: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Sup1: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Top2: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Jung2: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Mid2: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Bot2: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
         Sup2: {
             champion: "",
-            src: "/graphics/portraitbg.jpg"
+            src: portrait
         },
     };
 
@@ -369,8 +370,6 @@ export default function Index(props) {
     };
 
     const reset = () => {
-        // setTeam1({...initialState});
-        // setTeam2({...initialState});
         setTrigger(false)
         setFade(0);
         setDisappear(false);

@@ -2,8 +2,6 @@ import { Fragment, useMemo } from 'react';
 import { Line } from '@react-three/drei';
 import PropTypes from 'prop-types';
 
-//might replace the lattice design with a sci fi svg design
-
 const HUDScreen = (props) => {
     const data = useMemo(() => {
         return new Array(props.horizontalVertices + 1).fill().map((_, i) => ({
@@ -22,7 +20,7 @@ const HUDScreen = (props) => {
             </mesh>
             <mesh position={[1, 0, 0.1]}>
                 <planeGeometry attach="geometry" args={[17, 15]} />
-                <meshPhongMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />
+                <meshStandardMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />
             </mesh>
         </Fragment>
     )
@@ -34,4 +32,3 @@ HUDScreen.propTypes = {
 }
 
 export default HUDScreen;
-
