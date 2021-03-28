@@ -1,13 +1,14 @@
-import React, { Suspense, useMemo, useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { Suspense, useMemo, useState, Profiler, useRef, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Head from 'next/head';
 
 import { Canvas, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import FantasySky from '../components/models/fantasyskymodel.js';
-import Lantern from '../components/models/lanternmodel.js';
-import BinaryHalo from '../components/models/binaryhalomodel.js';
-import Hud from '../components/models/hudmodel/hud.js';
+import FantasySky from '../components/models/fantasysky.js';
+import Lantern from '../components/models/lantern.js';
+import BinaryRing from '../components/models/binaryring.js';
+import Hud from '../components/models/hud/hud.js';
 
 import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
@@ -19,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export async function getStaticProps(context){
-    return{
-        props:{
+export async function getStaticProps(context) {
+    return {
+        props: {
             selected: 'Home',
             padding: false,
         }
@@ -41,12 +42,7 @@ const Lanterns = () => {
         }))
     }, [])
 
-    useLayoutEffect(() => {
-        camera.layers.enable(0);
-        camera.layers.enable(1);
-    }, [])
-
-    return data.map((props, i) => <Lantern key={"lantern"+i} {...props} />)
+    return data.map((props, i) => <Lantern key={"lantern" + i} {...props} />)
 }
 
 const Index = (props) => {
@@ -54,11 +50,38 @@ const Index = (props) => {
 
     // const router = useRouter();
     // console.log(router);
-    
+
+    const logTimes = (id, phase, actualTime, baseTime, startTime, commitTime) => {
+        console.log(`${id}'s ${phase} phase:`);
+        console.log(`Actual time: ${actualTime}`);
+        console.log(`Base time: ${baseTime}`);
+        console.log(`Start time: ${startTime}`);
+        console.log(`Commit time: ${commitTime}`);
+    };
+
     const ref = useRef();
+
+    const Scripts = () => {
+        const { camera } = useThree();
+
+        useLayoutEffect(() => {
+            camera.layers.enable(0);
+            camera.layers.enable(1);
+        }, [])
+
+        return null;
+    }
+
     return (
         <React.Fragment>
-            {/* dont forget headers */}
+            <Head>
+                <meta
+                    name="description"
+                    key="description"
+                    content="A little personal website for me or as I like to call it, my developer sandbox"
+                    key="description"
+                />
+            </Head>
             <div className={classes.root}>
                 <Canvas
                     //concurrent is causing the triple render (dunno if performance boost or not?)
@@ -67,26 +90,21 @@ const Index = (props) => {
                     shadowMap
                     camera={{ position: [1, 0, 15], fov: 80 }}
                 >
-                    {/* <fog attach="fog" args={["black", 100, 20]}/> */}
                     <ambientLight />
-                    <OrbitControls />
+                    <OrbitControls 
+                        maxDistance={50}
+                    />
                     <Suspense fallback={null}>
+                        <Scripts />
                         <FantasySky />
                         <Lanterns />
-
-                        <BinaryHalo
-                            color="teal"
-                            emissive="blue"
+                        <BinaryRing
                             direction={1}
                         />
-                        <BinaryHalo
-                            color="teal"
-                            emissive="blue"
+                        <BinaryRing
                             direction={-1}
                         />
-                        <Hud 
-                        //router={router}
-                        />
+                        <Hud/>
                     </Suspense>
                     <SelectiveBloomEffect layer={1} />
                 </Canvas>

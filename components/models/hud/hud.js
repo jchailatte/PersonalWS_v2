@@ -11,11 +11,9 @@ import HUDSelect from './hudselect.js';
 
 import paths from '../../../public/json/paths.json'
 
-//potential colors:
-// cyan, slate gray, white, dark cyan ( 008b8b)
-
 //rmber to optimize geometries and materials later either with useMemo 
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
+//maybe add a conversion for mobile  version (can be done later)
 
 const Hud = (props) => {
     const horizontalVertices = 20;
@@ -26,6 +24,7 @@ const Hud = (props) => {
     //weird camera issue causing duplicate keys -> maybe cause of another use of camera in index.js?
     //prob will fix itself when i convert to useFrame
     const { camera } = useThree();
+    
     const [prevLevel, setPrevLevel] = useState([]);
     const [level, setLevel] = useState(paths);
     const [selected, setSelected] = useState(0);
@@ -77,8 +76,7 @@ const Hud = (props) => {
     }
 
     const recenter = () => {
-        //turn this into a smooth animation later
-
+        //turn this into a smooth animation later (though react-spring doesnt seem to allow this so might have to find a workaround)
         camera.position.x = 1;
         camera.position.y = 0;
         camera.position.z = 15;

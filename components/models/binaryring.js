@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei'
 
-const BinaryHalo = (props) => {
+const BinaryRing = (props) => {
     const { nodes, materials } = useGLTF('/models/binaryhalo.glb');
     const group = useRef();
     const halo1 = useRef();
@@ -20,8 +20,8 @@ const BinaryHalo = (props) => {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        group.current.rotation.y = (props.direction * Math.sin(time/4));
-        group.current.rotation.x = (props.direction * Math.cos(time/4)) + 5;
+        group.current.rotation.y = (props.direction * Math.sin(time / 4));
+        group.current.rotation.x = (props.direction * Math.cos(time / 4)) + 5;
 
         halo1.current.rotation.z = halo1.current.rotation.z - 0.0015;
         halo2.current.rotation.z = halo2.current.rotation.z + 0.002;
@@ -74,7 +74,7 @@ const BinaryHalo = (props) => {
 
 useGLTF.preload('/models/binaryhalo.glb')
 
-BinaryHalo.propTypes = {
+BinaryRing.propTypes = {
     color: PropTypes.string.isRequired,
     emissive: PropTypes.string.isRequired,
     scale: PropTypes.array,
@@ -83,10 +83,12 @@ BinaryHalo.propTypes = {
     position: PropTypes.array,
 }
 
-BinaryHalo.defaultProps = {
+BinaryRing.defaultProps = {
     scale: [30, 30, 30],
     direction: 1,
-    rotation: [Math.PI/2, 0,0]
+    rotation: [Math.PI / 2, 0, 0],
+    color: "teal",
+    emissive: "blue",
 }
 
-export default BinaryHalo;
+export default BinaryRing;
