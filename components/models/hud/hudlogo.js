@@ -5,12 +5,15 @@ import { useFrame, useLoader } from 'react-three-fiber';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
-const HUDLogo = (props) => {
+const HUDLogo = props => {
     const circle1 = useRef();
     const circle2 = useRef();
 
     const logo = useLoader(THREE.TextureLoader, props.logo);
-    const material = useMemo(() => <meshPhongMaterial attach="material" color="black" emissive="cyan" shininess={1} />, [])
+    const material = useMemo(
+        () => <meshPhongMaterial attach="material" color="black" emissive="cyan" shininess={1} />,
+        []
+    );
 
     useFrame(() => {
         if (circle1.current != null) {
@@ -19,7 +22,7 @@ const HUDLogo = (props) => {
         if (circle2.current != null) {
             circle2.current.rotation.z = circle2.current.rotation.z - 0.01;
         }
-    })
+    });
 
     return (
         <Fragment>
@@ -28,7 +31,7 @@ const HUDLogo = (props) => {
                     position: props.position,
                     scale: [0.1, 0.1, 0.1]
                 }}
-                url={"/svgs/hud/hudcircle0.svg"}
+                url={'/svgs/hud/hudcircle0.svg'}
                 layer={1}
                 recenter={true}
                 ref={circle1}
@@ -49,16 +52,20 @@ const HUDLogo = (props) => {
             </SVGExtrude>
             <mesh position={[15, 5, 0.5]}>
                 <planeGeometry attach="geometry" args={[5, 5]} />
-                <meshStandardMaterial attach="material" side={THREE.DoubleSide} map={logo} transparent />
+                <meshStandardMaterial
+                    attach="material"
+                    side={THREE.DoubleSide}
+                    map={logo}
+                    transparent
+                />
             </mesh>
         </Fragment>
-    )
-}
+    );
+};
 
 HUDLogo.propTypes = {
     position: PropTypes.array.isRequired,
-    logo: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired
 };
 
 export default HUDLogo;
-

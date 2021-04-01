@@ -14,7 +14,7 @@ import Info from '../components/general/info';
 
 import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
         //fix the little gap when switching to mobile
         //which for some reason refuses to disappear -_-
@@ -34,9 +34,9 @@ export async function getStaticProps() {
     return {
         props: {
             selected: 'Home',
-            padding: false,
+            padding: false
         }
-    }
+    };
 }
 
 const Lanterns = () => {
@@ -47,11 +47,11 @@ const Lanterns = () => {
             z: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
             yOffset: Math.random(),
             rotation: Math.round(Math.random()) ? -1 : 1
-        }))
-    }, [])
+        }));
+    }, []);
 
-    return data.map((props, i) => <Lantern key={"lantern" + i} {...props} />)
-}
+    return data.map((props, i) => <Lantern key={'lantern' + i} {...props} />);
+};
 
 const Index = () => {
     const classes = useStyles();
@@ -65,10 +65,10 @@ const Index = () => {
         useLayoutEffect(() => {
             camera.layers.enable(0);
             camera.layers.enable(1);
-        }, [])
+        }, []);
 
         return null;
-    }
+    };
 
     return (
         <React.Fragment>
@@ -80,15 +80,10 @@ const Index = () => {
                 />
             </Head>
             <Info>
-                <Fragment>
-                    test
-                </Fragment>
+                <Fragment>test</Fragment>
             </Info>
 
-            <ThreeDRotationIcon
-                fontSize="large"
-                className={classes.ThreeDAvatar}
-            />
+            <ThreeDRotationIcon fontSize="large" className={classes.ThreeDAvatar} />
             <div className={classes.root}>
                 <Canvas
                     //concurrent is causing the triple render (dunno if performance boost or not?)
@@ -98,26 +93,20 @@ const Index = () => {
                     camera={{ position: [1, 0, 15], fov: 80 }}
                 >
                     <ambientLight />
-                    <OrbitControls
-                        maxDistance={50}
-                    />
+                    <OrbitControls maxDistance={50} />
                     <Scripts />
                     <Suspense fallback={null}>
                         <FantasySky />
                         <Lanterns />
-                        <BinaryRing
-                            direction={1}
-                        />
-                        <BinaryRing
-                            direction={-1}
-                        />
+                        <BinaryRing direction={1} />
+                        <BinaryRing direction={-1} />
                         {/* <Hud />     */}
                     </Suspense>
                     <SelectiveBloomEffect layer={1} />
                 </Canvas>
             </div>
         </React.Fragment>
-    )
+    );
 };
 
 export default Index;

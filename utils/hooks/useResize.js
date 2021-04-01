@@ -3,25 +3,24 @@ import { useState, useEffect } from 'react';
 //https://www.pluralsight.com/guides/re-render-react-component-on-window-resize
 
 export function useResize(elid) {
-
     const [dimensions, setDimensions] = useState({
         width: 0,
-        height:0,
+        height: 0
     });
 
-    useEffect(()=>{
+    useEffect(() => {
         const debouncedHandleResize = debounce(function handleResize() {
             setDimensions({
                 width: document.getElementById(elid).offsetWidth,
                 height: document.getElementById(elid).offsetHeight
             });
-        },200);
+        }, 200);
 
         window.addEventListener('resize', debouncedHandleResize);
 
         return _ => {
             window.removeEventListener('resize', debouncedHandleResize);
-        }
+        };
     });
 
     function debounce(fn, ms) {
@@ -31,11 +30,9 @@ export function useResize(elid) {
             timer = setTimeout(_ => {
                 timer = null;
                 fn.apply(this, arguments);
-            }, ms)
+            }, ms);
         };
     }
 
     return dimensions;
 }
-
-

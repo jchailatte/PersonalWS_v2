@@ -31,15 +31,12 @@ export default function App(props) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta charSet="UTF-8" />
                 <meta name="author" content="Jonathan Chai" />
-                <link rel="icon" href='/graphics/general/logo.ico' />
+                <link rel="icon" href="/graphics/general/logo.ico" />
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Background>
-                    <Sidebar
-                        selected={pageProps.selected}
-                        padding={pageProps.padding}
-                    >
+                    <Sidebar selected={pageProps.selected} padding={pageProps.padding}>
                         <div style={{ position: 'relative' }}>
                             <Component {...pageProps} />
                         </div>
@@ -47,10 +44,10 @@ export default function App(props) {
                 </Background>
             </ThemeProvider>
         </React.Fragment>
-    )
+    );
 }
 
 App.propTypes = {
     Component: PropTypes.elementType.isRequired,
-    pageProps: PropTypes.object.isRequired,
+    pageProps: PropTypes.object.isRequired
 };

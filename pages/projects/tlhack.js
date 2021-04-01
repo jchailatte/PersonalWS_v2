@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 
 import champions from '../../public/json/champions10-22-1.json';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     side1: {
         backgroundColor: '#0C223F',
         paddingBottom: '2vh'
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         top: '35%',
         left: '50%',
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate(-50%, -50%)'
     },
     centerReset: {
         position: 'absolute',
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         width: '90%',
         zIndex: '99',
         transform: 'translate(5%)',
-        borderStyle: "outset"
+        borderStyle: 'outset'
     },
     playerImg: {
         height: '50vh',
@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-evenly',
         background: 'white',
         minHeight: '10vh'
-
     },
     fightButton: {
         height: '25vh',
@@ -84,18 +83,18 @@ const useStyles = makeStyles((theme) => ({
     },
     circularChart: {
         maxWidth: '35vh',
-        zIndex: '25',
+        zIndex: '25'
     },
     circle: {
         stroke: '#2468BF',
         fill: 'none',
         strokeWidth: '2.8',
-        animation: '$progress 6s ease-out forwards',
+        animation: '$progress 6s ease-out forwards'
     },
     oppositeCircle: {
         stroke: 'white',
         fill: 'none',
-        strokeWidth: '2.8',
+        strokeWidth: '2.8'
     },
     circlebg: {
         fill: 'none',
@@ -111,14 +110,14 @@ const useStyles = makeStyles((theme) => ({
     },
     line1: {
         zIndex: '15',
-        opacity: '0.5',
+        opacity: '0.5'
     },
     line2: {
         zIndex: '10',
-        opacity: '0.7',
+        opacity: '0.7'
     },
     line3: {
-        zIndex: '5',
+        zIndex: '5'
     },
     wave: {
         position: 'absolute',
@@ -127,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         backgroundRepeat: 'repeat no-repeat',
         backgroundPosition: '0 bottom',
-        transformOrigin: "center bottom"
+        transformOrigin: 'center bottom'
     },
     wave1: {
         backgroundSize: '50% 80px',
@@ -136,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     wave2: {
         backgroundSize: '50% 100px',
         backgroundImage: `url("/graphics/tlhack/2blue.png")`,
-        animation: '$wavy 12s linear infinite',
+        animation: '$wavy 12s linear infinite'
     },
     wave3: {
         backgroundSize: '50% 80px',
@@ -147,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'SFF'
     },
     wavepadding: {
-        paddingTop: '16vh',
+        paddingTop: '16vh'
     },
     rotatingBlue: {
         animation: '$rotate 6s linear'
@@ -157,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
     },
     champCards: {
         height: '55vh',
-        width: '7vw',
+        width: '7vw'
     },
     gradientBorder: {
         position: 'absolute',
@@ -169,175 +168,170 @@ const useStyles = makeStyles((theme) => ({
         width: '200%',
         transform: 'rotate(-45deg)',
         overflow: 'hidden',
-        background: 'linear-gradient(to right, #fff 20%, #00000000 40%, #0C223F 50%, #0C223F 55%, #00000000 70%, #fff 100%)',
+        background:
+            'linear-gradient(to right, #fff 20%, #00000000 40%, #0C223F 50%, #0C223F 55%, #00000000 70%, #fff 100%)',
         backgroundSize: '200% auto',
-        animation: "$shine 6s linear infinite"
+        animation: '$shine 6s linear infinite'
     },
     modal: {
         display: 'flex',
         padding: theme.spacing(1),
         alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center',
+        textAlign: 'center'
     },
     paperModal: {
         width: '90vw',
         maxHeight: '90vh',
-        overflowY: 'scroll',
+        overflowY: 'scroll'
     },
     hidingblue: {
         position: 'absolute',
         height: '150px',
         top: '60vh',
-        animation: "$slide 6s linear forwards"
-
+        animation: '$slide 6s linear forwards'
     },
     grayOut: {
         opacity: 0.4,
         filter: 'alpha(opacity=40)'
     },
-    slideDown: {
-    },
+    slideDown: {},
     cardImage: {
-        height: '50vh',
+        height: '50vh'
     },
-    "@keyframes progress": {
-        "0%": {
+    '@keyframes progress': {
+        '0%': {
             strokeDasharray: '25 100'
         },
-        "25%": {
+        '25%': {
             strokeDasharray: '75 100'
         },
-        "50%": {
+        '50%': {
             strokeDasharray: '25 100'
         },
-        "75%": {
+        '75%': {
             strokeDasharray: '75 100'
-        },
+        }
     },
-    "@keyframes wavy": {
-        "0%": {
+    '@keyframes wavy': {
+        '0%': {
             transform: 'translateX(0) translateZ(0) scaleY(1)'
         },
-        "50%": {
+        '50%': {
             transform: 'translateX(-25%) translateZ(0) scaleY(0.5)'
         },
-        "100%": {
+        '100%': {
             transform: 'translateX(-50%) translateZ(0) scaleY(1)'
-        },
+        }
     },
-    "@keyframes pulse": {
-        "0%": {
-        },
-        "50%": {
+    '@keyframes pulse': {
+        '0%': {},
+        '50%': {
             boxShadow: '0 0 0 20px rgba(199, 21, 133, 0)'
         },
-        "100%": {
+        '100%': {
             boxShadow: '0 0 0 0 rgba(199, 21, 133, 0)'
         }
     },
-    "@keyframes rotate": {
-        "0%": {
+    '@keyframes rotate': {
+        '0%': {
             transform: 'rotate(-40deg) rotateY(180deg)'
         },
-        "20%": {
+        '20%': {
             transform: 'rotate(40deg) rotateY(360deg)'
         },
-        "40%": {
+        '40%': {
             transform: ' rotate(-40deg) rotateY(180deg)'
         },
-        "60%": {
+        '60%': {
             transform: ' rotate(40deg) rotateY(360deg)'
         },
-        "100%": {
+        '100%': {
             transform: 'rotate(0deg) rotateY(180deg)'
         }
     },
-    "@keyframes shine": {
-        "50%": {
+    '@keyframes shine': {
+        '50%': {
             backgroundPosition: '200% center'
         }
     },
-    "@keyframes slide": {
-        "0%": {
+    '@keyframes slide': {
+        '0%': {
             transform: 'translateX(-50%) translateY(-35%) rotate(-40deg)'
         },
-        "20%": {
+        '20%': {
             transform: 'translateX(-50%) translateY(-35%) rotate(40deg)'
         },
-        "40%": {
+        '40%': {
             transform: 'translateX(-50%) translateY(-35%) rotate(-40deg)'
         },
-        "60%": {
+        '60%': {
             transform: 'translateX(-50%) translateY(-20%) rotate(40deg) '
         },
-        "100%": {
+        '100%': {
             transform: 'translateX(-50%) translateY(-20%) translateY(70%)'
         }
     },
-    "@font-face": {
+    '@font-face': {
         fontFamily: 'SFF',
         src: `url("/fonts/SFF.otf") format("opentype")`
-    },
+    }
 }));
 
-const positions = [
-    "Top", "Jung", "Mid", "Bot", "Sup"
-]
+const positions = ['Top', 'Jung', 'Mid', 'Bot', 'Sup'];
 
 export default function Index() {
-
     const classes = useStyles();
-    const portrait = "/graphics/tlhack/portraitbg.jpg"
+    const portrait = '/graphics/tlhack/portraitbg.jpg';
 
     const champData = champions[0].data;
     const initialState = {
         Top1: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Jung1: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Mid1: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Bot1: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Sup1: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Top2: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Jung2: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Mid2: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Bot2: {
-            champion: "",
+            champion: '',
             src: portrait
         },
         Sup2: {
-            champion: "",
+            champion: '',
             src: portrait
-        },
+        }
     };
 
     const [open, setOpen] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [turn, setTurn] = useState(false);
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState('');
     const [run, setRun] = useState(false);
     const [team, setTeam] = useState(initialState);
     const [selected, setSelected] = useState({});
@@ -361,12 +355,12 @@ export default function Index() {
     };
 
     const onCardClick = (team, key) => {
-        setCurrentCard(((team - 1) * 5) + key);
+        setCurrentCard((team - 1) * 5 + key);
         handleModalOpen();
     };
 
     const reset = () => {
-        setTrigger(false)
+        setTrigger(false);
         setFade(0);
         setDisappear(false);
         setRun(false);
@@ -380,8 +374,8 @@ export default function Index() {
             return;
         }
 
-        const team1string = `${team["Top1"].champion}%2C${team["Jung1"].champion}%2C${team["Mid1"].champion}%2C${team["Bot1"].champion}%2C${team["Sup1"].champion}`;
-        const team2string = `${team["Top2"].champion}%2C${team["Jung2"].champion}%2C${team["Mid2"].champion}%2C${team["Bot2"].champion}%2C${team["Sup2"].champion}`;
+        const team1string = `${team['Top1'].champion}%2C${team['Jung1'].champion}%2C${team['Mid1'].champion}%2C${team['Bot1'].champion}%2C${team['Sup1'].champion}`;
+        const team2string = `${team['Top2'].champion}%2C${team['Jung2'].champion}%2C${team['Mid2'].champion}%2C${team['Bot2'].champion}%2C${team['Sup2'].champion}`;
 
         fetch(`${process.env.TLHACK}/compare_teams?team_1=${team1string}&team_2=${team2string}`)
             .then(data => {
@@ -401,29 +395,37 @@ export default function Index() {
 
     const fightOnClick = () => {
         let flag = false;
-        Object.keys(team).map((index) => {
-            if (team[index].champion === "") {
+        Object.keys(team).map(index => {
+            if (team[index].champion === '') {
                 flag = true;
             }
         });
 
         if (flag) {
             setOpen(true);
-            setMessage("Teams must be filled completely!");
+            setMessage('Teams must be filled completely!');
         } else {
             setFade(800);
             setDisappear(true);
             setRun(true);
-            setTrigger(prevState => { !prevState });
+            setTrigger(prevState => {
+                !prevState;
+            });
         }
-    }
+    };
 
     const onTileClick = (champKey, loadingUrl) => {
-        setTeam({ ...team, [`${positions[currentCard % 5]}${(currentCard < 5) ? "1" : "2"}`]: { champion: champKey, src: `/graphics/riot/champion/loading/${loadingUrl}` } });
+        setTeam({
+            ...team,
+            [`${positions[currentCard % 5]}${currentCard < 5 ? '1' : '2'}`]: {
+                champion: champKey,
+                src: `/graphics/riot/champion/loading/${loadingUrl}`
+            }
+        });
         setSelected({ ...selected, [currentCard]: champKey });
 
         handleModalClose();
-    }
+    };
 
     return (
         <React.Fragment>
@@ -431,7 +433,12 @@ export default function Index() {
                 <Alert
                     severity="warning"
                     action={
-                        <IconButton size="small" onClick={() => { setOpen(false) }}>
+                        <IconButton
+                            size="small"
+                            onClick={() => {
+                                setOpen(false);
+                            }}
+                        >
                             <CloseIcon />
                         </IconButton>
                     }
@@ -450,20 +457,23 @@ export default function Index() {
                 <Fade in={openModal}>
                     <Paper className={classes.paperModal}>
                         <Grid container justify="center">
-                            {Object.keys(champData).map((index) => {
+                            {Object.keys(champData).map(index => {
                                 const dis = Object.values(selected).includes(champData[index].key);
                                 return (
                                     <Grid item key={index}>
                                         <Button
-                                            onClick={() => onTileClick(champData[index].key, `${index}_0.jpg`)}
+                                            onClick={() =>
+                                                onTileClick(champData[index].key, `${index}_0.jpg`)
+                                            }
                                             disabled={dis}
                                         >
                                             <img
                                                 className={clsx({ [classes.grayOut]: dis })}
-                                                src={`/graphics/riot/champion/champion/${champData[index].image.full}`} />
+                                                src={`/graphics/riot/champion/champion/${champData[index].image.full}`}
+                                            />
                                         </Button>
                                     </Grid>
-                                )
+                                );
                             })}
                         </Grid>
                         <div className={classes.gradientBorder}></div>
@@ -483,13 +493,18 @@ export default function Index() {
                 <Fade in={disappear}>
                     <Grid container>
                         <Grid item xs={12} style={{ height: '50vh' }}>
-                            <svg viewBox="0 0 36 36" className={`${classes.center} ${classes.circularChart}`}>
-                                <path className={classes.circlebg}
+                            <svg
+                                viewBox="0 0 36 36"
+                                className={`${classes.center} ${classes.circularChart}`}
+                            >
+                                <path
+                                    className={classes.circlebg}
                                     d="M18 2.0845
                                     a 15.9155 15.9155 0 0 1 0 31.831
                                     a 15.9155 15.9155 0 0 1 0 -31.831"
                                 />
-                                <path className={classes.oppositeCircle}
+                                <path
+                                    className={classes.oppositeCircle}
                                     d="M18 2.0845
                                     a 15.9155 15.9155 0 0 1 0 31.831
                                     a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -506,58 +521,80 @@ export default function Index() {
                                 />
                             </svg>
                             <div className={classes.center}>
-                                <img src="https://static-cdn.jtvnw.net/emoticons/v1/301702758/2.0"
+                                <img
+                                    src="https://static-cdn.jtvnw.net/emoticons/v1/301702758/2.0"
                                     style={{ height: '100px', width: 'auto' }}
-                                    className={clsx({ [classes.rotatingBlue]: run, [classes.turn]: turn })}
+                                    className={clsx({
+                                        [classes.rotatingBlue]: run,
+                                        [classes.turn]: turn
+                                    })}
                                 />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
-                            <img src="https://static-cdn.jtvnw.net/emoticons/v1/302703811/2.0" className={classes.hidingblue} />
-                            <Typography variant="h1" style={{ fontFamily: "'Big Shoulders Stencil Text', cursive", color: 'white' }}>
+                            <img
+                                src="https://static-cdn.jtvnw.net/emoticons/v1/302703811/2.0"
+                                className={classes.hidingblue}
+                            />
+                            <Typography
+                                variant="h1"
+                                style={{
+                                    fontFamily: "'Big Shoulders Stencil Text', cursive",
+                                    color: 'white'
+                                }}
+                            >
                                 {percent}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} style={{ paddingTop: '10vh' }}>
-                            <Button color="default" onClick={reset} style={{ backgroundColor: '#2468BF' }}>
-                                <Typography variant="h2" style={{ fontFamily: "'Big Shoulders Stencil Text', cursive", color: 'white' }}>
+                            <Button
+                                color="default"
+                                onClick={reset}
+                                style={{ backgroundColor: '#2468BF' }}
+                            >
+                                <Typography
+                                    variant="h2"
+                                    style={{
+                                        fontFamily: "'Big Shoulders Stencil Text', cursive",
+                                        color: 'white'
+                                    }}
+                                >
                                     Reset
                                 </Typography>
                             </Button>
                         </Grid>
-
                     </Grid>
                 </Fade>
             </Modal>
             <Fade in={!disappear} timeout={fade}>
-                <Fab
-                    className={`${classes.fightButton} ${classes.center}`}
-                    onClick={fightOnClick}
-                >
-                    <Typography variant="h4" style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}>
+                <Fab className={`${classes.fightButton} ${classes.center}`} onClick={fightOnClick}>
+                    <Typography
+                        variant="h4"
+                        style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}
+                    >
                         FIGHT!
                     </Typography>
                 </Fab>
             </Fade>
             <Grid container align="center">
                 <Grid item xs={12} className={classes.title}>
-                    {[...Array(5)].map((x, i) =>
+                    {[...Array(5)].map((x, i) => (
                         <img
                             src="https://static-cdn.jtvnw.net/emoticons/v1/301702778/2.0"
                             style={{ alignSelf: 'center', transform: `rotate(${90 * i}deg)` }}
                             key={i}
                         />
-                    )}
+                    ))}
                     <Typography variant="h3" style={{ fontFamily: 'SFF' }}>
                         OUTDRAFTED
                     </Typography>
-                    {[...Array(5)].map((x, i) =>
+                    {[...Array(5)].map((x, i) => (
                         <img
                             src="https://static-cdn.jtvnw.net/emoticons/v1/301702778/2.0"
                             style={{ alignSelf: 'center', transform: `rotate(${90 * i}deg)` }}
                             key={i}
                         />
-                    )}
+                    ))}
                 </Grid>
                 <Grid item xs={12}>
                     <div className={`${classes.line} ${classes.line1}`}>
@@ -570,27 +607,31 @@ export default function Index() {
                         <div className={`${classes.wave} ${classes.wave3}`}></div>
                     </div>
                 </Grid>
-                <Grid item container xs={6} className={`${classes.side1} ${classes.wavepadding}`} >
+                <Grid item container xs={6} className={`${classes.side1} ${classes.wavepadding}`}>
                     <Grid item xs={12}>
                         <Paper className={classes.paperPadding}>
-                            <Typography variant='h3'>
-                                Team 1
-                            </Typography>
+                            <Typography variant="h3">Team 1</Typography>
                         </Paper>
                     </Grid>
-                    <Grid item container xs={12} justify="space-evenly" style={{ paddingTop: '20px', paddingRight: '30px' }}>
+                    <Grid
+                        item
+                        container
+                        xs={12}
+                        justify="space-evenly"
+                        style={{ paddingTop: '20px', paddingRight: '30px' }}
+                    >
                         {positions.map((pos, key) => (
                             <Grid item key={key}>
-                                <Card className={classes.champCards} style={{ backgroundColor: '' }}>
-                                    <CardActionArea
-                                        onClick={() => onCardClick(1, key)}
-                                    >
+                                <Card
+                                    className={classes.champCards}
+                                    style={{ backgroundColor: '' }}
+                                >
+                                    <CardActionArea onClick={() => onCardClick(1, key)}>
                                         <CardHeader title={pos} />
                                         <CardMedia
                                             className={classes.cardImage}
                                             image={team[pos + '1'].src}
-                                        >
-                                        </CardMedia>
+                                        ></CardMedia>
                                     </CardActionArea>
                                 </Card>
                             </Grid>
@@ -599,24 +640,33 @@ export default function Index() {
                 </Grid>
                 <Grid item xs={6} className={`${classes.side2} ${classes.wavepadding}`}>
                     <Grid item xs={12}>
-                        <Paper className={classes.paperPadding} style={{ backgroundColor: '#0C223F' }}>
-                            <Typography variant='h3' style={{ color: 'white' }}>
+                        <Paper
+                            className={classes.paperPadding}
+                            style={{ backgroundColor: '#0C223F' }}
+                        >
+                            <Typography variant="h3" style={{ color: 'white' }}>
                                 Team 2
                             </Typography>
                         </Paper>
-                        <Grid item container xs={12} justify="space-evenly" style={{ paddingTop: '20px', paddingLeft: '30px' }}>
+                        <Grid
+                            item
+                            container
+                            xs={12}
+                            justify="space-evenly"
+                            style={{ paddingTop: '20px', paddingLeft: '30px' }}
+                        >
                             {positions.map((pos, key) => (
                                 <Grid item key={key}>
-                                    <Card className={classes.champCards} style={{ backgroundColor: '#0C223F' }}>
-                                        <CardActionArea
-                                            onClick={() => onCardClick(2, key)}
-                                        >
-                                            <CardHeader title={pos} style={{ color: "white" }} />
+                                    <Card
+                                        className={classes.champCards}
+                                        style={{ backgroundColor: '#0C223F' }}
+                                    >
+                                        <CardActionArea onClick={() => onCardClick(2, key)}>
+                                            <CardHeader title={pos} style={{ color: 'white' }} />
                                             <CardMedia
                                                 className={classes.cardImage}
                                                 image={team[pos + '2'].src}
-                                            >
-                                            </CardMedia>
+                                            ></CardMedia>
                                         </CardActionArea>
                                     </Card>
                                 </Grid>

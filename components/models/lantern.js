@@ -6,41 +6,28 @@ source: https://sketchfab.com/3d-models/lanterns-lowpoly-models-homework-11-e7d3
 title: Lanterns lowpoly models homework 11
 */
 
-import React, { useRef, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { useFrame } from 'react-three-fiber'
-import { useGLTF, Octahedron } from '@react-three/drei'
+import React, { useRef, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { useFrame } from 'react-three-fiber';
+import { useGLTF, Octahedron } from '@react-three/drei';
 
-const Lantern = (props) => {
-
-    const group = useRef()
+const Lantern = props => {
+    const group = useRef();
     const { nodes, materials } = useGLTF('/models/lantern.glb');
 
-    useFrame((state) => {
+    useFrame(state => {
         const time = state.clock.getElapsedTime();
-        group.current.rotation.y = group.current.rotation.y + (0.01 * props.rotation);
-        group.current.position.y = group.current.position.y + Math.sin(time + (props.yOffset * 60)) / 30;
+        group.current.rotation.y = group.current.rotation.y + 0.01 * props.rotation;
+        group.current.position.y =
+            group.current.position.y + Math.sin(time + props.yOffset * 60) / 30;
     });
 
     return (
         <group ref={group} position={[props.x, props.y, props.z]} dispose={null}>
             <Fragment>
-                <pointLight
-                    distance={90}
-                    intensity={1}
-                    color="white"
-                    layers={1}
-                />
-                <Octahedron
-                    position={[0, 0.5, 0]}
-                    scale={[0.5, 1, 0.5]}
-                    layers={1}
-                >
-                    <meshLambertMaterial
-                        color="white"
-                        emissive="white"
-                        attach="material"
-                    />
+                <pointLight distance={90} intensity={1} color="white" layers={1} />
+                <Octahedron position={[0, 0.5, 0]} scale={[0.5, 1, 0.5]} layers={1}>
+                    <meshLambertMaterial color="white" emissive="white" attach="material" />
                 </Octahedron>
                 <mesh
                     geometry={nodes.JapaneseLantern_paper_0.geometry}
@@ -78,10 +65,10 @@ const Lantern = (props) => {
                 />
             </Fragment>
         </group>
-    )
+    );
 };
 
-useGLTF.preload('/models/lantern.glb')
+useGLTF.preload('/models/lantern.glb');
 
 Lantern.propTypes = {
     x: PropTypes.number.isRequired,
@@ -90,10 +77,10 @@ Lantern.propTypes = {
     rotation: PropTypes.number,
     yOffset: PropTypes.number,
     color: PropTypes.string
-}
+};
 
 Lantern.defaultProps = {
-    color: "teal",
-}
+    color: 'teal'
+};
 
 export default Lantern;

@@ -6,17 +6,17 @@ source: https://sketchfab.com/models/15c79bb2fc1147128039fe4ff90fd5a0
 title: Fantasy Sky Background
 */
 
-import React, { useRef } from 'react'
-import { useFrame } from 'react-three-fiber'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from 'react';
+import { useFrame } from 'react-three-fiber';
+import { useGLTF } from '@react-three/drei';
 
-const FantasySky = (props) => {
-    const { nodes, materials } = useGLTF('/models/fantasysky.glb')
-    const group = useRef()
+const FantasySky = props => {
+    const { nodes, materials } = useGLTF('/models/fantasysky.glb');
+    const group = useRef();
 
     useFrame(() => {
-        group.current.rotation.y += 0.001
-    })
+        group.current.rotation.y += 0.001;
+    });
 
     return (
         <group ref={group} {...props} dispose={null}>
@@ -26,9 +26,9 @@ const FantasySky = (props) => {
                 scale={[1000, 1000, 1000]}
             />
         </group>
-    )
-}
+    );
+};
 
-useGLTF.preload('/models/fantasysky.glb')
+useGLTF.preload('/models/fantasysky.glb');
 
 export default FantasySky;

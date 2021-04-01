@@ -7,33 +7,27 @@ const useStyles = makeStyles(() => ({
     restyle: {
         display: 'flex',
         paddingTop: '5vh',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     border: {
         borderStyle: 'solid',
-        borderWidth: 'thick',
-    },
+        borderWidth: 'thick'
+    }
 }));
 
 const PDFViewer = ({ url, width, pageNumber }) => {
     const classes = useStyles();
     return (
-        <Document
-            file={url}
-            className={classes.restyle}>
-            <Page
-                pageNumber={pageNumber}
-                width={width}
-                className={classes.border}
-            />
+        <Document file={url} className={classes.restyle}>
+            <Page pageNumber={pageNumber} width={width} className={classes.border} />
         </Document>
     );
-}
+};
 
 PDFViewer.propTypes = {
     url: PropTypes.string.isRequired,
     width: PropTypes.number.isRequired,
     pageNumber: PropTypes.number.isRequired
-}
+};
 
 export default PDFViewer;

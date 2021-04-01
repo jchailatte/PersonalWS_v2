@@ -6,22 +6,22 @@ source: https://sketchfab.com/3d-models/rhetorician-a89f035291d843069d73988cc0e2
 title: Rhetorician
 */
 
-import React, { useRef } from 'react'
-import PropTypes from 'prop-types'
-import { useFrame } from 'react-three-fiber'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useFrame } from 'react-three-fiber';
+import { useGLTF } from '@react-three/drei';
 
-const BinaryRing = (props) => {
+const BinaryRing = props => {
     const { nodes, materials } = useGLTF('/models/binaryring.glb');
     const group = useRef();
     const halo1 = useRef();
     const halo2 = useRef();
     const halo3 = useRef();
 
-    useFrame((state) => {
+    useFrame(state => {
         const time = state.clock.getElapsedTime();
-        group.current.rotation.y = (props.direction * Math.sin(time / 4));
-        group.current.rotation.x = (props.direction * Math.cos(time / 4)) + 5;
+        group.current.rotation.y = props.direction * Math.sin(time / 4);
+        group.current.rotation.x = props.direction * Math.cos(time / 4) + 5;
 
         halo1.current.rotation.z = halo1.current.rotation.z - 0.0015;
         halo2.current.rotation.z = halo2.current.rotation.z + 0.002;
@@ -36,33 +36,21 @@ const BinaryRing = (props) => {
             position={props.position}
             dispose={null}
         >
-            <mesh
-                geometry={nodes.nimbus002_0.geometry}
-                layers={1}
-                ref={halo1}
-            >
+            <mesh geometry={nodes.nimbus002_0.geometry} layers={1} ref={halo1}>
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
                     emissive={props.emissive}
                 />
             </mesh>
-            <mesh
-                geometry={nodes.nimbus001_0.geometry}
-                layers={1}
-                ref={halo2}
-            >
+            <mesh geometry={nodes.nimbus001_0.geometry} layers={1} ref={halo2}>
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
                     emissive={props.emissive}
                 />
             </mesh>
-            <mesh
-                geometry={nodes.nimbus003_0.geometry}
-                layers={1}
-                ref={halo3}
-            >
+            <mesh geometry={nodes.nimbus003_0.geometry} layers={1} ref={halo3}>
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
@@ -70,10 +58,10 @@ const BinaryRing = (props) => {
                 />
             </mesh>
         </group>
-    )
-}
+    );
+};
 
-useGLTF.preload('/models/binaryring.glb')
+useGLTF.preload('/models/binaryring.glb');
 
 BinaryRing.propTypes = {
     color: PropTypes.string.isRequired,
@@ -81,15 +69,15 @@ BinaryRing.propTypes = {
     scale: PropTypes.array,
     direction: PropTypes.number,
     rotation: PropTypes.array,
-    position: PropTypes.array,
-}
+    position: PropTypes.array
+};
 
 BinaryRing.defaultProps = {
     scale: [30, 30, 30],
     direction: 1,
     rotation: [Math.PI / 2, 0, 0],
-    color: "teal",
-    emissive: "blue",
-}
+    color: 'teal',
+    emissive: 'blue'
+};
 
 export default BinaryRing;

@@ -4,11 +4,25 @@ import { Text } from '@react-three/drei';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
-const HUDButton = (props) => {
+const HUDButton = props => {
     const [hover, setHover] = useState(false);
 
-    const darkFilmMaterial = useMemo(() => <meshPhongMaterial attach="material" color="black" shininess={1} transparent={true} opacity={0.5} />, []);
-    const darkFilmGeometry = useMemo(() => <planeGeometry attach="geometry" args={[9.5, 1.5]} />, []);
+    const darkFilmMaterial = useMemo(
+        () => (
+            <meshPhongMaterial
+                attach="material"
+                color="black"
+                shininess={1}
+                transparent={true}
+                opacity={0.5}
+            />
+        ),
+        []
+    );
+    const darkFilmGeometry = useMemo(
+        () => <planeGeometry attach="geometry" args={[9.5, 1.5]} />,
+        []
+    );
 
     return (
         <Fragment>
@@ -30,11 +44,13 @@ const HUDButton = (props) => {
                 }}
                 scale={[0.1, 0.1, 0.1]}
                 url={'/svgs/hud/button0.svg'}
-                layer={0} recenter={true}
+                layer={0}
+                recenter={true}
             >
-                <meshPhongMaterial attach="material" color={hover ? "#008b8b" : "cyan"} />
+                <meshPhongMaterial attach="material" color={hover ? '#008b8b' : 'cyan'} />
             </SVGExtrude>
-            <mesh position={props.position}
+            <mesh
+                position={props.position}
                 onPointerOver={setHover(true)}
                 onPointerOut={setHover(false)}
                 onPointerDown={props.onClick}
@@ -44,20 +60,19 @@ const HUDButton = (props) => {
                 {darkFilmMaterial}
             </mesh>
         </Fragment>
-    )
-}
+    );
+};
 
 HUDButton.propTypes = {
     position: PropTypes.array,
     fontType: PropTypes.string,
     text: PropTypes.string,
     onClick: PropTypes.func
-}
+};
 
 HUDButton.defaultProps = {
     position: [0, 0, 0],
-    fontType: "/fonts/Iceland-Regular.ttf"
-}
-
+    fontType: '/fonts/Iceland-Regular.ttf'
+};
 
 export default HUDButton;

@@ -11,9 +11,9 @@ import { useResize } from '../utils/hooks/useResize';
 export async function getStaticProps() {
     return {
         props: {
-            selected: 'Resume',
+            selected: 'Resume'
         }
-    }
+    };
 }
 
 export default function Resume() {
@@ -25,14 +25,10 @@ export default function Resume() {
                 <title key="title">Jonathan Chai - Resume</title>
             </Head>
             <NoSSR>
-                <div style={{width: '100vw'}}>
-                    <PDFViewer
-                        url={"/doc/res.pdf"}
-                        width={0.8 * dimensions.width}
-                        pageNumber={1}
-                    />
+                <div style={{ width: '100vw' }}>
+                    <PDFViewer url={'/doc/res.pdf'} width={0.8 * dimensions.width} pageNumber={1} />
                 </div>
             </NoSSR>
         </React.Fragment>
-    )
+    );
 }

@@ -34,37 +34,37 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
-        display: 'flex',
+        display: 'flex'
     },
     appBar: {
         height: '64px',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
+            duration: theme.transitions.duration.leavingScreen
+        })
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+            duration: theme.transitions.duration.enteringScreen
+        })
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(2)
     },
     hide: {
-        display: 'none',
+        display: 'none'
     },
     drawer: {
         width: drawerWidth,
-        flexShrink: 0,
+        flexShrink: 0
     },
     drawerPaper: {
-        width: drawerWidth,
+        width: drawerWidth
     },
     drawerHeader: {
         display: 'flex',
@@ -72,71 +72,69 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     content: {
-        height: "100vh",
-        marginLeft: -drawerWidth,
+        height: '100vh',
+        marginLeft: -drawerWidth
     },
     contentFilter: {
-        filter: "brightness(50%)"
+        filter: 'brightness(50%)'
     },
     fontStyle: {
-        fontFamily: "Iceland",
+        fontFamily: 'Iceland'
     },
     padding: {
         padding: theme.spacing(3)
     },
-    "@font-face": {
+    '@font-face': {
         fontFamily: 'Iceland',
         src: `url("/fonts/Iceland-Regular.ttf") format("truetype")`
-    },
+    }
 }));
 
-const sbitems =
-    [
-        {
-            text: 'Home',
-            icon: <HomeIcon />,
-            href: '/',
-        },
-        {
-            text: 'About',
-            icon: <AccountBoxIcon />,
-            href: '/about',
-        },
-        {
-            text: 'Resume',
-            icon: <DescriptionIcon />,
-            href: '/resume',
-        },
-        {
-            text: 'Projects',
-            icon: <CodeIcon />,
-            href: '/projects',
-        },
-        // {
-        //     text: 'Contact Me',
-        //     icon: <EmailIcon />,
-        //     href: '/contact',
-        // },
-    ];
+const sbitems = [
+    {
+        text: 'Home',
+        icon: <HomeIcon />,
+        href: '/'
+    },
+    {
+        text: 'About',
+        icon: <AccountBoxIcon />,
+        href: '/about'
+    },
+    {
+        text: 'Resume',
+        icon: <DescriptionIcon />,
+        href: '/resume'
+    },
+    {
+        text: 'Projects',
+        icon: <CodeIcon />,
+        href: '/projects'
+    }
+    // {
+    //     text: 'Contact Me',
+    //     icon: <EmailIcon />,
+    //     href: '/contact',
+    // },
+];
 
-const footer =
-    [
-        {
-            text: 'GitHub',
-            icon: <GithubIcon />,
-            href: 'https://github.com/jchailatte',
-        },
-        {
-            text: 'LinkedIn',
-            icon: <LinkedInIcon />,
-            href: 'https://www.linkedin.com/in/jchailatte/',
-        }
-    ];
+const footer = [
+    {
+        text: 'GitHub',
+        icon: <GithubIcon />,
+        href: 'https://github.com/jchailatte'
+    },
+    {
+        text: 'LinkedIn',
+        icon: <LinkedInIcon />,
+        href: 'https://www.linkedin.com/in/jchailatte/'
+    }
+];
 
-const Sidebar = (props) => {
+const Sidebar = props => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -155,7 +153,7 @@ const Sidebar = (props) => {
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
+                    [classes.appBarShift]: open
                 })}
             >
                 <Toolbar>
@@ -179,7 +177,7 @@ const Sidebar = (props) => {
                 anchor="left"
                 open={open}
                 classes={{
-                    paper: classes.drawerPaper,
+                    paper: classes.drawerPaper
                 }}
             >
                 <div className={classes.drawerHeader}>
@@ -188,10 +186,12 @@ const Sidebar = (props) => {
                     </IconButton>
                 </div>
                 <Divider />
-                <List id='mainsb'>
+                <List id="mainsb">
                     {sbitems.map((item, index) => (
                         <Link href={item.href} key={index}>
-                            <ListItem button component='a'
+                            <ListItem
+                                button
+                                component="a"
                                 selected={item.text === props.selected}
                                 onClick={handleDrawerClose}
                                 className={classes.opennested}
@@ -202,11 +202,10 @@ const Sidebar = (props) => {
                                 <ListItemText
                                     primary={item.text}
                                     primaryTypographyProps={{
-                                        variant: "h5",
-                                        className: classes.fontStyle,
+                                        variant: 'h5',
+                                        className: classes.fontStyle
                                     }}
-                                >
-                                </ListItemText>
+                                ></ListItemText>
                             </ListItem>
                         </Link>
                     ))}
@@ -214,7 +213,9 @@ const Sidebar = (props) => {
                 <Divider />
                 <List>
                     {footer.map((item, index) => (
-                        <ListItem button component='a'
+                        <ListItem
+                            button
+                            component="a"
                             href={item.href}
                             target="_blank"
                             className={classes.opennested}
@@ -225,8 +226,8 @@ const Sidebar = (props) => {
                             <ListItemText
                                 primary={item.text}
                                 primaryTypographyProps={{
-                                    variant: "h5",
-                                    className: classes.fontStyle,
+                                    variant: 'h5',
+                                    className: classes.fontStyle
                                 }}
                             />
                         </ListItem>
@@ -236,7 +237,7 @@ const Sidebar = (props) => {
             <main
                 className={clsx(classes.content, {
                     [classes.contentFilter]: open,
-                    [classes.padding]: props.padding,
+                    [classes.padding]: props.padding
                 })}
                 id="content"
             >
@@ -245,16 +246,16 @@ const Sidebar = (props) => {
             </main>
         </div>
     );
-}
+};
 
 Sidebar.propTypes = {
     selected: PropTypes.string,
     padding: PropTypes.bool,
-    children: PropTypes.element,
-}
+    children: PropTypes.element
+};
 
 Sidebar.defaultProps = {
     padding: true
-}
+};
 
 export default Sidebar;
