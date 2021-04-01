@@ -23,8 +23,8 @@ const HUDSelect = (props) => {
             <mesh
                 position={[props.position[0] - 1.25, props.position[1] + 1.25, props.position[2] + 0.5]}
                 rotation={[0, 0, Math.PI / 4]}
-                onPointerOver={(e) => setHover(true)}
-                onPointerOut={(e) => setHover(false)}
+                onPointerOver={setHover(true)}
+                onPointerOut={setHover(false)}
                 onClick={props.onClick}
             >
                 <planeGeometry attach="geometry" args={[3, 3]} />

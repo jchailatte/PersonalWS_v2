@@ -24,7 +24,7 @@ const SVGExtrude = forwardRef((props, ref) => {
         }
     }, []);
 
-    useImperativeHandle(ref, () => internalRef.current, []);
+    useImperativeHandle(ref, () => internalRef.current, [internalRef]);
 
     return (
         <group
@@ -42,12 +42,14 @@ const SVGExtrude = forwardRef((props, ref) => {
 });
 
 SVGExtrude.propTypes = {
+    children: PropTypes.element,
     groupProps: PropTypes.object,
     meshProps: PropTypes.object,
     depth: PropTypes.number,
     layer: PropTypes.number,
     extrudeSettings: PropTypes.object,
     recenter: PropTypes.bool,
+    url: PropTypes.string.isRequired
 }
 
 SVGExtrude.defaultProps = {

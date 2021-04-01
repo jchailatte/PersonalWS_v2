@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import NoSSR from '@material-ui/core/NoSsr';
 
 import PDFViewer from '../components/general/pdfviewer';
@@ -9,11 +8,7 @@ import { useResize } from '../utils/hooks/useResize';
 
 //later update to latest version of react-pdf and fix all the bugs that crop up with it -.-
 
-const useStyles = makeStyles((theme) => ({
-
-}));
-
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     return {
         props: {
             selected: 'Resume',
@@ -21,8 +16,7 @@ export async function getStaticProps(context) {
     }
 }
 
-export default function Resume(props) {
-    const classes = useStyles();
+export default function Resume() {
     const dimensions = useResize('content');
 
     return (

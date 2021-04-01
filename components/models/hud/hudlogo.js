@@ -12,7 +12,7 @@ const HUDLogo = (props) => {
     const logo = useLoader(THREE.TextureLoader, props.logo);
     const material = useMemo(() => <meshPhongMaterial attach="material" color="black" emissive="cyan" shininess={1} />, [])
 
-    useFrame((state) => {
+    useFrame(() => {
         if (circle1.current != null) {
             circle1.current.rotation.z = circle1.current.rotation.z + 0.01;
         }

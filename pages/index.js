@@ -1,26 +1,36 @@
-import React, { Suspense, useMemo, useState, Profiler, useRef, useLayoutEffect } from 'react';
+import React, { Suspense, useMemo, Fragment, useLayoutEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Head from 'next/head';
 
+import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import { Canvas, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import FantasySky from '../components/models/fantasysky.js';
-import Lantern from '../components/models/lantern.js';
-import BinaryRing from '../components/models/binaryring.js';
-import Hud from '../components/models/hud/hud.js';
+import FantasySky from '../components/models/fantasysky';
+import Lantern from '../components/models/lantern';
+import BinaryRing from '../components/models/binaryring';
+import Hud from '../components/models/hud/hud';
+import Info from '../components/general/info';
 
 import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         //fix the little gap when switching to mobile
+        //which for some reason refuses to disappear -_-
         height: 'calc(100vh - 64px)',
         width: '100vw'
+    },
+    ThreeDAvatar: {
+        position: 'absolute',
+        bottom: theme.spacing(3),
+        right: theme.spacing(10),
+        color: 'white',
+        zIndex: 100
     }
 }));
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     return {
         props: {
             selected: 'Home',
@@ -30,10 +40,8 @@ export async function getStaticProps(context) {
 }
 
 const Lanterns = () => {
-    const { camera } = useThree();
-
     const data = useMemo(() => {
-        return new Array(30).fill().map((_, i) => ({
+        return new Array(30).fill().map(() => ({
             x: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
             y: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
             z: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
@@ -45,21 +53,11 @@ const Lanterns = () => {
     return data.map((props, i) => <Lantern key={"lantern" + i} {...props} />)
 }
 
-const Index = (props) => {
+const Index = () => {
     const classes = useStyles();
 
     // const router = useRouter();
     // console.log(router);
-
-    const logTimes = (id, phase, actualTime, baseTime, startTime, commitTime) => {
-        console.log(`${id}'s ${phase} phase:`);
-        console.log(`Actual time: ${actualTime}`);
-        console.log(`Base time: ${baseTime}`);
-        console.log(`Start time: ${startTime}`);
-        console.log(`Commit time: ${commitTime}`);
-    };
-
-    const ref = useRef();
 
     const Scripts = () => {
         const { camera } = useThree();
@@ -79,9 +77,18 @@ const Index = (props) => {
                     name="description"
                     key="description"
                     content="A little personal website for me or as I like to call it, my developer sandbox"
-                    key="description"
                 />
             </Head>
+            <Info>
+                <Fragment>
+                    test
+                </Fragment>
+            </Info>
+
+            <ThreeDRotationIcon
+                fontSize="large"
+                className={classes.ThreeDAvatar}
+            />
             <div className={classes.root}>
                 <Canvas
                     //concurrent is causing the triple render (dunno if performance boost or not?)
@@ -91,11 +98,11 @@ const Index = (props) => {
                     camera={{ position: [1, 0, 15], fov: 80 }}
                 >
                     <ambientLight />
-                    <OrbitControls 
+                    <OrbitControls
                         maxDistance={50}
                     />
+                    <Scripts />
                     <Suspense fallback={null}>
-                        <Scripts />
                         <FantasySky />
                         <Lanterns />
                         <BinaryRing
@@ -104,7 +111,7 @@ const Index = (props) => {
                         <BinaryRing
                             direction={-1}
                         />
-                        <Hud/>
+                        {/* <Hud />     */}
                     </Suspense>
                     <SelectiveBloomEffect layer={1} />
                 </Canvas>

@@ -6,7 +6,7 @@ source: https://sketchfab.com/3d-models/lanterns-lowpoly-models-homework-11-e7d3
 title: Lanterns lowpoly models homework 11
 */
 
-import React, { useRef, Fragment, useMemo } from 'react'
+import React, { useRef, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useFrame } from 'react-three-fiber'
 import { useGLTF, Octahedron } from '@react-three/drei'
@@ -23,7 +23,7 @@ const Lantern = (props) => {
     });
 
     return (
-        <group ref={group} position={[props.x, props.y, props.z]}>
+        <group ref={group} position={[props.x, props.y, props.z]} dispose={null}>
             <Fragment>
                 <pointLight
                     distance={90}
@@ -86,7 +86,10 @@ useGLTF.preload('/models/lantern.glb')
 Lantern.propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    z: PropTypes.number.isRequired
+    z: PropTypes.number.isRequired,
+    rotation: PropTypes.number,
+    yOffset: PropTypes.number,
+    color: PropTypes.string
 }
 
 Lantern.defaultProps = {

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Deck from '../../components/general/deck';
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
     {
         fontstyle: {
             color: 'white',
@@ -77,7 +77,7 @@ const items =
         },
     ];
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     return {
         props: {
             selected: 'Projects',
@@ -88,8 +88,7 @@ export async function getStaticProps(context) {
     }
 }
 
-export default function Project(prop) {
-    const classes = useStyles();
+export default function Project() {
 
     return (
         <React.Fragment>
@@ -99,4 +98,4 @@ export default function Project(prop) {
             ></Deck>
         </React.Fragment >
     )
-};
+}

@@ -18,23 +18,21 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CodeIcon from '@material-ui/icons/Code';
-import CopyrightIcon from '@material-ui/icons/Copyright';
+//import CopyrightIcon from '@material-ui/icons/Copyright';
 import DescriptionIcon from '@material-ui/icons/Description';
-import EmailIcon from '@material-ui/icons/Email';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ForumIcon from '@material-ui/icons/Forum';
+//import EmailIcon from '@material-ui/icons/Email';
+//import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+//import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//import ForumIcon from '@material-ui/icons/Forum';
 import GithubIcon from '@material-ui/icons/GitHub';
 import HomeIcon from '@material-ui/icons/Home';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoomRounded';
+//import MeetingRoomIcon from '@material-ui/icons/MeetingRoomRounded';
 import MenuIcon from '@material-ui/icons/Menu';
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+//import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 const drawerWidth = 240;
-
-//add copyright plus other stuff -> refer to v1
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -80,12 +78,11 @@ const useStyles = makeStyles((theme) => ({
         height: "100vh",
         marginLeft: -drawerWidth,
     },
-    contentShift: {
+    contentFilter: {
         filter: "brightness(50%)"
     },
-    fontstyle: {
+    fontStyle: {
         fontFamily: "Iceland",
-        fontSize: '22px',
     },
     padding: {
         padding: theme.spacing(3)
@@ -171,7 +168,7 @@ const Sidebar = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h4" noWrap className={classes.fontStyle}>
                         Jonathan Chai
                     </Typography>
                 </Toolbar>
@@ -203,9 +200,11 @@ const Sidebar = (props) => {
                             >
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText
-                                    disableTypography
                                     primary={item.text}
-                                    className={classes.fontstyle}
+                                    primaryTypographyProps={{
+                                        variant: "h5",
+                                        className: classes.fontStyle,
+                                    }}
                                 >
                                 </ListItemText>
                             </ListItem>
@@ -223,14 +222,20 @@ const Sidebar = (props) => {
                             key={index}
                         >
                             <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} className={classes.fontstyle} disableTypography></ListItemText>
+                            <ListItemText
+                                primary={item.text}
+                                primaryTypographyProps={{
+                                    variant: "h5",
+                                    className: classes.fontStyle,
+                                }}
+                            />
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
             <main
                 className={clsx(classes.content, {
-                    [classes.contentShift]: open,
+                    [classes.contentFilter]: open,
                     [classes.padding]: props.padding,
                 })}
                 id="content"
@@ -245,6 +250,7 @@ const Sidebar = (props) => {
 Sidebar.propTypes = {
     selected: PropTypes.string,
     padding: PropTypes.bool,
+    children: PropTypes.element,
 }
 
 Sidebar.defaultProps = {

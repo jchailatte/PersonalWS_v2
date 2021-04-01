@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,7 +9,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme)=>(
+const useStyles = makeStyles(()=>(
 {
     media:{
         objectFit: 'contain'
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme)=>(
     }
 }));
 
-export default function Deck(props){
+const Deck = (props) => {
     const classes = useStyles();
 
     return (
@@ -66,3 +65,10 @@ export default function Deck(props){
     </Grid>
     )
 }
+
+Deck.propTypes = {
+    items: PropTypes.array,
+    serial: PropTypes.number
+}
+
+export default Deck;

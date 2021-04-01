@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     return {
         props: {
             selected: 'About',
@@ -59,9 +59,8 @@ export async function getStaticProps(context) {
     }
 }
 
-export default function About(props) {
+export default function About() {
     const classes = useStyles();
-    const [value, setValue] = useState(0);
 
     return (
         <React.Fragment>
@@ -78,7 +77,7 @@ export default function About(props) {
                                 </Typography>
                                 <br></br>
                                 <Typography variant="h4">
-                                    My name is Jonathan Chai, that's me to the right, and I am a software engineer that graduated from the University of Southern
+                                    My name is Jonathan Chai, that&#39;s me to the right, and I am a software engineer that graduated from the University of Southern
                                     California and currently looking for a job (yay for Covid). 
                                 </Typography>
                                 <br></br>
@@ -92,7 +91,7 @@ export default function About(props) {
                                 </Typography>
                                 <br></br>
                                 <Typography variant="h4">
-                                    PS. I got asked this a few times so I guess I'll mention it here, yup the background was drawn by me :)
+                                    PS. I got asked this a few times so I guess I&#39;ll mention it here, yup the background was drawn by me :)
                                 </Typography>                                
                             </Grid>
                         </div>

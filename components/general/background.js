@@ -1,9 +1,8 @@
-import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 //note: replace this later or at least replace the background
 // also organize the graphics folder 
-// also figure out why content is not taking the entire width of the screen by default -> prob in sidebar -.-
 
 const useStyles = makeStyles((theme)=>(
 {
@@ -31,4 +30,8 @@ export default function Background(props) {
             {props.children}
         </div>
     )
+}
+
+Background.propTypes = {
+    children: PropTypes.element
 }

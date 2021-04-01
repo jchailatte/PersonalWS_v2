@@ -1,6 +1,6 @@
-import React, { Fragment, useMemo, useRef, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Text } from '@react-three/drei';
-import { useThree, useFrame } from 'react-three-fiber';
+import { useThree } from 'react-three-fiber';
 
 import HUDScreen from './hudscreen.js';
 import HUDLogo from './hudlogo.js';
@@ -15,7 +15,7 @@ import paths from '../../../public/json/paths.json'
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
 //maybe add a conversion for mobile  version (can be done later)
 
-const Hud = (props) => {
+const Hud = () => {
     const horizontalVertices = 20;
     const verticalVertices = 40;
     const controlPosition = [15.5, -5.5, 0.5];
@@ -24,7 +24,7 @@ const Hud = (props) => {
     //weird camera issue causing duplicate keys -> maybe cause of another use of camera in index.js?
     //prob will fix itself when i convert to useFrame
     const { camera } = useThree();
-    
+
     const [prevLevel, setPrevLevel] = useState([]);
     const [level, setLevel] = useState(paths);
     const [selected, setSelected] = useState(0);
@@ -91,7 +91,7 @@ const Hud = (props) => {
             {Object.keys(level).map((route, i) =>
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
-                <Fragment>
+                <Fragment key={"route" + i} >
                     <Text
                         color="#008b8b"
                         fontSize={2}
@@ -99,7 +99,6 @@ const Hud = (props) => {
                         anchorY="center"
                         position={[0, 7 - (3 * i), 0.5]}
                         font={fontType}
-                        key={"route" + i}
                     >
                         {route.charAt(0).toUpperCase() + route.slice(1)}
                     </Text>
@@ -113,7 +112,7 @@ const Hud = (props) => {
                             position={[0, 7 - (3 * i), 0.5]}
                             font={fontType}
                             key={">" + i}
-                            text="                            >"   
+                            text="                            >"
                         >
                         </Text>
                         : null}
@@ -146,21 +145,21 @@ const Hud = (props) => {
             }
             <HUDSelect
                 position={[15.5, -5.5, 0.5]}
-                onClick={(e) => selectSelect()}
+                onClick={selectSelect()}
             />
             <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] + 0.5, controlPosition[1], controlPosition[2]],
                     scale: [0.02, 0.02, 0.02]
                 }}
-                onClick={(e) => selectRight()}
+                onClick={selectRight()}
             />
             <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] - 3, controlPosition[1], controlPosition[2]],
                     scale: [-0.02, 0.02, 0.02]
                 }}
-                onClick={(e) => selectLeft()}
+                onClick={selectLeft()}
             />
             <HUDArrow
                 groupProps={{
@@ -168,7 +167,7 @@ const Hud = (props) => {
                     scale: [0.02, 0.02, 0.02],
                     rotation: [0, 0, Math.PI / 2]
                 }}
-                onClick={(e) => selectUp()}
+                onClick={selectUp()}
             />
             <HUDArrow
                 groupProps={{
@@ -176,12 +175,12 @@ const Hud = (props) => {
                     scale: [-0.02, 0.02, 0.02],
                     rotation: [0, 0, Math.PI / 2]
                 }}
-                onClick={(e) => selectDown()}
+                onClick={selectDown()}
             />
             <HUDButton
                 text={"Recenter"}
                 position={[-13, 6, 0.5]}
-                onClick={(e) => recenter()}
+                onClick={recenter()}
             />
         </Fragment >
     )

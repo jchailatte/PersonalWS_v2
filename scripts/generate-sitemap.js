@@ -18,7 +18,7 @@ function generateJsonmap(pages) {
 
     const output = {};
     for (const path of paths) {
-        current = output;
+        let current = output;
 
         for (const segment of path.split('/')) {
             if (segment !== '') {

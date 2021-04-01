@@ -35,9 +35,10 @@ const HUDButton = (props) => {
                 <meshPhongMaterial attach="material" color={hover ? "#008b8b" : "cyan"} />
             </SVGExtrude>
             <mesh position={props.position}
-                onPointerOver={(e) => setHover(true)}
-                onPointerOut={(e) => setHover(false)}
-                onClick={props.onClick}
+                onPointerOver={setHover(true)}
+                onPointerOut={setHover(false)}
+                onPointerDown={props.onClick}
+                //onClick={props.onClick}
             >
                 {darkFilmGeometry}
                 {darkFilmMaterial}

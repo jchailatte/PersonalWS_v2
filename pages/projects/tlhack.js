@@ -285,7 +285,7 @@ const positions = [
     "Top", "Jung", "Mid", "Bot", "Sup"
 ]
 
-export default function Index(props) {
+export default function Index() {
 
     const classes = useStyles();
     const portrait = "/graphics/tlhack/portraitbg.jpg"
@@ -352,10 +352,6 @@ export default function Index(props) {
         setOpenModal(true);
     };
 
-    const handleModalOpen2 = () => {
-        setDisappear(true);
-    };
-
     const handleModalClose = () => {
         setOpenModal(false);
     };
@@ -396,7 +392,7 @@ export default function Index(props) {
                 setPercent(chance);
                 if (chance > 50) {
                     setTurn(true);
-                };
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -631,4 +627,4 @@ export default function Index(props) {
             </Grid>
         </React.Fragment>
     );
-};
+}

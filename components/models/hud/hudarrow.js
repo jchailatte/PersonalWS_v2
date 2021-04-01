@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
@@ -8,9 +9,10 @@ const HUDArrow = (props) => {
         <SVGExtrude
             groupProps={props.groupProps}
             meshProps={{
-                onPointerOver: (e) => setHover(true),
-                onPointerOut: (e) => setHover(false),
-                onClick: props.onClick
+                onPointerOver: setHover(true),
+                onPointerOut: setHover(false),
+                onPointerDown: props.onClick,
+                //onClick: props.onClick
             }}
             url={'/svgs/hud/arrow.svg'}
             layer={0}
@@ -18,6 +20,11 @@ const HUDArrow = (props) => {
             <meshPhongMaterial attach="material" color={hover ? "#008b8b" : "cyan"} />
         </SVGExtrude>
     )
+}
+
+HUDArrow.propTypes = {
+    groupProps: PropTypes.object,
+    onClick: PropTypes.func.isRequired
 }
 
 export default HUDArrow;

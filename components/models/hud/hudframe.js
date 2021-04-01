@@ -1,9 +1,8 @@
-import React, { Fragment, useRef, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useMemo } from 'react';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
-const HUDFrame = (props) => {
+const HUDFrame = () => {
 
     const material = useMemo(() => <meshPhongMaterial attach="material" color="black" emissive="#008b8b" shininess={10} />, []);
 

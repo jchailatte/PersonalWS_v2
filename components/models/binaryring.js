@@ -12,7 +12,7 @@ import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei'
 
 const BinaryRing = (props) => {
-    const { nodes, materials } = useGLTF('/models/binaryhalo.glb');
+    const { nodes, materials } = useGLTF('/models/binaryring.glb');
     const group = useRef();
     const halo1 = useRef();
     const halo2 = useRef();
@@ -34,6 +34,7 @@ const BinaryRing = (props) => {
             rotation={props.rotation}
             scale={props.scale}
             position={props.position}
+            dispose={null}
         >
             <mesh
                 geometry={nodes.nimbus002_0.geometry}
@@ -72,7 +73,7 @@ const BinaryRing = (props) => {
     )
 }
 
-useGLTF.preload('/models/binaryhalo.glb')
+useGLTF.preload('/models/binaryring.glb')
 
 BinaryRing.propTypes = {
     color: PropTypes.string.isRequired,
