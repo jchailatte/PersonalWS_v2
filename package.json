@@ -7,8 +7,8 @@
         "dev": "next",
         "build": "next build",
         "start": "next start",
-        "build-docker-multistage": "docker build -t next-app -f ./Dockerfile.multistage .",
-        "prepare": "husky install"
+        "lint": "eslint --fix .",
+        "build-docker-multistage": "docker build -t next-app -f ./Dockerfile.multistage ."
     },
     "repository": {
         "type": "git",
@@ -38,17 +38,6 @@
     "devDependencies": {
         "eslint": "^7.23.0",
         "eslint-plugin-react": "^7.23.1",
-<<<<<<< HEAD
         "eslint-plugin-react-hooks": "^4.2.0"
-=======
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "husky": "^6.0.0",
-        "lint-staged": "^10.5.4",
-        "prettier": "2.2.1"
-    },
-    "lint-staged": {
-        "*.js": "eslint --cache --fix",
-        "*.{js,css,md}": "prettier --write"
->>>>>>> 1bd7543285f8209795ceb93a522037e14cdba174
     }
 }
