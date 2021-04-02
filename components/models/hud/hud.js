@@ -21,8 +21,7 @@ const Hud = () => {
     const controlPosition = [15.5, -5.5, 0.5];
     const fontType = '/fonts/Iceland-Regular.ttf';
 
-    //weird camera issue causing duplicate keys -> maybe cause of another use of camera in index.js?
-    //prob will fix itself when i convert to useFrame
+    //eventually switch to a dolly (hopefully three js will implement prgrammatic support w/ orthographic)
     const { camera } = useThree();
 
     const [prevLevel, setPrevLevel] = useState([]);
@@ -90,13 +89,15 @@ const Hud = () => {
             />
             <HUDLogo
                 logo={'/graphics/general/logo.png'}
-                position={[15, 5, 0]} />
+                position={[15, 5, 0]}
+            />
             <HUDFrame />
             {Object.keys(level).map((route, i) => (
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
                 <Fragment
-                    key={'route' + i}>
+                    key={'route' + i}
+                >
                     <Text
                         anchorX="center"
                         anchorY="center"
@@ -107,7 +108,6 @@ const Hud = () => {
                     >
                         {route.charAt(0).toUpperCase() + route.slice(1)}
                     </Text>
-
                     {Object.keys(level[route]).length != 0 ? (
                         <Text
                             anchorX="center"
@@ -118,7 +118,7 @@ const Hud = () => {
                             key={'>' + i}
                             position={[0, 7 - 3 * i, 0.5]}
                             text="                            >"
-                         />
+                        />
                     ) : null}
                 </Fragment>
             ))}
@@ -130,7 +130,7 @@ const Hud = () => {
                 fontSize={2}
                 position={[0, 7 - 3 * selected, 0.5]}
             >
-                [ ]
+                [                      ]
             </Text>
             {options < 5 &&
                 [...Array(5 - options)].map((_, i) => (
@@ -147,21 +147,22 @@ const Hud = () => {
                     </Text>
                 ))}
             <HUDSelect
-                onClick={selectSelect()}
-                position={[15.5, -5.5, 0.5]} />
+                onClick={() => selectSelect()}
+                position={[15.5, -5.5, 0.5]}
+            />
             <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] + 0.5, controlPosition[1], controlPosition[2]],
                     scale: [0.02, 0.02, 0.02]
                 }}
-                onClick={selectRight()}
+                onClick={() => selectRight()}
             />
             <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] - 3, controlPosition[1], controlPosition[2]],
                     scale: [-0.02, 0.02, 0.02]
                 }}
-                onClick={selectLeft()}
+                onClick={() => selectLeft()}
             />
             <HUDArrow
                 groupProps={{
@@ -169,7 +170,7 @@ const Hud = () => {
                     scale: [0.02, 0.02, 0.02],
                     rotation: [0, 0, Math.PI / 2]
                 }}
-                onClick={selectUp()}
+                onClick={() => selectUp()}
             />
             <HUDArrow
                 groupProps={{
@@ -177,12 +178,13 @@ const Hud = () => {
                     scale: [-0.02, 0.02, 0.02],
                     rotation: [0, 0, Math.PI / 2]
                 }}
-                onClick={selectDown()}
+                onClick={() => selectDown()}
             />
             <HUDButton
-                onClick={recenter()}
+                onClick={() => recenter()}
                 position={[-13, 6, 0.5]}
-                text={'Recenter'} />
+                text={'Recenter'}
+            />
         </Fragment>
     );
 };

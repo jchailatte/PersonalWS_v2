@@ -27,7 +27,8 @@ export default function Background(props) {
     return (
         <div
             className={classes.container}
-            id="background">
+            id="background"
+        >
             {props.children}
         </div>
     );

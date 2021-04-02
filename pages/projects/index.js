@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
 import Deck from '../../components/general/deck';
 
@@ -87,7 +86,8 @@ export default function Project() {
         <React.Fragment>
             <Deck
                 items={items}
-                serial={2} />
+                serial={2}
+            />
         </React.Fragment>
     );
 }

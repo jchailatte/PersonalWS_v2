@@ -30,10 +30,12 @@ const HUDScreen = props => {
                     {...props}
                     color="cyan"
                     layers={1}
-                    lineWidth={0.5} />
+                    lineWidth={0.5}
+                />
             ))}
             <mesh
-                position={[0, 0, 0]}>
+                position={[0, 0, 0]}
+            >
                 <planeGeometry
                     args={[props.verticalVertices - 1, props.horizontalVertices - 1]}
                     attach="geometry"
@@ -46,10 +48,12 @@ const HUDScreen = props => {
                 />
             </mesh>
             <mesh
-                position={[1, 0, 0.1]}>
+                position={[1, 0, 0.1]}
+            >
                 <planeGeometry
                     args={[17, 15]}
-                    attach="geometry" />
+                    attach="geometry"
+                />
                 <meshPhongMaterial
                     attach="material"
                     color="black"

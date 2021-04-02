@@ -149,7 +149,8 @@ const Sidebar = props => {
 
     return (
         <div
-            className={classes.root}>
+            className={classes.root}
+        >
             <CssBaseline />
             <AppBar
                 className={clsx(classes.appBar, {
@@ -170,7 +171,8 @@ const Sidebar = props => {
                     <Typography
                         className={classes.fontStyle}
                         variant="h4"
-                        noWrap>
+                        noWrap
+                    >
                         Jonathan Chai
                     </Typography>
                 </Toolbar>
@@ -185,19 +187,23 @@ const Sidebar = props => {
                 variant="persistent"
             >
                 <div
-                    className={classes.drawerHeader}>
+                    className={classes.drawerHeader}
+                >
                     <IconButton
-                        onClick={handleDrawerClose}>
+                        onClick={handleDrawerClose}
+                    >
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
                 <Divider />
                 <List
-                    id="mainsb">
+                    id="mainsb"
+                >
                     {sbitems.map((item, index) => (
                         <Link
                             href={item.href}
-                            key={index}>
+                            key={index}
+                        >
                             <ListItem
                                 className={classes.opennested}
                                 component="a"
@@ -214,7 +220,7 @@ const Sidebar = props => {
                                         variant: 'h5',
                                         className: classes.fontStyle
                                     }}
-                                 />
+                                />
                             </ListItem>
                         </Link>
                     ))}
@@ -251,7 +257,8 @@ const Sidebar = props => {
                 id="content"
             >
                 <div
-                    className={classes.drawerHeader} />
+                    className={classes.drawerHeader}
+                />
                 {props.children}
             </main>
         </div>

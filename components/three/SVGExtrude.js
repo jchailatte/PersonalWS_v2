@@ -29,12 +29,14 @@ const SVGExtrude = forwardRef((props, ref) => {
     return (
         <group
             ref={internalRef}
-            {...props.groupProps}>
+            {...props.groupProps}
+        >
             {shapes.map((shape, i) => (
                 <mesh
                     key={i}
                     layers={props.layer}
-                    {...props.meshProps}>
+                    {...props.meshProps}
+                >
                     <extrudeGeometry
                         args={[shape, { depth: props.depth, ...props.extrudeSettings }]}
                         attach="geometry"

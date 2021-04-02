@@ -25,7 +25,8 @@ const Deck = props => {
     return (
         <Grid
             spacing={3}
-            container>
+            container
+        >
             {props.items.map((item, index) => (
                 <Grid
                     className={classes.grow}
@@ -34,12 +35,15 @@ const Deck = props => {
                     md={4}
                     sm={6}
                     xs={12}
-                    item>
+                    item
+                >
                     <Card
-                        id={'container' + index + props.serial}>
+                        id={'container' + index + props.serial}
+                    >
                         <CardActionArea
                             style={{ height: '90%' }}
-                            disabled>
+                            disabled
+                        >
                             <CardMedia
                                 className={classes.media}
                                 component="img"
@@ -48,23 +52,27 @@ const Deck = props => {
                                 title={item.text}
                             />
                             <CardContent
-                                style={{ height: '60%' }}>
+                                style={{ height: '60%' }}
+                            >
                                 <Typography
                                     component="h2"
                                     variant="h5"
-                                    gutterBottom>
+                                    gutterBottom
+                                >
                                     {item.text}
                                 </Typography>
                                 <Typography
                                     color="textSecondary"
                                     component="p"
-                                    variant="body2">
+                                    variant="body2"
+                                >
                                     {item.blurb}
                                 </Typography>
                                 <Typography
                                     color="textSecondary"
                                     component="p"
-                                    variant="body2">
+                                    variant="body2"
+                                >
                                     <br />
                                     {item.note}
                                 </Typography>

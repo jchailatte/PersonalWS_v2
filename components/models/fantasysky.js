@@ -22,7 +22,8 @@ const FantasySky = props => {
         <group
             ref={group}
             {...props}
-            dispose={null}>
+            dispose={null}
+        >
             <mesh
                 geometry={nodes.Object001.geometry}
                 material={materials.Material__25__background_JPG_002}

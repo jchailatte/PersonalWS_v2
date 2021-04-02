@@ -10,14 +10,17 @@ export default class MyDocument extends Document {
     render() {
         return (
             <Html
-                lang="en">
+                lang="en"
+            >
                 <Head>
                     <meta
                         content={theme.palette.primary.main}
-                        name="theme-color" />
+                        name="theme-color"
+                    />
                     <link
                         href="https://fonts.gstatic.com"
-                        rel="preconnect" />
+                        rel="preconnect"
+                    />
                     <link
                         href="https://fonts.googleapis.com/css2?family=Iceland&display=swap"
                         rel="stylesheet"
@@ -68,7 +71,8 @@ MyDocument.getInitialProps = async ctx => {
     ctx.renderPage = () =>
         originalRenderPage({
             enhanceApp: App => props => sheets.collect(<App
-                {...props} />)
+                {...props}
+            />)
         });
 
     const initialProps = await Document.getInitialProps(ctx);

@@ -52,7 +52,8 @@ const Lanterns = () => {
 
     return data.map((props, i) => <Lantern
         key={'lantern' + i}
-        {...props} />);
+        {...props}
+    />);
 };
 
 const Index = () => {
@@ -87,9 +88,11 @@ const Index = () => {
 
             <ThreeDRotationIcon
                 className={classes.ThreeDAvatar}
-                fontSize="large" />
+                fontSize="large"
+            />
             <div
-                className={classes.root}>
+                className={classes.root}
+            >
                 <Canvas
                     //concurrent is causing the triple render (dunno if performance boost or not?)
                     //concurrent
@@ -99,20 +102,25 @@ const Index = () => {
                 >
                     <ambientLight />
                     <OrbitControls
-                        maxDistance={50} />
+                        maxDistance={50}
+                    />
                     <Scripts />
                     <Suspense
-                        fallback={null}>
+                        fallback={null}
+                    >
                         <FantasySky />
                         <Lanterns />
                         <BinaryRing
-                            direction={1} />
+                            direction={1}
+                        />
                         <BinaryRing
-                            direction={-1} />
+                            direction={-1}
+                        />
                         {/* <Hud />     */}
                     </Suspense>
                     <SelectiveBloomEffect
-                        layer={1} />
+                        layer={1}
+                    />
                 </Canvas>
             </div>
         </React.Fragment>

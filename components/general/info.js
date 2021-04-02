@@ -37,14 +37,18 @@ const Info = props => {
                 aria-label="Info"
                 className={classes.fab}
                 color="primary"
-                onClick={handleOpen}>
+                onClick={handleOpen}
+            >
                 <InfoOutlinedIcon />
             </Fab>
             <Modal
                 className={classes.modal}
                 onClose={handleClose}
-                open={open}>
-                <Paper>{props.children}</Paper>
+                open={open}
+            >
+                <Paper>
+                    {props.children}
+                </Paper>
             </Modal>
         </Fragment>
     );

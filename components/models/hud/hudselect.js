@@ -24,12 +24,13 @@ const HUDSelect = props => {
             >
                 <meshPhongMaterial
                     attach="material"
-                    color={hover ? '#008b8b' : 'cyan'} />
+                    color={hover ? '#008b8b' : 'cyan'}
+                />
             </SVGExtrude>
             <mesh
                 onClick={props.onClick}
-                onPointerOut={setHover(false)}
-                onPointerOver={setHover(true)}
+                onPointerOut={() => setHover(false)}
+                onPointerOver={() => setHover(true)}
                 position={[
                     props.position[0] - 1.25,
                     props.position[1] + 1.25,
@@ -39,7 +40,8 @@ const HUDSelect = props => {
             >
                 <planeGeometry
                     args={[3, 3]}
-                    attach="geometry" />
+                    attach="geometry"
+                />
                 <meshPhongMaterial
                     attach="material"
                     color="black"

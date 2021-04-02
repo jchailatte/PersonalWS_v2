@@ -15,7 +15,8 @@ const HUDLogo = props => {
             attach="material"
             color="black"
             emissive="cyan"
-            shininess={1} />,
+            shininess={1}
+        />,
         []
     );
 
@@ -55,10 +56,12 @@ const HUDLogo = props => {
                 {material}
             </SVGExtrude>
             <mesh
-                position={[15, 5, 0.5]}>
+                position={[15, 5, 0.5]}
+            >
                 <planeGeometry
                     args={[5, 5]}
-                    attach="geometry" />
+                    attach="geometry"
+                />
                 <meshStandardMaterial
                     attach="material"
                     map={logo}

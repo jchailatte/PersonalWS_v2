@@ -26,21 +26,25 @@ const Lantern = props => {
         <group
             dispose={null}
             position={[props.x, props.y, props.z]}
-            ref={group}>
+            ref={group}
+        >
             <Fragment>
                 <pointLight
                     color="white"
                     distance={90}
                     intensity={1}
-                    layers={1} />
+                    layers={1}
+                />
                 <Octahedron
                     layers={1}
                     position={[0, 0.5, 0]}
-                    scale={[0.5, 1, 0.5]}>
+                    scale={[0.5, 1, 0.5]}
+                >
                     <meshLambertMaterial
                         attach="material"
                         color="white"
-                        emissive="white" />
+                        emissive="white"
+                    />
                 </Octahedron>
                 <mesh
                     geometry={nodes.JapaneseLantern_paper_0.geometry}

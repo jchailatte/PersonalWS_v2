@@ -431,7 +431,8 @@ export default function Index() {
     return (
         <React.Fragment>
             <Fade
-                in={open}>
+                in={open}
+            >
                 <Alert
                     action={
                         <IconButton
@@ -457,18 +458,22 @@ export default function Index() {
                 closeAfterTransition
             >
                 <Fade
-                    in={openModal}>
+                    in={openModal}
+                >
                     <Paper
-                        className={classes.paperModal}>
+                        className={classes.paperModal}
+                    >
                         <Grid
                             justify="center"
-                            container>
+                            container
+                        >
                             {Object.keys(champData).map(index => {
                                 const dis = Object.values(selected).includes(champData[index].key);
                                 return (
                                     <Grid
                                         key={index}
-                                        item>
+                                        item
+                                    >
                                         <Button
                                             disabled={dis}
                                             onClick={() =>
@@ -485,7 +490,8 @@ export default function Index() {
                             })}
                         </Grid>
                         <div
-                            className={classes.gradientBorder} />
+                            className={classes.gradientBorder}
+                        />
                     </Paper>
                 </Fade>
             </Modal>
@@ -500,13 +506,16 @@ export default function Index() {
                 disableEscapeKeyDown
             >
                 <Fade
-                    in={disappear}>
+                    in={disappear}
+                >
                     <Grid
-                        container>
+                        container
+                    >
                         <Grid
                             style={{ height: '50vh' }}
                             xs={12}
-                            item>
+                            item
+                        >
                             <svg
                                 className={`${classes.center} ${classes.circularChart}`}
                                 viewBox="0 0 36 36"
@@ -535,7 +544,8 @@ export default function Index() {
                                 />
                             </svg>
                             <div
-                                className={classes.center}>
+                                className={classes.center}
+                            >
                                 <img
                                     className={clsx({
                                         [classes.rotatingBlue]: run,
@@ -548,7 +558,8 @@ export default function Index() {
                         </Grid>
                         <Grid
                             xs={12}
-                            item>
+                            item
+                        >
                             <img
                                 className={classes.hidingblue}
                                 src="https://static-cdn.jtvnw.net/emoticons/v1/302703811/2.0"
@@ -566,7 +577,8 @@ export default function Index() {
                         <Grid
                             style={{ paddingTop: '10vh' }}
                             xs={12}
-                            item>
+                            item
+                        >
                             <Button
                                 color="default"
                                 onClick={reset}
@@ -588,10 +600,12 @@ export default function Index() {
             </Modal>
             <Fade
                 in={!disappear}
-                timeout={fade}>
+                timeout={fade}
+            >
                 <Fab
                     className={`${classes.fightButton} ${classes.center}`}
-                    onClick={fightOnClick}>
+                    onClick={fightOnClick}
+                >
                     <Typography
                         style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}
                         variant="h4"
@@ -602,11 +616,13 @@ export default function Index() {
             </Fade>
             <Grid
                 align="center"
-                container>
+                container
+            >
                 <Grid
                     className={classes.title}
                     xs={12}
-                    item>
+                    item
+                >
                     {[...Array(5)].map((x, i) => (
                         <img
                             key={i}
@@ -616,7 +632,8 @@ export default function Index() {
                     ))}
                     <Typography
                         style={{ fontFamily: 'SFF' }}
-                        variant="h3">
+                        variant="h3"
+                    >
                         OUTDRAFTED
                     </Typography>
                     {[...Array(5)].map((x, i) => (
@@ -629,35 +646,47 @@ export default function Index() {
                 </Grid>
                 <Grid
                     xs={12}
-                    item>
+                    item
+                >
                     <div
-                        className={`${classes.line} ${classes.line1}`}>
+                        className={`${classes.line} ${classes.line1}`}
+                    >
                         <div
-                            className={`${classes.wave} ${classes.wave1}`} />
+                            className={`${classes.wave} ${classes.wave1}`}
+                        />
                     </div>
                     <div
-                        className={`${classes.line} ${classes.line2}`}>
+                        className={`${classes.line} ${classes.line2}`}
+                    >
                         <div
-                            className={`${classes.wave} ${classes.wave2}`} />
+                            className={`${classes.wave} ${classes.wave2}`}
+                        />
                     </div>
                     <div
-                        className={`${classes.line} ${classes.line3}`}>
+                        className={`${classes.line} ${classes.line3}`}
+                    >
                         <div
-                            className={`${classes.wave} ${classes.wave3}`} />
+                            className={`${classes.wave} ${classes.wave3}`}
+                        />
                     </div>
                 </Grid>
                 <Grid
                     className={`${classes.side1} ${classes.wavepadding}`}
                     xs={6}
                     container
-                    item>
+                    item
+                >
                     <Grid
                         xs={12}
-                        item>
+                        item
+                    >
                         <Paper
-                            className={classes.paperPadding}>
+                            className={classes.paperPadding}
+                        >
                             <Typography
-                                variant="h3">Team 1</Typography>
+                                variant="h3"
+                            >Team 1
+                            </Typography>
                         </Paper>
                     </Grid>
                     <Grid
@@ -670,19 +699,22 @@ export default function Index() {
                         {positions.map((pos, key) => (
                             <Grid
                                 key={key}
-                                item>
+                                item
+                            >
                                 <Card
                                     className={classes.champCards}
                                     style={{ backgroundColor: '' }}
                                 >
                                     <CardActionArea
-                                        onClick={() => onCardClick(1, key)}>
+                                        onClick={() => onCardClick(1, key)}
+                                    >
                                         <CardHeader
-                                            title={pos} />
+                                            title={pos}
+                                        />
                                         <CardMedia
                                             className={classes.cardImage}
                                             image={team[pos + '1'].src}
-                                         />
+                                        />
                                     </CardActionArea>
                                 </Card>
                             </Grid>
@@ -692,17 +724,20 @@ export default function Index() {
                 <Grid
                     className={`${classes.side2} ${classes.wavepadding}`}
                     xs={6}
-                    item>
+                    item
+                >
                     <Grid
                         xs={12}
-                        item>
+                        item
+                    >
                         <Paper
                             className={classes.paperPadding}
                             style={{ backgroundColor: '#0C223F' }}
                         >
                             <Typography
                                 style={{ color: 'white' }}
-                                variant="h3">
+                                variant="h3"
+                            >
                                 Team 2
                             </Typography>
                         </Paper>
@@ -716,20 +751,23 @@ export default function Index() {
                             {positions.map((pos, key) => (
                                 <Grid
                                     key={key}
-                                    item>
+                                    item
+                                >
                                     <Card
                                         className={classes.champCards}
                                         style={{ backgroundColor: '#0C223F' }}
                                     >
                                         <CardActionArea
-                                            onClick={() => onCardClick(2, key)}>
+                                            onClick={() => onCardClick(2, key)}
+                                        >
                                             <CardHeader
                                                 style={{ color: 'white' }}
-                                                title={pos} />
+                                                title={pos}
+                                            />
                                             <CardMedia
                                                 className={classes.cardImage}
                                                 image={team[pos + '2'].src}
-                                             />
+                                            />
                                         </CardActionArea>
                                     </Card>
                                 </Grid>

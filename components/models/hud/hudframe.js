@@ -9,7 +9,8 @@ const HUDFrame = () => {
                 attach="material"
                 color="black"
                 emissive="#008b8b"
-                shininess={10} />
+                shininess={10}
+            />
         ),
         []
     );

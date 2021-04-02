@@ -39,7 +39,8 @@ const BinaryRing = props => {
             <mesh
                 geometry={nodes.nimbus002_0.geometry}
                 layers={1}
-                ref={halo1}>
+                ref={halo1}
+            >
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
@@ -49,7 +50,8 @@ const BinaryRing = props => {
             <mesh
                 geometry={nodes.nimbus001_0.geometry}
                 layers={1}
-                ref={halo2}>
+                ref={halo2}
+            >
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
@@ -59,7 +61,8 @@ const BinaryRing = props => {
             <mesh
                 geometry={nodes.nimbus003_0.geometry}
                 layers={1}
-                ref={halo3}>
+                ref={halo3}
+            >
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}

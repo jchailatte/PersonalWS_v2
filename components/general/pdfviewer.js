@@ -20,11 +20,13 @@ const PDFViewer = ({ url, width, pageNumber }) => {
     return (
         <Document
             className={classes.restyle}
-            file={url}>
+            file={url}
+        >
             <Page
                 className={classes.border}
                 pageNumber={pageNumber}
-                width={width} />
+                width={width}
+            />
         </Document>
     );
 };

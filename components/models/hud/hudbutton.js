@@ -22,7 +22,8 @@ const HUDButton = props => {
     const darkFilmGeometry = useMemo(
         () => <planeGeometry
             args={[9.5, 1.5]}
-            attach="geometry" />,
+            attach="geometry"
+        />,
         []
     );
 
@@ -51,12 +52,13 @@ const HUDButton = props => {
             >
                 <meshPhongMaterial
                     attach="material"
-                    color={hover ? '#008b8b' : 'cyan'} />
+                    color={hover ? '#008b8b' : 'cyan'}
+                />
             </SVGExtrude>
             <mesh
                 onPointerDown={props.onClick}
-                onPointerOut={setHover(false)}
-                onPointerOver={setHover(true)}
+                onPointerOut={() => setHover(false)}
+                onPointerOver={() => setHover(true)}
                 position={props.position}
             >
                 {darkFilmGeometry}

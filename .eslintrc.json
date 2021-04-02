@@ -32,6 +32,9 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "react/display-name": "off",
+        "react/jsx-closing-tag-location": [
+            1
+        ],
         "react/jsx-sort-props": [
             1,
             {
@@ -61,6 +64,10 @@
                 "component": true,
                 "html": true
             }
+        ],
+        "react/jsx-closing-bracket-location": [
+            1,
+            "line-aligned"
         ]
     }
 }

@@ -64,44 +64,55 @@ export default function About() {
         <React.Fragment>
             <Head>
                 <title
-                    key="title">Jonathan Chai - About</title>
+                    key="title"
+                >Jonathan Chai - About
+                </title>
             </Head>
             <Grid
                 spacing={3}
-                container>
+                container
+            >
                 <Grid
                     alignItems="center"
                     lg={9}
                     spacing={3}
                     container
-                    item>
+                    item
+                >
                     <Grid
                         style={{ backgroundColor: 'white' }}
                         xs={12}
                         container
-                        item>
+                        item
+                    >
                         <div
                             className={classes.index}
                             id="container1"
-                            style={{ display: 'flex' }}>
+                            style={{ display: 'flex' }}
+                        >
                             <Grid
                                 className={classes.index}
                                 md={9}
                                 sm={12}
                                 xs={12}
-                                item>
+                                item
+                            >
                                 <Typography
-                                    variant="h4">Hello!</Typography>
+                                    variant="h4"
+                                >Hello!
+                                </Typography>
                                 <br />
                                 <Typography
-                                    variant="h4">
+                                    variant="h4"
+                                >
                                     My name is Jonathan Chai, that&#39;s me to the right, and I am a
                                     software engineer that graduated from the University of Southern
                                     California and currently looking for a job (yay for Covid).
                                 </Typography>
                                 <br />
                                 <Typography
-                                    variant="h4">
+                                    variant="h4"
+                                >
                                     Currently, the JavaScript frameworks of choice I am working with
                                     are Three.js and Next.js (yup this site is a combination of
                                     both) and I am very interested in being able to combine art with
@@ -109,13 +120,15 @@ export default function About() {
                                 </Typography>
                                 <br />
                                 <Typography
-                                    variant="h4">
+                                    variant="h4"
+                                >
                                     My main hobbies include reading light novels and playing video
                                     games like League of Legends and TeamFight Tactics.
                                 </Typography>
                                 <br />
                                 <Typography
-                                    variant="h4">
+                                    variant="h4"
+                                >
                                     PS. I got asked this a few times so I guess I&#39;ll mention it
                                     here, yup the background was drawn by me :)
                                 </Typography>
@@ -128,15 +141,19 @@ export default function About() {
                     className={classes.itemstyle1}
                     sm={3}
                     xs={12}
-                    item>
+                    item
+                >
                     <Hidden
                         implementation="css"
-                        only={['sm', 'md']}>
+                        only={['sm', 'md']}
+                    >
                         <Card
-                            className={classes.background}>
+                            className={classes.background}
+                        >
                             <img
                                 className={classes.portrait}
-                                src="/graphics/profpic.jpg" />
+                                src="/graphics/profpic.jpg"
+                            />
                         </Card>
                     </Hidden>
                 </Grid>

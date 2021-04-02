@@ -23,15 +23,19 @@ export default function Resume() {
         <React.Fragment>
             <Head>
                 <title
-                    key="title">Jonathan Chai - Resume</title>
+                    key="title"
+                >Jonathan Chai - Resume
+                </title>
             </Head>
             <NoSSR>
                 <div
-                    style={{ width: '100vw' }}>
+                    style={{ width: '100vw' }}
+                >
                     <PDFViewer
                         pageNumber={1}
                         url={'/doc/res.pdf'}
-                        width={0.8 * dimensions.width} />
+                        width={0.8 * dimensions.width}
+                    />
                 </div>
             </NoSSR>
         </React.Fragment>
