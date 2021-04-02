@@ -23,53 +23,75 @@ const Deck = props => {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={3}>
+        <Grid
+            spacing={3}
+            container>
             {props.items.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={4} className={classes.grow} key={index}>
-                    <Card id={'container' + index + props.serial}>
-                        <CardActionArea disabled style={{ height: '90%' }}>
+                <Grid
+                    className={classes.grow}
+                    key={index}
+                    lg={4}
+                    md={4}
+                    sm={6}
+                    xs={12}
+                    item>
+                    <Card
+                        id={'container' + index + props.serial}>
+                        <CardActionArea
+                            style={{ height: '90%' }}
+                            disabled>
                             <CardMedia
                                 className={classes.media}
-                                height="170"
                                 component="img"
+                                height="170"
                                 image={item.image}
                                 title={item.text}
                             />
-                            <CardContent style={{ height: '60%' }}>
-                                <Typography gutterBottom variant="h5" component="h2">
+                            <CardContent
+                                style={{ height: '60%' }}>
+                                <Typography
+                                    component="h2"
+                                    variant="h5"
+                                    gutterBottom>
                                     {item.text}
                                 </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
+                                <Typography
+                                    color="textSecondary"
+                                    component="p"
+                                    variant="body2">
                                     {item.blurb}
                                 </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    <br></br>
+                                <Typography
+                                    color="textSecondary"
+                                    component="p"
+                                    variant="body2">
+                                    <br />
                                     {item.note}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
                             <Button
-                                size="small"
                                 color="primary"
-                                href={item.href1}
                                 disabled={item.button1 == ''}
+                                href={item.href1}
+                                size="small"
                             >
                                 {item.button1}
                             </Button>
                             <Button
-                                size="small"
                                 color="primary"
-                                href={item.href2}
                                 disabled={item.button2 == ''}
+                                href={item.href2}
+                                size="small"
                             >
                                 {item.button2}
                             </Button>
                             <Button
-                                size="small"
                                 color="primary"
-                                href={item.href3}
                                 disabled={item.button3 == ''}
+                                href={item.href3}
+                                size="small"
                             >
                                 {item.button3}
                             </Button>

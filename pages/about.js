@@ -63,34 +63,59 @@ export default function About() {
     return (
         <React.Fragment>
             <Head>
-                <title key="title">Jonathan Chai - About</title>
+                <title
+                    key="title">Jonathan Chai - About</title>
             </Head>
-            <Grid container spacing={3}>
-                <Grid container item lg={9} spacing={3} alignItems="center">
-                    <Grid container item xs={12} style={{ backgroundColor: 'white' }}>
-                        <div id="container1" className={classes.index} style={{ display: 'flex' }}>
-                            <Grid item md={9} sm={12} xs={12} className={classes.index}>
-                                <Typography variant="h4">Hello!</Typography>
-                                <br></br>
-                                <Typography variant="h4">
+            <Grid
+                spacing={3}
+                container>
+                <Grid
+                    alignItems="center"
+                    lg={9}
+                    spacing={3}
+                    container
+                    item>
+                    <Grid
+                        style={{ backgroundColor: 'white' }}
+                        xs={12}
+                        container
+                        item>
+                        <div
+                            className={classes.index}
+                            id="container1"
+                            style={{ display: 'flex' }}>
+                            <Grid
+                                className={classes.index}
+                                md={9}
+                                sm={12}
+                                xs={12}
+                                item>
+                                <Typography
+                                    variant="h4">Hello!</Typography>
+                                <br />
+                                <Typography
+                                    variant="h4">
                                     My name is Jonathan Chai, that&#39;s me to the right, and I am a
                                     software engineer that graduated from the University of Southern
                                     California and currently looking for a job (yay for Covid).
                                 </Typography>
-                                <br></br>
-                                <Typography variant="h4">
+                                <br />
+                                <Typography
+                                    variant="h4">
                                     Currently, the JavaScript frameworks of choice I am working with
                                     are Three.js and Next.js (yup this site is a combination of
                                     both) and I am very interested in being able to combine art with
                                     code.
                                 </Typography>
-                                <br></br>
-                                <Typography variant="h4">
+                                <br />
+                                <Typography
+                                    variant="h4">
                                     My main hobbies include reading light novels and playing video
                                     games like League of Legends and TeamFight Tactics.
                                 </Typography>
-                                <br></br>
-                                <Typography variant="h4">
+                                <br />
+                                <Typography
+                                    variant="h4">
                                     PS. I got asked this a few times so I guess I&#39;ll mention it
                                     here, yup the background was drawn by me :)
                                 </Typography>
@@ -98,10 +123,20 @@ export default function About() {
                         </div>
                     </Grid>
                 </Grid>
-                <Grid item sm={3} xs={12} className={classes.itemstyle1} align="center">
-                    <Hidden only={['sm', 'md']} implementation="css">
-                        <Card className={classes.background}>
-                            <img src="/graphics/profpic.jpg" className={classes.portrait}></img>
+                <Grid
+                    align="center"
+                    className={classes.itemstyle1}
+                    sm={3}
+                    xs={12}
+                    item>
+                    <Hidden
+                        implementation="css"
+                        only={['sm', 'md']}>
+                        <Card
+                            className={classes.background}>
+                            <img
+                                className={classes.portrait}
+                                src="/graphics/profpic.jpg" />
                         </Card>
                     </Hidden>
                 </Grid>

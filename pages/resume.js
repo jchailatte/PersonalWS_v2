@@ -22,11 +22,16 @@ export default function Resume() {
     return (
         <React.Fragment>
             <Head>
-                <title key="title">Jonathan Chai - Resume</title>
+                <title
+                    key="title">Jonathan Chai - Resume</title>
             </Head>
             <NoSSR>
-                <div style={{ width: '100vw' }}>
-                    <PDFViewer url={'/doc/res.pdf'} width={0.8 * dimensions.width} pageNumber={1} />
+                <div
+                    style={{ width: '100vw' }}>
+                    <PDFViewer
+                        pageNumber={1}
+                        url={'/doc/res.pdf'}
+                        width={0.8 * dimensions.width} />
                 </div>
             </NoSSR>
         </React.Fragment>

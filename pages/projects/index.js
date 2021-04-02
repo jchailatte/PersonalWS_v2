@@ -1,19 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 
 import Deck from '../../components/general/deck';
-
-const useStyles = makeStyles(() => ({
-    fontstyle: {
-        color: 'white',
-        textShadow: '0 0 5px black, 0 0 5px black',
-        fontFamily: "'Caveat', cursive"
-    },
-    spacing: {
-        paddingTop: '5vh'
-    }
-}));
 
 const items = [
     {
@@ -97,7 +85,9 @@ export async function getStaticProps() {
 export default function Project() {
     return (
         <React.Fragment>
-            <Deck items={items} serial={2}></Deck>
+            <Deck
+                items={items}
+                serial={2} />
         </React.Fragment>
     );
 }

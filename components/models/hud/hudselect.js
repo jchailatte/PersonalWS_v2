@@ -19,41 +19,45 @@ const HUDSelect = props => {
                     scale: [0.007, 0.007, 0.007],
                     rotation: [0, 0, Math.PI * 1.25]
                 }}
-                url={'/svgs/hud/hudsquare.svg'}
                 recenter={true}
+                url={'/svgs/hud/hudsquare.svg'}
             >
-                <meshPhongMaterial attach="material" color={hover ? '#008b8b' : 'cyan'} />
+                <meshPhongMaterial
+                    attach="material"
+                    color={hover ? '#008b8b' : 'cyan'} />
             </SVGExtrude>
             <mesh
+                onClick={props.onClick}
+                onPointerOut={setHover(false)}
+                onPointerOver={setHover(true)}
                 position={[
                     props.position[0] - 1.25,
                     props.position[1] + 1.25,
                     props.position[2] + 0.5
                 ]}
                 rotation={[0, 0, Math.PI / 4]}
-                onPointerOver={setHover(true)}
-                onPointerOut={setHover(false)}
-                onClick={props.onClick}
             >
-                <planeGeometry attach="geometry" args={[3, 3]} />
+                <planeGeometry
+                    args={[3, 3]}
+                    attach="geometry" />
                 <meshPhongMaterial
                     attach="material"
                     color="black"
+                    opacity={0.5}
                     shininess={1}
                     transparent={true}
-                    opacity={0.5}
                 />
             </mesh>
             <Text
-                color="#008b8b"
-                fontSize={1}
                 anchorX="center"
+                color="#008b8b"
+                font={props.fontType}
+                fontSize={1}
                 position={[
                     props.position[0] - 1.25,
                     props.position[1] + 1.25,
                     props.position[2] + 0.6
                 ]}
-                font={props.fontType}
             >
                 Select
             </Text>

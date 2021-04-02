@@ -88,62 +88,67 @@ const Hud = () => {
                 horizontalVertices={horizontalVertices}
                 verticalVertices={verticalVertices}
             />
-            <HUDLogo position={[15, 5, 0]} logo={'/graphics/general/logo.png'} />
+            <HUDLogo
+                logo={'/graphics/general/logo.png'}
+                position={[15, 5, 0]} />
             <HUDFrame />
             {Object.keys(level).map((route, i) => (
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
-                <Fragment key={'route' + i}>
+                <Fragment
+                    key={'route' + i}>
                     <Text
-                        color="#008b8b"
-                        fontSize={2}
                         anchorX="center"
                         anchorY="center"
-                        position={[0, 7 - 3 * i, 0.5]}
+                        color="#008b8b"
                         font={fontType}
+                        fontSize={2}
+                        position={[0, 7 - 3 * i, 0.5]}
                     >
                         {route.charAt(0).toUpperCase() + route.slice(1)}
                     </Text>
 
                     {Object.keys(level[route]).length != 0 ? (
                         <Text
-                            color="#008b8b"
-                            fontSize={2}
                             anchorX="center"
                             anchorY="center"
-                            position={[0, 7 - 3 * i, 0.5]}
+                            color="#008b8b"
                             font={fontType}
+                            fontSize={2}
                             key={'>' + i}
+                            position={[0, 7 - 3 * i, 0.5]}
                             text="                            >"
-                        ></Text>
+                         />
                     ) : null}
                 </Fragment>
             ))}
             <Text
-                color="#008b8b"
-                fontSize={2}
                 anchorX="center"
                 anchorY="center"
-                position={[0, 7 - 3 * selected, 0.5]}
+                color="#008b8b"
                 font={fontType}
+                fontSize={2}
+                position={[0, 7 - 3 * selected, 0.5]}
             >
                 [ ]
             </Text>
             {options < 5 &&
                 [...Array(5 - options)].map((_, i) => (
                     <Text
-                        color="#008b8b"
-                        fontSize={2}
                         anchorX="center"
                         anchorY="center"
-                        position={[0, 7 - 3 * (i + options), 0.5]}
+                        color="#008b8b"
                         font={fontType}
+                        fontSize={2}
                         key={'dashed' + i}
+                        position={[0, 7 - 3 * (i + options), 0.5]}
                     >
                         - - - - -
                     </Text>
                 ))}
-            <HUDSelect position={[15.5, -5.5, 0.5]} onClick={selectSelect()} />
+            <HUDSelect
+                onClick={selectSelect()}
+                position={[15.5, -5.5, 0.5]} />
             <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] + 0.5, controlPosition[1], controlPosition[2]],
@@ -174,7 +179,10 @@ const Hud = () => {
                 }}
                 onClick={selectDown()}
             />
-            <HUDButton text={'Recenter'} position={[-13, 6, 0.5]} onClick={recenter()} />
+            <HUDButton
+                onClick={recenter()}
+                position={[-13, 6, 0.5]}
+                text={'Recenter'} />
         </Fragment>
     );
 };

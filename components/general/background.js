@@ -25,7 +25,9 @@ export default function Background(props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.container} id="background">
+        <div
+            className={classes.container}
+            id="background">
             {props.children}
         </div>
     );

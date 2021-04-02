@@ -27,18 +27,31 @@ export default function App(props) {
     return (
         <React.Fragment>
             <Head>
-                <title key="title">Jonathan Chai</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta charSet="UTF-8" />
-                <meta name="author" content="Jonathan Chai" />
-                <link rel="icon" href="/graphics/general/logo.ico" />
+                <title
+                    key="title">Jonathan Chai</title>
+                <meta
+                    content="width=device-width, initial-scale=1.0"
+                    name="viewport" />
+                <meta
+                    charSet="UTF-8" />
+                <meta
+                    content="Jonathan Chai"
+                    name="author" />
+                <link
+                    href="/graphics/general/logo.ico"
+                    rel="icon" />
             </Head>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider
+                theme={theme}>
                 <CssBaseline />
                 <Background>
-                    <Sidebar selected={pageProps.selected} padding={pageProps.padding}>
-                        <div style={{ position: 'relative' }}>
-                            <Component {...pageProps} />
+                    <Sidebar
+                        padding={pageProps.padding}
+                        selected={pageProps.selected}>
+                        <div
+                            style={{ position: 'relative' }}>
+                            <Component
+                                {...pageProps} />
                         </div>
                     </Sidebar>
                 </Background>

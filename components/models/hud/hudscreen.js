@@ -25,27 +25,36 @@ const HUDScreen = props => {
     return (
         <Fragment>
             {data.map((props, i) => (
-                <Line key={'line' + i} {...props} lineWidth={0.5} color="cyan" layers={1} />
+                <Line
+                    key={'line' + i}
+                    {...props}
+                    color="cyan"
+                    layers={1}
+                    lineWidth={0.5} />
             ))}
-            <mesh position={[0, 0, 0]}>
+            <mesh
+                position={[0, 0, 0]}>
                 <planeGeometry
-                    attach="geometry"
                     args={[props.verticalVertices - 1, props.horizontalVertices - 1]}
+                    attach="geometry"
                 />
                 <meshPhongMaterial
                     attach="material"
                     color="black"
-                    transparent={true}
                     opacity={0.1}
+                    transparent={true}
                 />
             </mesh>
-            <mesh position={[1, 0, 0.1]}>
-                <planeGeometry attach="geometry" args={[17, 15]} />
+            <mesh
+                position={[1, 0, 0.1]}>
+                <planeGeometry
+                    args={[17, 15]}
+                    attach="geometry" />
                 <meshPhongMaterial
                     attach="material"
                     color="black"
-                    transparent={true}
                     opacity={0.5}
+                    transparent={true}
                 />
             </mesh>
         </Fragment>

@@ -12,28 +12,30 @@ const HUDButton = props => {
             <meshPhongMaterial
                 attach="material"
                 color="black"
+                opacity={0.5}
                 shininess={1}
                 transparent={true}
-                opacity={0.5}
             />
         ),
         []
     );
     const darkFilmGeometry = useMemo(
-        () => <planeGeometry attach="geometry" args={[9.5, 1.5]} />,
+        () => <planeGeometry
+            args={[9.5, 1.5]}
+            attach="geometry" />,
         []
     );
 
     return (
         <Fragment>
             <Text
-                color="#008b8b"
-                fontSize={1.5}
                 anchorX="center"
                 anchorY="center"
-                position={[props.position[0] - 1, props.position[1] + 1, props.position[2] + 0.1]}
+                color="#008b8b"
                 font={props.fontType}
+                fontSize={1.5}
                 layers={0}
+                position={[props.position[0] - 1, props.position[1] + 1, props.position[2] + 0.1]}
             >
                 {props.text}
             </Text>
@@ -42,19 +44,20 @@ const HUDButton = props => {
                     position: props.position,
                     scale: [0.1, 0.1, 0.1]
                 }}
-                scale={[0.1, 0.1, 0.1]}
-                url={'/svgs/hud/button0.svg'}
                 layer={0}
                 recenter={true}
+                scale={[0.1, 0.1, 0.1]}
+                url={'/svgs/hud/button0.svg'}
             >
-                <meshPhongMaterial attach="material" color={hover ? '#008b8b' : 'cyan'} />
+                <meshPhongMaterial
+                    attach="material"
+                    color={hover ? '#008b8b' : 'cyan'} />
             </SVGExtrude>
             <mesh
-                position={props.position}
-                onPointerOver={setHover(true)}
-                onPointerOut={setHover(false)}
                 onPointerDown={props.onClick}
-                //onClick={props.onClick}
+                onPointerOut={setHover(false)}
+                onPointerOver={setHover(true)}
+                position={props.position}
             >
                 {darkFilmGeometry}
                 {darkFilmMaterial}

@@ -368,6 +368,7 @@ export default function Index() {
         setPercent(50);
     };
 
+    //Hacky fix lol
     useEffect(() => {
         if (isFirstRun.current) {
             isFirstRun.current = false;
@@ -429,20 +430,21 @@ export default function Index() {
 
     return (
         <React.Fragment>
-            <Fade in={open}>
+            <Fade
+                in={open}>
                 <Alert
-                    severity="warning"
                     action={
                         <IconButton
-                            size="small"
                             onClick={() => {
                                 setOpen(false);
                             }}
+                            size="small"
                         >
                             <CloseIcon />
                         </IconButton>
                     }
                     className={classes.alert}
+                    severity="warning"
                 >
                     <AlertTitle>Warning</AlertTitle>
                     {message}
@@ -450,22 +452,28 @@ export default function Index() {
             </Fade>
             <Modal
                 className={classes.modal}
-                open={openModal}
                 onClose={handleModalClose}
+                open={openModal}
                 closeAfterTransition
             >
-                <Fade in={openModal}>
-                    <Paper className={classes.paperModal}>
-                        <Grid container justify="center">
+                <Fade
+                    in={openModal}>
+                    <Paper
+                        className={classes.paperModal}>
+                        <Grid
+                            justify="center"
+                            container>
                             {Object.keys(champData).map(index => {
                                 const dis = Object.values(selected).includes(champData[index].key);
                                 return (
-                                    <Grid item key={index}>
+                                    <Grid
+                                        key={index}
+                                        item>
                                         <Button
+                                            disabled={dis}
                                             onClick={() =>
                                                 onTileClick(champData[index].key, `${index}_0.jpg`)
                                             }
-                                            disabled={dis}
                                         >
                                             <img
                                                 className={clsx({ [classes.grayOut]: dis })}
@@ -476,26 +484,32 @@ export default function Index() {
                                 );
                             })}
                         </Grid>
-                        <div className={classes.gradientBorder}></div>
+                        <div
+                            className={classes.gradientBorder} />
                     </Paper>
                 </Fade>
             </Modal>
             <Modal
                 className={classes.modal}
-                open={disappear}
                 onClose={handleModalClose2}
+                open={disappear}
                 closeAfterTransition
-                disableEscapeKeyDown
+                disableAutoFocus
                 disableBackdropClick
                 disableEnforceFocus
-                disableAutoFocus
+                disableEscapeKeyDown
             >
-                <Fade in={disappear}>
-                    <Grid container>
-                        <Grid item xs={12} style={{ height: '50vh' }}>
+                <Fade
+                    in={disappear}>
+                    <Grid
+                        container>
+                        <Grid
+                            style={{ height: '50vh' }}
+                            xs={12}
+                            item>
                             <svg
-                                viewBox="0 0 36 36"
                                 className={`${classes.center} ${classes.circularChart}`}
+                                viewBox="0 0 36 36"
                             >
                                 <path
                                     className={classes.circlebg}
@@ -516,48 +530,54 @@ export default function Index() {
                                     a 15.9155 15.9155 0 0 1 0 -31.831"
                                     fill="none"
                                     stroke="#444"
-                                    strokeWidth="1"
                                     strokeDasharray={`${percent}, 100`}
+                                    strokeWidth="1"
                                 />
                             </svg>
-                            <div className={classes.center}>
+                            <div
+                                className={classes.center}>
                                 <img
-                                    src="https://static-cdn.jtvnw.net/emoticons/v1/301702758/2.0"
-                                    style={{ height: '100px', width: 'auto' }}
                                     className={clsx({
                                         [classes.rotatingBlue]: run,
                                         [classes.turn]: turn
                                     })}
+                                    src="https://static-cdn.jtvnw.net/emoticons/v1/301702758/2.0"
+                                    style={{ height: '100px', width: 'auto' }}
                                 />
                             </div>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid
+                            xs={12}
+                            item>
                             <img
-                                src="https://static-cdn.jtvnw.net/emoticons/v1/302703811/2.0"
                                 className={classes.hidingblue}
+                                src="https://static-cdn.jtvnw.net/emoticons/v1/302703811/2.0"
                             />
                             <Typography
-                                variant="h1"
                                 style={{
                                     fontFamily: "'Big Shoulders Stencil Text', cursive",
                                     color: 'white'
                                 }}
+                                variant="h1"
                             >
                                 {percent}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} style={{ paddingTop: '10vh' }}>
+                        <Grid
+                            style={{ paddingTop: '10vh' }}
+                            xs={12}
+                            item>
                             <Button
                                 color="default"
                                 onClick={reset}
                                 style={{ backgroundColor: '#2468BF' }}
                             >
                                 <Typography
-                                    variant="h2"
                                     style={{
                                         fontFamily: "'Big Shoulders Stencil Text', cursive",
                                         color: 'white'
                                     }}
+                                    variant="h2"
                                 >
                                     Reset
                                 </Typography>
@@ -566,107 +586,150 @@ export default function Index() {
                     </Grid>
                 </Fade>
             </Modal>
-            <Fade in={!disappear} timeout={fade}>
-                <Fab className={`${classes.fightButton} ${classes.center}`} onClick={fightOnClick}>
+            <Fade
+                in={!disappear}
+                timeout={fade}>
+                <Fab
+                    className={`${classes.fightButton} ${classes.center}`}
+                    onClick={fightOnClick}>
                     <Typography
-                        variant="h4"
                         style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}
+                        variant="h4"
                     >
                         FIGHT!
                     </Typography>
                 </Fab>
             </Fade>
-            <Grid container align="center">
-                <Grid item xs={12} className={classes.title}>
+            <Grid
+                align="center"
+                container>
+                <Grid
+                    className={classes.title}
+                    xs={12}
+                    item>
                     {[...Array(5)].map((x, i) => (
                         <img
+                            key={i}
                             src="https://static-cdn.jtvnw.net/emoticons/v1/301702778/2.0"
                             style={{ alignSelf: 'center', transform: `rotate(${90 * i}deg)` }}
-                            key={i}
                         />
                     ))}
-                    <Typography variant="h3" style={{ fontFamily: 'SFF' }}>
+                    <Typography
+                        style={{ fontFamily: 'SFF' }}
+                        variant="h3">
                         OUTDRAFTED
                     </Typography>
                     {[...Array(5)].map((x, i) => (
                         <img
+                            key={i}
                             src="https://static-cdn.jtvnw.net/emoticons/v1/301702778/2.0"
                             style={{ alignSelf: 'center', transform: `rotate(${90 * i}deg)` }}
-                            key={i}
                         />
                     ))}
                 </Grid>
-                <Grid item xs={12}>
-                    <div className={`${classes.line} ${classes.line1}`}>
-                        <div className={`${classes.wave} ${classes.wave1}`}></div>
+                <Grid
+                    xs={12}
+                    item>
+                    <div
+                        className={`${classes.line} ${classes.line1}`}>
+                        <div
+                            className={`${classes.wave} ${classes.wave1}`} />
                     </div>
-                    <div className={`${classes.line} ${classes.line2}`}>
-                        <div className={`${classes.wave} ${classes.wave2}`}></div>
+                    <div
+                        className={`${classes.line} ${classes.line2}`}>
+                        <div
+                            className={`${classes.wave} ${classes.wave2}`} />
                     </div>
-                    <div className={`${classes.line} ${classes.line3}`}>
-                        <div className={`${classes.wave} ${classes.wave3}`}></div>
+                    <div
+                        className={`${classes.line} ${classes.line3}`}>
+                        <div
+                            className={`${classes.wave} ${classes.wave3}`} />
                     </div>
                 </Grid>
-                <Grid item container xs={6} className={`${classes.side1} ${classes.wavepadding}`}>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paperPadding}>
-                            <Typography variant="h3">Team 1</Typography>
+                <Grid
+                    className={`${classes.side1} ${classes.wavepadding}`}
+                    xs={6}
+                    container
+                    item>
+                    <Grid
+                        xs={12}
+                        item>
+                        <Paper
+                            className={classes.paperPadding}>
+                            <Typography
+                                variant="h3">Team 1</Typography>
                         </Paper>
                     </Grid>
                     <Grid
-                        item
-                        container
-                        xs={12}
                         justify="space-evenly"
                         style={{ paddingTop: '20px', paddingRight: '30px' }}
+                        xs={12}
+                        container
+                        item
                     >
                         {positions.map((pos, key) => (
-                            <Grid item key={key}>
+                            <Grid
+                                key={key}
+                                item>
                                 <Card
                                     className={classes.champCards}
                                     style={{ backgroundColor: '' }}
                                 >
-                                    <CardActionArea onClick={() => onCardClick(1, key)}>
-                                        <CardHeader title={pos} />
+                                    <CardActionArea
+                                        onClick={() => onCardClick(1, key)}>
+                                        <CardHeader
+                                            title={pos} />
                                         <CardMedia
                                             className={classes.cardImage}
                                             image={team[pos + '1'].src}
-                                        ></CardMedia>
+                                         />
                                     </CardActionArea>
                                 </Card>
                             </Grid>
                         ))}
                     </Grid>
                 </Grid>
-                <Grid item xs={6} className={`${classes.side2} ${classes.wavepadding}`}>
-                    <Grid item xs={12}>
+                <Grid
+                    className={`${classes.side2} ${classes.wavepadding}`}
+                    xs={6}
+                    item>
+                    <Grid
+                        xs={12}
+                        item>
                         <Paper
                             className={classes.paperPadding}
                             style={{ backgroundColor: '#0C223F' }}
                         >
-                            <Typography variant="h3" style={{ color: 'white' }}>
+                            <Typography
+                                style={{ color: 'white' }}
+                                variant="h3">
                                 Team 2
                             </Typography>
                         </Paper>
                         <Grid
-                            item
-                            container
-                            xs={12}
                             justify="space-evenly"
                             style={{ paddingTop: '20px', paddingLeft: '30px' }}
+                            xs={12}
+                            container
+                            item
                         >
                             {positions.map((pos, key) => (
-                                <Grid item key={key}>
+                                <Grid
+                                    key={key}
+                                    item>
                                     <Card
                                         className={classes.champCards}
                                         style={{ backgroundColor: '#0C223F' }}
                                     >
-                                        <CardActionArea onClick={() => onCardClick(2, key)}>
-                                            <CardHeader title={pos} style={{ color: 'white' }} />
+                                        <CardActionArea
+                                            onClick={() => onCardClick(2, key)}>
+                                            <CardHeader
+                                                style={{ color: 'white' }}
+                                                title={pos} />
                                             <CardMedia
                                                 className={classes.cardImage}
                                                 image={team[pos + '2'].src}
-                                            ></CardMedia>
+                                             />
                                         </CardActionArea>
                                     </Card>
                                 </Grid>

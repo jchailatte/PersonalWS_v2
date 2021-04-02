@@ -33,10 +33,17 @@ const Info = props => {
 
     return (
         <Fragment>
-            <Fab color="primary" aria-label="Info" className={classes.fab} onClick={handleOpen}>
+            <Fab
+                aria-label="Info"
+                className={classes.fab}
+                color="primary"
+                onClick={handleOpen}>
                 <InfoOutlinedIcon />
             </Fab>
-            <Modal open={open} onClose={handleClose} className={classes.modal}>
+            <Modal
+                className={classes.modal}
+                onClose={handleClose}
+                open={open}>
                 <Paper>{props.children}</Paper>
             </Modal>
         </Fragment>

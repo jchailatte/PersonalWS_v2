@@ -10,6 +10,11 @@
         "plugin:react-hooks/recommended",
         "prettier"
     ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -17,12 +22,45 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": ["react", "react-hooks"],
+    "plugins": [
+        "react",
+        "react-hooks"
+    ],
     "rules": {
         "react/react-in-jsx-scope": "off",
         "jsx-a11y/anchor-is-valid": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "react/display-name": "off"
+        "react/display-name": "off",
+        "react/jsx-sort-props": [
+            1,
+            {
+                "shorthandLast": true
+            }
+        ],
+        "react/jsx-max-props-per-line": [
+            1,
+            {
+                "maximum": 1
+            }
+        ],
+        "react/jsx-indent-props": [
+            1,
+            {
+                "tab": 1,
+                "first": "first"
+            }
+        ],
+        "react/jsx-first-prop-new-line": [
+            1,
+            "always"
+        ],
+        "react/self-closing-comp": [
+            "error",
+            {
+                "component": true,
+                "html": true
+            }
+        ]
     }
 }

@@ -23,44 +23,57 @@ const Lantern = props => {
     });
 
     return (
-        <group ref={group} position={[props.x, props.y, props.z]} dispose={null}>
+        <group
+            dispose={null}
+            position={[props.x, props.y, props.z]}
+            ref={group}>
             <Fragment>
-                <pointLight distance={90} intensity={1} color="white" layers={1} />
-                <Octahedron position={[0, 0.5, 0]} scale={[0.5, 1, 0.5]} layers={1}>
-                    <meshLambertMaterial color="white" emissive="white" attach="material" />
+                <pointLight
+                    color="white"
+                    distance={90}
+                    intensity={1}
+                    layers={1} />
+                <Octahedron
+                    layers={1}
+                    position={[0, 0.5, 0]}
+                    scale={[0.5, 1, 0.5]}>
+                    <meshLambertMaterial
+                        attach="material"
+                        color="white"
+                        emissive="white" />
                 </Octahedron>
                 <mesh
                     geometry={nodes.JapaneseLantern_paper_0.geometry}
-                    position={[0, 0.66, 0]}
                     layers={1}
+                    position={[0, 0.66, 0]}
                 >
                     <meshStandardMaterial
                         {...materials.paper}
-                        emissive={props.color}
                         color={props.color}
-                        transparent={true}
+                        emissive={props.color}
                         opacity={0.3}
+                        transparent={true}
                     />
                 </mesh>
                 <mesh
-                    material={materials.goldenrope}
                     geometry={nodes.JapaneseLantern_goldenrope_0.geometry}
+                    material={materials.goldenrope}
                     position={[0, 1.35, 0]}
                 />
                 <mesh
-                    material={materials.redrope}
                     geometry={nodes.JapaneseLantern_redrope_0.geometry}
-                    position={[0, 1.28, 0]}
                     layers={1}
+                    material={materials.redrope}
+                    position={[0, 1.28, 0]}
                 />
                 <mesh
-                    material={materials.lambert1}
                     geometry={nodes.JapaneseLantern_lambert1_0.geometry}
+                    material={materials.lambert1}
                     position={[0, 1.49, 0]}
                 />
                 <mesh
-                    material={materials.wood}
                     geometry={nodes.JapaneseLantern_wood_0.geometry}
+                    material={materials.wood}
                     position={[0, 0.84, 0]}
                 />
             </Fragment>

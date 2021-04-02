@@ -8,16 +8,17 @@ const HUDArrow = props => {
     return (
         <SVGExtrude
             groupProps={props.groupProps}
+            layer={0}
             meshProps={{
                 onPointerOver: setHover(true),
                 onPointerOut: setHover(false),
                 onPointerDown: props.onClick
-                //onClick: props.onClick
             }}
             url={'/svgs/hud/arrow.svg'}
-            layer={0}
         >
-            <meshPhongMaterial attach="material" color={hover ? '#008b8b' : 'cyan'} />
+            <meshPhongMaterial
+                attach="material"
+                color={hover ? '#008b8b' : 'cyan'} />
         </SVGExtrude>
     );
 };

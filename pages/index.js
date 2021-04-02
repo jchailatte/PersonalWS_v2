@@ -50,7 +50,9 @@ const Lanterns = () => {
         }));
     }, []);
 
-    return data.map((props, i) => <Lantern key={'lantern' + i} {...props} />);
+    return data.map((props, i) => <Lantern
+        key={'lantern' + i}
+        {...props} />);
 };
 
 const Index = () => {
@@ -74,35 +76,43 @@ const Index = () => {
         <React.Fragment>
             <Head>
                 <meta
-                    name="description"
-                    key="description"
                     content="A little personal website for me or as I like to call it, my developer sandbox"
+                    key="description"
+                    name="description"
                 />
             </Head>
             <Info>
                 <Fragment>test</Fragment>
             </Info>
 
-            <ThreeDRotationIcon fontSize="large" className={classes.ThreeDAvatar} />
-            <div className={classes.root}>
+            <ThreeDRotationIcon
+                className={classes.ThreeDAvatar}
+                fontSize="large" />
+            <div
+                className={classes.root}>
                 <Canvas
                     //concurrent is causing the triple render (dunno if performance boost or not?)
                     //concurrent
+                    camera={{ position: [1, 0, 15], fov: 80 }}
                     colorManagement
                     shadowMap
-                    camera={{ position: [1, 0, 15], fov: 80 }}
                 >
                     <ambientLight />
-                    <OrbitControls maxDistance={50} />
+                    <OrbitControls
+                        maxDistance={50} />
                     <Scripts />
-                    <Suspense fallback={null}>
+                    <Suspense
+                        fallback={null}>
                         <FantasySky />
                         <Lanterns />
-                        <BinaryRing direction={1} />
-                        <BinaryRing direction={-1} />
+                        <BinaryRing
+                            direction={1} />
+                        <BinaryRing
+                            direction={-1} />
                         {/* <Hud />     */}
                     </Suspense>
-                    <SelectiveBloomEffect layer={1} />
+                    <SelectiveBloomEffect
+                        layer={1} />
                 </Canvas>
             </div>
         </React.Fragment>

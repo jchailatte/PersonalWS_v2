@@ -148,55 +148,64 @@ const Sidebar = props => {
     };
 
     return (
-        <div className={classes.root}>
+        <div
+            className={classes.root}>
             <CssBaseline />
             <AppBar
-                position="fixed"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open
                 })}
+                position="fixed"
             >
                 <Toolbar>
                     <IconButton
-                        color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
+                        color="inherit"
+                        edge="start"
+                        onClick={handleDrawerOpen}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h4" noWrap className={classes.fontStyle}>
+                    <Typography
+                        className={classes.fontStyle}
+                        variant="h4"
+                        noWrap>
                         Jonathan Chai
                     </Typography>
                 </Toolbar>
             </AppBar>
             <Drawer
-                className={classes.drawer}
-                variant="persistent"
                 anchor="left"
-                open={open}
+                className={classes.drawer}
                 classes={{
                     paper: classes.drawerPaper
                 }}
+                open={open}
+                variant="persistent"
             >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
+                <div
+                    className={classes.drawerHeader}>
+                    <IconButton
+                        onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
                 <Divider />
-                <List id="mainsb">
+                <List
+                    id="mainsb">
                     {sbitems.map((item, index) => (
-                        <Link href={item.href} key={index}>
+                        <Link
+                            href={item.href}
+                            key={index}>
                             <ListItem
-                                button
-                                component="a"
-                                selected={item.text === props.selected}
-                                onClick={handleDrawerClose}
                                 className={classes.opennested}
+                                component="a"
                                 disabled={item.disable}
                                 key={index}
+                                onClick={handleDrawerClose}
+                                selected={item.text === props.selected}
+                                button
                             >
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText
@@ -205,7 +214,7 @@ const Sidebar = props => {
                                         variant: 'h5',
                                         className: classes.fontStyle
                                     }}
-                                ></ListItemText>
+                                 />
                             </ListItem>
                         </Link>
                     ))}
@@ -214,13 +223,13 @@ const Sidebar = props => {
                 <List>
                     {footer.map((item, index) => (
                         <ListItem
-                            button
-                            component="a"
-                            href={item.href}
-                            target="_blank"
                             className={classes.opennested}
+                            component="a"
                             disabled={item.disable}
+                            href={item.href}
                             key={index}
+                            target="_blank"
+                            button
                         >
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText
@@ -241,7 +250,8 @@ const Sidebar = props => {
                 })}
                 id="content"
             >
-                <div className={classes.drawerHeader} />
+                <div
+                    className={classes.drawerHeader} />
                 {props.children}
             </main>
         </div>

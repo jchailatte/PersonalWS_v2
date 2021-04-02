@@ -27,12 +27,17 @@ const SVGExtrude = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => internalRef.current, [internalRef]);
 
     return (
-        <group ref={internalRef} {...props.groupProps}>
+        <group
+            ref={internalRef}
+            {...props.groupProps}>
             {shapes.map((shape, i) => (
-                <mesh layers={props.layer} key={i} {...props.meshProps}>
+                <mesh
+                    key={i}
+                    layers={props.layer}
+                    {...props.meshProps}>
                     <extrudeGeometry
-                        attach="geometry"
                         args={[shape, { depth: props.depth, ...props.extrudeSettings }]}
+                        attach="geometry"
                     />
                     {props.children}
                 </mesh>

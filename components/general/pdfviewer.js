@@ -18,8 +18,13 @@ const useStyles = makeStyles(() => ({
 const PDFViewer = ({ url, width, pageNumber }) => {
     const classes = useStyles();
     return (
-        <Document file={url} className={classes.restyle}>
-            <Page pageNumber={pageNumber} width={width} className={classes.border} />
+        <Document
+            className={classes.restyle}
+            file={url}>
+            <Page
+                className={classes.border}
+                pageNumber={pageNumber}
+                width={width} />
         </Document>
     );
 };

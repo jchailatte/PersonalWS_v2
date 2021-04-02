@@ -9,10 +9,15 @@ import theme from '../components/mui/theme';
 export default class MyDocument extends Document {
     render() {
         return (
-            <Html lang="en">
+            <Html
+                lang="en">
                 <Head>
-                    <meta name="theme-color" content={theme.palette.primary.main} />
-                    <link rel="preconnect" href="https://fonts.gstatic.com" />
+                    <meta
+                        content={theme.palette.primary.main}
+                        name="theme-color" />
+                    <link
+                        href="https://fonts.gstatic.com"
+                        rel="preconnect" />
                     <link
                         href="https://fonts.googleapis.com/css2?family=Iceland&display=swap"
                         rel="stylesheet"
@@ -62,7 +67,8 @@ MyDocument.getInitialProps = async ctx => {
 
     ctx.renderPage = () =>
         originalRenderPage({
-            enhanceApp: App => props => sheets.collect(<App {...props} />)
+            enhanceApp: App => props => sheets.collect(<App
+                {...props} />)
         });
 
     const initialProps = await Document.getInitialProps(ctx);

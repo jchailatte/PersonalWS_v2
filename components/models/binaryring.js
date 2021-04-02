@@ -30,27 +30,36 @@ const BinaryRing = props => {
 
     return (
         <group
+            dispose={null}
+            position={props.position}
             ref={group}
             rotation={props.rotation}
             scale={props.scale}
-            position={props.position}
-            dispose={null}
         >
-            <mesh geometry={nodes.nimbus002_0.geometry} layers={1} ref={halo1}>
+            <mesh
+                geometry={nodes.nimbus002_0.geometry}
+                layers={1}
+                ref={halo1}>
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
                     emissive={props.emissive}
                 />
             </mesh>
-            <mesh geometry={nodes.nimbus001_0.geometry} layers={1} ref={halo2}>
+            <mesh
+                geometry={nodes.nimbus001_0.geometry}
+                layers={1}
+                ref={halo2}>
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}
                     emissive={props.emissive}
                 />
             </mesh>
-            <mesh geometry={nodes.nimbus003_0.geometry} layers={1} ref={halo3}>
+            <mesh
+                geometry={nodes.nimbus003_0.geometry}
+                layers={1}
+                ref={halo3}>
                 <meshStandardMaterial
                     {...materials.Crown}
                     color={props.color}

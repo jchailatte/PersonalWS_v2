@@ -19,10 +19,13 @@ const FantasySky = props => {
     });
 
     return (
-        <group ref={group} {...props} dispose={null}>
+        <group
+            ref={group}
+            {...props}
+            dispose={null}>
             <mesh
-                material={materials.Material__25__background_JPG_002}
                 geometry={nodes.Object001.geometry}
+                material={materials.Material__25__background_JPG_002}
                 scale={[1000, 1000, 1000]}
             />
         </group>
