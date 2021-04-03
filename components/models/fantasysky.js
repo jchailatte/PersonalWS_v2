@@ -7,7 +7,7 @@ title: Fantasy Sky Background
 */
 
 import React, { useRef } from 'react';
-import { useFrame } from 'react-three-fiber';
+import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 const FantasySky = props => {

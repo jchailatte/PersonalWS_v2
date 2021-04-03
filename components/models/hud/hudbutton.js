@@ -29,7 +29,7 @@ const HUDButton = props => {
 
     return (
         <Fragment>
-            <Text
+            {/* <Text
                 anchorX="center"
                 anchorY="center"
                 color="#008b8b"
@@ -39,22 +39,21 @@ const HUDButton = props => {
                 position={[props.position[0] - 1, props.position[1] + 1, props.position[2] + 0.1]}
             >
                 {props.text}
-            </Text>
+            </Text> */}
             <SVGExtrude
                 groupProps={{
                     position: props.position,
                     scale: [0.1, 0.1, 0.1]
                 }}
                 layer={0}
+                material={() => <meshPhongMaterial
+                    attach="material"
+                    color={hover ? '#008b8b' : 'cyan'}
+                />}
                 recenter={true}
                 scale={[0.1, 0.1, 0.1]}
                 url={'/svgs/hud/button0.svg'}
-            >
-                <meshPhongMaterial
-                    attach="material"
-                    color={hover ? '#008b8b' : 'cyan'}
-                />
-            </SVGExtrude>
+            />
             <mesh
                 onPointerDown={props.onClick}
                 onPointerOut={() => setHover(false)}

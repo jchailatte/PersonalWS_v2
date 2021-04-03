@@ -8,7 +8,7 @@ title: Lanterns lowpoly models homework 11
 
 import React, { useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { useFrame } from 'react-three-fiber';
+import { useFrame } from '@react-three/fiber';
 import { useGLTF, Octahedron } from '@react-three/drei';
 
 const Lantern = props => {

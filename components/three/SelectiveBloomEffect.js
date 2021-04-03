@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
 import { useMemo, useEffect } from 'react';
-import { extend, useThree, useFrame } from 'react-three-fiber';
+import { extend, useThree, useFrame } from '@react-three/fiber';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -9,6 +9,8 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 
 extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass });
+
+//https://codesandbox.io/s/r3f-selective-bloom-forked-kwufz?file=/src/index.js
 
 const SelectiveBloomEffect = props => {
     const { scene, gl, size, camera } = useThree();
@@ -33,11 +35,12 @@ const SelectiveBloomEffect = props => {
     };
 
     const [bloom, final] = useMemo(() => {
+        console.log("run bloom pass");
         const renderScene = new RenderPass(scene, camera);
         const comp = new EffectComposer(gl);
         comp.renderToScreen = false;
         comp.addPass(renderScene);
-        comp.addPass(new UnrealBloomPass(new THREE.Vector2(size.width, size.height), 1.5, 1, 0));
+        comp.addPass(new UnrealBloomPass(new THREE.Vector2(size.width, size.height), props.strength, props.radius, props.threshhold));
 
         const finalComposer = new EffectComposer(gl);
         finalComposer.addPass(renderScene);
@@ -60,7 +63,7 @@ const SelectiveBloomEffect = props => {
         fxaa.material.uniforms['resolution'].value.y = 1 / size.height;
         finalComposer.addPass(fxaa);
         return [comp, finalComposer];
-    }, []);
+    }, [camera, gl, scene, size.height, size.width, props.radius, props.strength, props.threshhold]);
 
     useEffect(() => {
         bloom.setSize(size.width, size.height);
@@ -77,13 +80,18 @@ const SelectiveBloomEffect = props => {
     return null;
 };
 
-//add proptypes for bloom strength and stuff
 SelectiveBloomEffect.propTypes = {
-    layer: PropTypes.number
+    layer: PropTypes.number,
+    strength: PropTypes.number,
+    radius: PropTypes.number,
+    threshhold: PropTypes.number
 };
 
 SelectiveBloomEffect.defaultProps = {
-    layer: 0
+    layer: 0,
+    strength: 1.5,
+    radius: 1,
+    threshhold: 0
 };
 
 export default SelectiveBloomEffect;

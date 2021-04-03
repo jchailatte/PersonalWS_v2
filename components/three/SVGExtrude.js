@@ -1,28 +1,33 @@
-import { useMemo, forwardRef, useImperativeHandle } from 'react';
+import { useMemo, forwardRef, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
-import { useLoader, useUpdate } from 'react-three-fiber';
+import { useLoader } from '@react-three/fiber';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
 const SVGExtrude = forwardRef((props, ref) => {
     const data = useLoader(SVGLoader, props.url);
     const shapes = useMemo(() => data.paths.flatMap(g => g.toShapes(true)), [data]);
 
-    const internalRef = useUpdate(group => {
-        if (props.recenter) {
-            const box = new THREE.Box3().setFromObject(group);
-            const size = new THREE.Vector3();
-            box.getSize(size);
+    const Material = props.material;
 
-            const xOffset = (size.x / -2) * (1 / props.groupProps.scale[0]);
-            const yOffset = (size.y / -2) * (1 / props.groupProps.scale[1]);
+    const internalRef = useRef();
+    // useLayoutEffect((group) => {
+    //     if (props.recenter) {
+    //         const box = new THREE.Box3().setFromObject(group);
+    //         const size = new THREE.Vector3();
+    //         box.getSize(size);
 
-            group.children.forEach(item => {
-                item.position.x = xOffset;
-                item.position.y = yOffset;
-            });
-        }
-    }, []);
+    //         const xOffset = (size.x / -2) * (1 / props.groupProps.scale[0]);
+    //         const yOffset = (size.y / -2) * (1 / props.groupProps.scale[1]);
+
+    //         group.children.forEach(item => {
+    //             item.position.x = xOffset;
+    //             item.position.y = yOffset;
+    //         });
+    //     }
+    // }, [props.groupProps.scale, props.recenter]);
+
+    console.log("render");
 
     useImperativeHandle(ref, () => internalRef.current, [internalRef]);
 
@@ -31,9 +36,9 @@ const SVGExtrude = forwardRef((props, ref) => {
             ref={internalRef}
             {...props.groupProps}
         >
-            {shapes.map((shape, i) => (
+            {shapes.map((shape) => (
                 <mesh
-                    key={i}
+                    key={shape.uuid}
                     layers={props.layer}
                     {...props.meshProps}
                 >
@@ -41,7 +46,7 @@ const SVGExtrude = forwardRef((props, ref) => {
                         args={[shape, { depth: props.depth, ...props.extrudeSettings }]}
                         attach="geometry"
                     />
-                    {props.children}
+                    <Material />
                 </mesh>
             ))}
         </group>
@@ -49,7 +54,7 @@ const SVGExtrude = forwardRef((props, ref) => {
 });
 
 SVGExtrude.propTypes = {
-    children: PropTypes.element,
+    material: PropTypes.element.isRequired,
     groupProps: PropTypes.object,
     meshProps: PropTypes.object,
     depth: PropTypes.number,

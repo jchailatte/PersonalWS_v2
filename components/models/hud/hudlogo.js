@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
-import { useFrame, useLoader } from 'react-three-fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
@@ -37,24 +37,22 @@ const HUDLogo = props => {
                     scale: [0.1, 0.1, 0.1]
                 }}
                 layer={1}
+                material={()=>material}
                 recenter={true}
                 ref={circle1}
                 url={'/svgs/hud/hudcircle0.svg'}
-            >
-                {material}
-            </SVGExtrude>
+            />
             <SVGExtrude
                 groupProps={{
                     position: [props.position[0], props.position[1], props.position[2] + 1],
                     scale: [0.1, 0.1, 0.1]
                 }}
                 layer={1}
+                material={()=>material}
                 recenter={true}
                 ref={circle2}
                 url={'/svgs/hud/hudcircle2.svg'}
-            >
-                {material}
-            </SVGExtrude>
+            />
             <mesh
                 position={[15, 5, 0.5]}
             >

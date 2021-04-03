@@ -58,7 +58,7 @@
             "always"
         ],
         "react/self-closing-comp": [
-            "error",
+            "warn",
             {
                 "component": true,
                 "html": true

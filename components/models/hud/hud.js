@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Text } from '@react-three/drei';
-import { useThree } from 'react-three-fiber';
+import { useThree } from '@react-three/fiber';
 
 import HUDScreen from './hudscreen.js';
 import HUDLogo from './hudlogo.js';
@@ -92,7 +92,7 @@ const Hud = () => {
                 position={[15, 5, 0]}
             />
             <HUDFrame />
-            {Object.keys(level).map((route, i) => (
+            {/* {Object.keys(level).map((route, i) => (
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
                 <Fragment
@@ -145,11 +145,11 @@ const Hud = () => {
                     >
                         - - - - -
                     </Text>
-                ))}
-            <HUDSelect
+                ))} */}
+            {/* <HUDSelect
                 onClick={() => selectSelect()}
                 position={[15.5, -5.5, 0.5]}
-            />
+            /> */}
             <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] + 0.5, controlPosition[1], controlPosition[2]],
@@ -180,11 +180,11 @@ const Hud = () => {
                 }}
                 onClick={() => selectDown()}
             />
-            <HUDButton
+            {/* <HUDButton
                 onClick={() => recenter()}
                 position={[-13, 6, 0.5]}
                 text={'Recenter'}
-            />
+            /> */}
         </Fragment>
     );
 };

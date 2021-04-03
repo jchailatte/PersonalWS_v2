@@ -8,7 +8,7 @@ title: Rhetorician
 
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useFrame } from 'react-three-fiber';
+import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 const BinaryRing = props => {

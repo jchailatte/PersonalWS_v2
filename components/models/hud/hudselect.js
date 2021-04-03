@@ -19,14 +19,13 @@ const HUDSelect = props => {
                     scale: [0.007, 0.007, 0.007],
                     rotation: [0, 0, Math.PI * 1.25]
                 }}
-                recenter={true}
-                url={'/svgs/hud/hudsquare.svg'}
-            >
-                <meshPhongMaterial
+                material={() => <meshPhongMaterial
                     attach="material"
                     color={hover ? '#008b8b' : 'cyan'}
-                />
-            </SVGExtrude>
+                />}
+                recenter={true}
+                url={'/svgs/hud/hudsquare.svg'}
+            />
             <mesh
                 onClick={props.onClick}
                 onPointerOut={() => setHover(false)}
@@ -50,7 +49,7 @@ const HUDSelect = props => {
                     transparent={true}
                 />
             </mesh>
-            <Text
+            {/* <Text
                 anchorX="center"
                 color="#008b8b"
                 font={props.fontType}
@@ -62,7 +61,7 @@ const HUDSelect = props => {
                 ]}
             >
                 Select
-            </Text>
+            </Text> */}
         </Fragment>
     );
 };

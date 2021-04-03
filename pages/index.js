@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Head from 'next/head';
 
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
-import { Canvas, useThree } from 'react-three-fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 import FantasySky from '../components/models/fantasysky';
@@ -68,7 +68,7 @@ const Index = () => {
         useLayoutEffect(() => {
             camera.layers.enable(0);
             camera.layers.enable(1);
-        }, []);
+        }, [camera]);
 
         return null;
     };
@@ -116,7 +116,7 @@ const Index = () => {
                         <BinaryRing
                             direction={-1}
                         />
-                        {/* <Hud />     */}
+                        <Hud />    
                     </Suspense>
                     <SelectiveBloomEffect
                         layer={1}
