@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
-const HUDArrow = props => {
+const HUDArrow = (props) => {
     const [hover, setHover] = useState(false);
 
     return (

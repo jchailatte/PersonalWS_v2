@@ -66,8 +66,13 @@ const HUDScreen = props => {
 };
 
 HUDScreen.propTypes = {
-    horizontalVertices: PropTypes.number.isRequired,
-    verticalVertices: PropTypes.number.isRequired
+    horizontalVertices: PropTypes.number,
+    verticalVertices: PropTypes.number
 };
+
+HUDScreen.defaultProps = {
+    horizontalVertices: 20,
+    verticalVertices: 40
+}
 
 export default HUDScreen;

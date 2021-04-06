@@ -6,9 +6,9 @@ import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import FantasySky from '../components/models/fantasysky';
+import FantasySky from '../components/models/fantasySky';
 import Lantern from '../components/models/lantern';
-import BinaryRing from '../components/models/binaryring';
+import BinaryRing from '../components/models/binaryRing';
 import Hud from '../components/models/hud/hud';
 import Info from '../components/general/info';
 
@@ -56,22 +56,22 @@ const Lanterns = () => {
     />);
 };
 
+const Scripts = () => {
+    const { camera } = useThree();
+
+    useLayoutEffect(() => {
+        camera.layers.enable(0);
+        camera.layers.enable(1);
+    }, [camera]);
+
+    return null;
+};
+
 const Index = () => {
     const classes = useStyles();
 
     // const router = useRouter();
     // console.log(router);
-
-    const Scripts = () => {
-        const { camera } = useThree();
-
-        useLayoutEffect(() => {
-            camera.layers.enable(0);
-            camera.layers.enable(1);
-        }, [camera]);
-
-        return null;
-    };
 
     return (
         <React.Fragment>
@@ -85,7 +85,6 @@ const Index = () => {
             <Info>
                 <Fragment>test</Fragment>
             </Info>
-
             <ThreeDRotationIcon
                 className={classes.ThreeDAvatar}
                 fontSize="large"
@@ -95,9 +94,9 @@ const Index = () => {
             >
                 <Canvas
                     //concurrent is causing the triple render (dunno if performance boost or not?)
-                    //concurrent
                     camera={{ position: [1, 0, 15], fov: 80 }}
                     colorManagement
+                    concurrent
                     shadowMap
                 >
                     <ambientLight />
@@ -116,7 +115,7 @@ const Index = () => {
                         <BinaryRing
                             direction={-1}
                         />
-                        <Hud />    
+                        {/* <Hud />     */}
                     </Suspense>
                     <SelectiveBloomEffect
                         layer={1}

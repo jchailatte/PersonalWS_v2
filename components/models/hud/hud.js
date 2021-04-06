@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useMemo } from 'react';
 import { Text } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
-import HUDScreen from './hudscreen.js';
-import HUDLogo from './hudlogo.js';
-import HUDFrame from './hudframe.js';
-import HUDArrow from './hudarrow.js';
-import HUDButton from './hudbutton.js';
+import HUDScreen from './hudScreen.js';
+import HUDLogo from './hudLogo.js';
+import HUDFrame from './hudFrame.js';
+import HUDArrow from './hudArrow.js';
+import HUDButton from './hudButton.js';
 import HUDSelect from './hudselect.js';
 
 import paths from '../../../public/json/paths.json';
@@ -15,10 +15,10 @@ import paths from '../../../public/json/paths.json';
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
 //maybe add a conversion for mobile  version (can be done later)
 
+const logoPosition = [15, 5, 0];
+const controlPosition = [15.5, -5.5, 0.5];
+
 const Hud = () => {
-    const horizontalVertices = 20;
-    const verticalVertices = 40;
-    const controlPosition = [15.5, -5.5, 0.5];
     const fontType = '/fonts/Iceland-Regular.ttf';
 
     //eventually switch to a dolly (hopefully three js will implement prgrammatic support w/ orthographic)
@@ -83,15 +83,13 @@ const Hud = () => {
 
     return (
         <Fragment>
-            <HUDScreen
-                horizontalVertices={horizontalVertices}
-                verticalVertices={verticalVertices}
-            />
+            <HUDScreen />
             <HUDLogo
                 logo={'/graphics/general/logo.png'}
-                position={[15, 5, 0]}
+                position={logoPosition}
             />
             <HUDFrame />
+            {/* {console.log("render hud")} */}
             {/* {Object.keys(level).map((route, i) => (
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
@@ -150,7 +148,7 @@ const Hud = () => {
                 onClick={() => selectSelect()}
                 position={[15.5, -5.5, 0.5]}
             /> */}
-            <HUDArrow
+            {/* <HUDArrow
                 groupProps={{
                     position: [controlPosition[0] + 0.5, controlPosition[1], controlPosition[2]],
                     scale: [0.02, 0.02, 0.02]
@@ -179,7 +177,7 @@ const Hud = () => {
                     rotation: [0, 0, Math.PI / 2]
                 }}
                 onClick={() => selectDown()}
-            />
+            /> */}
             {/* <HUDButton
                 onClick={() => recenter()}
                 position={[-13, 6, 0.5]}

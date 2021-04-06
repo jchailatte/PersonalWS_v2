@@ -5,20 +5,46 @@ import { useFrame, useLoader } from '@react-three/fiber';
 
 import SVGExtrude from '../../three/SVGExtrude';
 
-const HUDLogo = props => {
+const HUDLogo = (props) => {
     const circle1 = useRef();
     const circle2 = useRef();
 
     const logo = useLoader(THREE.TextureLoader, props.logo);
-    const material = useMemo(
-        () => <meshPhongMaterial
+
+    const ring1Props = useMemo(() => ({
+        groupProps: {
+            position: [props.position[0], props.position[1], props.position[2] + 1],
+            scale: [0.1, 0.1, 0.1]
+        },
+        layer: 1,
+        material: () => <meshPhongMaterial
             attach="material"
             color="black"
             emissive="cyan"
             shininess={1}
         />,
-        []
-    );
+        recenter: true,
+        ref: circle1,
+        url: '/svgs/hud/hudcircle1.svg'
+    }), [props.position]);
+
+    const ring2Props = useMemo(() => ({
+        groupProps: {
+            position: [props.position[0], props.position[1], props.position[2]],
+            scale: [0.1, 0.1, 0.1]
+        },
+        layer: 1,
+        material: () => <meshPhongMaterial
+            attach="material"
+            color="black"
+            emissive="cyan"
+            shininess={1}
+        />,
+        recenter: true,
+        ref: circle2,
+        url: '/svgs/hud/hudcircle2.svg'
+    }), [props.position]);
+
 
     useFrame(() => {
         if (circle1.current != null) {
@@ -32,26 +58,10 @@ const HUDLogo = props => {
     return (
         <Fragment>
             <SVGExtrude
-                groupProps={{
-                    position: props.position,
-                    scale: [0.1, 0.1, 0.1]
-                }}
-                layer={1}
-                material={()=>material}
-                recenter={true}
-                ref={circle1}
-                url={'/svgs/hud/hudcircle0.svg'}
+                {...ring1Props}
             />
             <SVGExtrude
-                groupProps={{
-                    position: [props.position[0], props.position[1], props.position[2] + 1],
-                    scale: [0.1, 0.1, 0.1]
-                }}
-                layer={1}
-                material={()=>material}
-                recenter={true}
-                ref={circle2}
-                url={'/svgs/hud/hudcircle2.svg'}
+                {...ring2Props}
             />
             <mesh
                 position={[15, 5, 0.5]}

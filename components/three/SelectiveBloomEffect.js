@@ -35,7 +35,6 @@ const SelectiveBloomEffect = props => {
     };
 
     const [bloom, final] = useMemo(() => {
-        console.log("run bloom pass");
         const renderScene = new RenderPass(scene, camera);
         const comp = new EffectComposer(gl);
         comp.renderToScreen = false;
