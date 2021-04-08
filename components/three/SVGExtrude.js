@@ -12,11 +12,8 @@ const SVGExtrude = forwardRef((props, ref) => {
 
     const internalRef = useRef();
     
-    //eh fix this at some point
-
     useLayoutEffect(() => {
         if (props.recenter) {
-            console.log("recenter " + props.url);
             const box = new THREE.Box3().setFromObject(internalRef.current);
             const size = new THREE.Vector3();
             box.getSize(size);

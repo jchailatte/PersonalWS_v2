@@ -6,18 +6,16 @@ import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-import FantasySky from '../components/models/fantasySky';
-import Lantern from '../components/models/lantern';
-import BinaryRing from '../components/models/binaryRing';
-import Hud from '../components/models/hud/hud';
-import Info from '../components/general/info';
+import FantasySky from '@/components/models/fantasySky';
+import Lantern from '@/components/models/lantern';
+import BinaryRing from '@/components/models/binaryRing';
+import Hud from '@/components/models/hud/hud';
+import Info from '@/components/general/info';
 
-import SelectiveBloomEffect from '../components/three/SelectiveBloomEffect';
+import SelectiveBloomEffect from '@/components/three/SelectiveBloomEffect';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        //fix the little gap when switching to mobile
-        //which for some reason refuses to disappear -_-
         height: 'calc(100vh - 64px)',
         width: '100vw'
     },
@@ -101,6 +99,7 @@ const Index = () => {
                 >
                     <ambientLight />
                     <OrbitControls
+                        enablePan={false}
                         maxDistance={50}
                     />
                     <Scripts />
@@ -115,7 +114,7 @@ const Index = () => {
                         <BinaryRing
                             direction={-1}
                         />
-                        {/* <Hud />     */}
+                        <Hud />    
                     </Suspense>
                     <SelectiveBloomEffect
                         layer={1}

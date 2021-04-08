@@ -9,7 +9,7 @@ import HUDArrow from './hudArrow.js';
 import HUDButton from './hudButton.js';
 import HUDSelect from './hudselect.js';
 
-import paths from '../../../public/json/paths.json';
+import paths from '@/public/json/paths.json';
 
 //rmber to optimize geometries and materials later either with useMemo
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
