@@ -6,12 +6,10 @@ import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
 const SVGExtrude = forwardRef((props, ref) => {
     const data = useLoader(SVGLoader, props.url);
-    const shapes = useMemo(() => data.paths.flatMap(g => g.toShapes(true)), [data]);
-
-    const Material = useMemo(()=>props.material,[props.material]);
-
+    const shapes = useMemo(() => data.paths.flatMap((g) => g.toShapes([props.isCCW, props.noHoles])), [data.paths, props.isCCW, props.noHoles]);
+    const Material = useMemo(() => props.material, [props.material]);
     const internalRef = useRef();
-    
+
     useLayoutEffect(() => {
         if (props.recenter) {
             const box = new THREE.Box3().setFromObject(internalRef.current);
@@ -61,14 +59,18 @@ SVGExtrude.propTypes = {
     layer: PropTypes.number,
     extrudeSettings: PropTypes.object,
     recenter: PropTypes.bool,
-    url: PropTypes.string.isRequired
+    url: PropTypes.string.isRequired,
+    isCCW: PropTypes.bool,
+    noHoles: PropTypes.bool
 };
 
 SVGExtrude.defaultProps = {
     depth: 2,
     layer: 0,
     extrudeSettings: { bevelEnabled: false },
-    recenter: false
+    recenter: false,
+    isCCW: true,
+    noHoles: true
 };
 
 export default SVGExtrude;

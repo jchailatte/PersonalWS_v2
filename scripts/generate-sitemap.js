@@ -2,6 +2,8 @@
 const fs = require('fs');
 const globby = require('globby');
 
+const ignorePages = ['', '404', '500'];
+
 function addPage(page) {
     const path = page
         .replace('pages', '')
@@ -25,7 +27,7 @@ function generateJsonmap(pages) {
         let current = output;
 
         for (const segment of path.split('/')) {
-            if (segment !== '') {
+            if (!ignorePages.includes(segment)) {
                 if (!(segment in current)) {
                     current[segment] = {};
                 }
