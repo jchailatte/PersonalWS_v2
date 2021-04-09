@@ -1,20 +1,70 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
+import React, { useEffect, Fragment, Children } from 'react';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import theme from '../components/mui/theme';
 import Sidebar from '../components/general/sidebar';
-
 import Background from '../components/general/background';
+
+import Header from '@/utils/general/header';
+import useStore from '@/utils/hooks/useStore';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
+let LCanvas = null
+if (process.env.NODE_ENV === 'production') {
+    LCanvas = dynamic(() => import('@/components/layout/_canvas'), {
+        ssr: false,
+    })
+} else {
+    LCanvas = require('@/components/layout/_canvas').default
+}
+
 //https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
 
-export default function App(props) {
-    const { Component, pageProps } = props;
+
+const SplitApp = (props) => {
+    return (
+        <Fragment>
+            {
+                props.dom && 
+                <div>
+                    {props.dom}
+                </div>
+            }
+            <LCanvas>
+                {
+                    props.canvas &&
+                    <group>
+                        {props.canvas}
+                    </group>
+                }
+            </LCanvas>
+        </Fragment>
+    )
+}
+
+
+const App = ({ Component, pageProps }) => {
+    const router = useRouter();
+
+    let r3fArr = [];
+    let compArr = [];
+
+    Children.forEach(Component(pageProps).props.children, (child) => {
+        if (child.props && child.props.r3f) {
+            r3fArr.push(child)
+        } else {
+            compArr.push(child)
+        }
+    });
+
+    useEffect(() => {
+        useStore.setState({ router })
+    }, [router])
 
     useEffect(() => {
         // Remove the server-side injected CSS.
@@ -26,27 +76,7 @@ export default function App(props) {
 
     return (
         <React.Fragment>
-            <Head>
-                <title
-                    key="title"
-                >Jonathan Chai
-                </title>
-                <meta
-                    content="width=device-width, initial-scale=1.0"
-                    name="viewport"
-                />
-                <meta
-                    charSet="UTF-8"
-                />
-                <meta
-                    content="Jonathan Chai"
-                    name="author"
-                />
-                <link
-                    href="/graphics/general/logo.ico"
-                    rel="icon"
-                />
-            </Head>
+            <Header />
             <ThemeProvider
                 theme={theme}
             >
@@ -59,9 +89,18 @@ export default function App(props) {
                         <div
                             style={{ position: 'relative' }}
                         >
-                            <Component
-                                {...pageProps}
-                            />
+                            {
+                                r3fArr.length > 0 ? (
+                                    <SplitApp
+                                        canvas={r3fArr}
+                                        dom={compArr}
+                                    />
+                                ) : (
+                                    <Component
+                                        {...pageProps}
+                                    />
+                                )
+                            }
                         </div>
                     </Sidebar>
                 </Background>
@@ -70,7 +109,14 @@ export default function App(props) {
     );
 }
 
+SplitApp.propTypes = {
+    dom: PropTypes.array.isRequired,
+    canvas: PropTypes.array.isRequired
+}
+
 App.propTypes = {
     Component: PropTypes.elementType.isRequired,
     pageProps: PropTypes.object.isRequired
 };
+
+export default App;

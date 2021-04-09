@@ -7,7 +7,7 @@ import HUDLogo from './hudLogo.js';
 import HUDFrame from './hudFrame.js';
 import HUDArrow from './hudArrow.js';
 import HUDButton from './hudButton.js';
-import HUDSelect from './hudselect.js';
+import HUDSelect from './hudSelect.js';
 
 import paths from '@/public/json/paths.json';
 
@@ -29,49 +29,49 @@ const Hud = () => {
     const [selected, setSelected] = useState(0);
     const options = Object.keys(level).length;
 
-    const selectUp = () => {
-        if (selected - 1 >= 0) {
-            setSelected(selected - 1);
-        }
-    };
+    // const selectUp = () => {
+    //     if (selected - 1 >= 0) {
+    //         setSelected(selected - 1);
+    //     }
+    // };
 
-    const selectDown = () => {
-        if (selected + 1 < options) {
-            setSelected(selected + 1);
-        }
-    };
+    // const selectDown = () => {
+    //     if (selected + 1 < options) {
+    //         setSelected(selected + 1);
+    //     }
+    // };
 
-    const selectRight = () => {
-        const nextLevel = Object.values(level)[selected];
-        if (Object.keys(nextLevel).length != 0) {
-            setPrevLevel(prevArray => [...prevArray, Object.keys(level)[selected]]);
-            setLevel(nextLevel);
-            setSelected(0);
-        }
-    };
+    // const selectRight = () => {
+    //     const nextLevel = Object.values(level)[selected];
+    //     if (Object.keys(nextLevel).length != 0) {
+    //         setPrevLevel(prevArray => [...prevArray, Object.keys(level)[selected]]);
+    //         setLevel(nextLevel);
+    //         setSelected(0);
+    //     }
+    // };
 
-    const selectLeft = () => {
-        const length = Object.keys(prevLevel).length;
-        if (length != 0) {
-            if (length === 1) {
-                setPrevLevel([]);
-                setLevel(paths);
-                setSelected(0);
-            }
-        } else {
-            //basically iterate through paths using prevLevel from 0 to length - 1
-            //then pop last element from prevLevel
-            //can implement later
-        }
-    };
+    // const selectLeft = () => {
+    //     const length = Object.keys(prevLevel).length;
+    //     if (length != 0) {
+    //         if (length === 1) {
+    //             setPrevLevel([]);
+    //             setLevel(paths);
+    //             setSelected(0);
+    //         }
+    //     } else {
+    //         //basically iterate through paths using prevLevel from 0 to length - 1
+    //         //then pop last element from prevLevel
+    //         //can implement later
+    //     }
+    // };
 
-    const selectSelect = () => {
-        //figure out the workaround at some point zzz
-        //try testing if it will work without Selective Bloom first though since that might be the issue
-        const route = prevLevel.join('/') + '/' + Object.keys(level)[selected];
-        window.location.href = route;
-        //props.router.push();
-    };
+    // const selectSelect = () => {
+    //     //figure out the workaround at some point zzz
+    //     //try testing if it will work without Selective Bloom first though since that might be the issue
+    //     const route = prevLevel.join('/') + '/' + Object.keys(level)[selected];
+    //     window.location.href = route;
+    //     //props.router.push();
+    // };
 
     const recenter = () => {
         //turn this into a smooth animation later (though react-spring doesnt seem to allow this so might have to find a workaround)
@@ -80,14 +80,15 @@ const Hud = () => {
         camera.position.z = 15;
         camera.updateProjectionMatrix();
     };
+    console.log("rendering hud")
 
     return (
         <Fragment>
-            <HUDScreen />
-            <HUDLogo
+            {/* <HUDScreen /> */}
+            {/* <HUDLogo
                 logo={'/graphics/general/logo.png'}
                 position={logoPosition}
-            />
+            /> */}
             <HUDFrame />
             {/* {console.log("render hud")} */}
             {/* {Object.keys(level).map((route, i) => (

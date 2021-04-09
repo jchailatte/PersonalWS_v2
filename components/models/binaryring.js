@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
-const BinaryRing = props => {
+const BinaryRing = (props) => {
     const { nodes, materials } = useGLTF('/models/binaryRing.glb');
     const group = useRef();
     const halo1 = useRef();

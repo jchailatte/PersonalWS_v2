@@ -28,6 +28,8 @@ const FantasySky = props => {
                 geometry={nodes.Object001.geometry}
                 material={materials.Material__25__background_JPG_002}
                 scale={[1000, 1000, 1000]}
+                castShadow
+                receiveShadow
             />
         </group>
     );

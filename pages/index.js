@@ -3,16 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Head from 'next/head';
 
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
-import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 
-import FantasySky from '@/components/models/fantasySky';
-import Lantern from '@/components/models/lantern';
-import BinaryRing from '@/components/models/binaryRing';
-import Hud from '@/components/models/hud/hud';
 import Info from '@/components/general/info';
-
-import SelectiveBloomEffect from '@/components/three/SelectiveBloomEffect';
+import HUDWorld from '@/components/models/hudWorld';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -37,49 +30,16 @@ export async function getStaticProps() {
     };
 }
 
-const Lanterns = () => {
-    const data = useMemo(() => {
-        return new Array(30).fill().map(() => ({
-            x: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
-            y: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
-            z: (20 + Math.random() * 35) * (Math.round(Math.random()) ? -1 : 1),
-            yOffset: Math.random(),
-            rotation: Math.round(Math.random()) ? -1 : 1
-        }));
-    }, []);
-
-    return data.map((props, i) => <Lantern
-        key={'lantern' + i}
-        {...props}
-    />);
-};
-
-const Scripts = () => {
-    const { camera } = useThree();
-
-    useLayoutEffect(() => {
-        camera.layers.enable(0);
-        camera.layers.enable(1);
-    }, [camera]);
-
-    return null;
-};
-
 const Index = () => {
     const classes = useStyles();
 
     // const router = useRouter();
     // console.log(router);
 
+    console.log("render");
+
     return (
-        <React.Fragment>
-            <Head>
-                <meta
-                    content="A little personal website for me or as I like to call it, my developer sandbox"
-                    key="description"
-                    name="description"
-                />
-            </Head>
+        <Fragment>
             <Info>
                 <Fragment>test</Fragment>
             </Info>
@@ -87,7 +47,10 @@ const Index = () => {
                 className={classes.ThreeDAvatar}
                 fontSize="large"
             />
-            <div
+            <HUDWorld
+                r3f
+            />
+            {/* <div
                 className={classes.root}
             >
                 <Canvas
@@ -96,32 +59,10 @@ const Index = () => {
                     colorManagement
                     concurrent
                     shadowMap
-                >
-                    <ambientLight />
-                    <OrbitControls
-                        enablePan={false}
-                        maxDistance={50}
-                    />
-                    <Scripts />
-                    <Suspense
-                        fallback={null}
-                    >
-                        <FantasySky />
-                        <Lanterns />
-                        <BinaryRing
-                            direction={1}
-                        />
-                        <BinaryRing
-                            direction={-1}
-                        />
-                        <Hud />    
-                    </Suspense>
-                    <SelectiveBloomEffect
-                        layer={1}
-                    />
-                </Canvas>
-            </div>
-        </React.Fragment>
+                > */}
+    
+
+        </Fragment >
     );
 };
 
