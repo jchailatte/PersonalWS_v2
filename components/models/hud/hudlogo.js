@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as THREE from 'three';
 import { useFrame, useLoader } from '@react-three/fiber';
 
-import SVGExtrude from '../../three/SVGExtrude';
+import SVGExtrude from '@/components/three/SVGExtrude';
 
 const HUDLogo = (props) => {
     const circle1 = useRef();
@@ -13,37 +13,31 @@ const HUDLogo = (props) => {
 
     const ring1Props = useMemo(() => ({
         groupProps: {
-            position: [props.position[0], props.position[1], props.position[2] + 1],
+            position: [15, 5, 1],
             scale: [0.1, 0.1, 0.1]
         },
-        layer: 1,
-        material: () => <meshPhongMaterial
-            attach="material"
-            color="black"
-            emissive="cyan"
-            shininess={1}
-        />,
-        recenter: true,
-        ref: circle1,
-        url: '/svgs/hud/hudcircle1.svg'
-    }), [props.position]);
+        material: () =>
+            <meshPhongMaterial
+                attach="material"
+                color="black"
+                emissive="cyan"
+                shininess={1}
+            />,
+    }), []);
 
     const ring2Props = useMemo(() => ({
         groupProps: {
-            position: [props.position[0], props.position[1], props.position[2]],
-            scale: [0.1, 0.1, 0.1]
+            position: [15, 5, 0],
+            scale: [0.1, 0.1, 0.1],
         },
-        layer: 1,
-        material: () => <meshPhongMaterial
-            attach="material"
-            color="black"
-            emissive="cyan"
-            shininess={1}
-        />,
-        recenter: true,
-        ref: circle2,
-        url: '/svgs/hud/hudcircle2.svg'
-    }), [props.position]);
+        material: () =>
+            <meshPhongMaterial
+                attach="material"
+                color="black"
+                emissive="cyan"
+                shininess={1}
+            />,
+    }), []);
 
 
     useFrame(() => {
@@ -59,9 +53,17 @@ const HUDLogo = (props) => {
         <Fragment>
             <SVGExtrude
                 {...ring1Props}
+                layer={1}
+                recenter={true}
+                ref={circle1}
+                url={'/svgs/hud/hudcircle1.svg'}
             />
             <SVGExtrude
                 {...ring2Props}
+                layer={1}
+                recenter={true}
+                ref={circle2}
+                url={'/svgs/hud/hudcircle2.svg'}
             />
             <mesh
                 position={[15, 5, 0.5]}
@@ -82,7 +84,6 @@ const HUDLogo = (props) => {
 };
 
 HUDLogo.propTypes = {
-    position: PropTypes.array.isRequired,
     logo: PropTypes.string.isRequired
 };
 

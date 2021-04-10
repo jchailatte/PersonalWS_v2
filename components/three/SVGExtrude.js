@@ -35,7 +35,6 @@ const SVGExtrude = forwardRef((props, ref) => {
             ref={internalRef}
             {...props.groupProps}
         >
-            {console.log("render " + props.url)}
             {shapes.map((shape) => (
                 <mesh
                     key={shape.uuid}

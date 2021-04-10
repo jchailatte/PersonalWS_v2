@@ -5,9 +5,11 @@ import { useThree } from '@react-three/fiber';
 import FantasySky from '@/components/models/fantasySky';
 import Lantern from '@/components/models/lantern';
 import BinaryRing from '@/components/models/binaryRing';
-import Hud from '@/components/models/hud/hud';
+import HUD from '@/components/models/hud/hud';
 import Loader from '@/components/three/Loader';
-
+import HUDFrame from '@/components/models/hud/hudFrame';
+import HUDLogo from '@/components/models/hud/hudLogo';
+import HUDScreen from '@/components/models/hud/hudScreen';
 
 import SelectiveBloomEffect from '@/components/three/SelectiveBloomEffect';
 
@@ -29,7 +31,6 @@ const Lanterns = () => {
 };
 
 const HUDWorld = () => {
-
     const { camera } = useThree();
 
     useLayoutEffect(() => {
@@ -40,9 +41,9 @@ const HUDWorld = () => {
     return (
         <Fragment>
             <PerspectiveCamera
-                makeDefault
                 fov={80}
                 position={[1, 0, 15]}
+                makeDefault
             />
             <ambientLight />
             <OrbitControls
@@ -52,7 +53,6 @@ const HUDWorld = () => {
             <Suspense
                 fallback={<Loader />}
             >
-                <Hud />
                 <FantasySky />
                 <Lanterns />
                 <BinaryRing
@@ -61,9 +61,15 @@ const HUDWorld = () => {
                 <BinaryRing
                     direction={-1}
                 />
+                <HUDLogo 
+                    logo={'/graphics/general/logo.png'} 
+                />
+                <HUDFrame />
+                <HUDScreen/>
+                <HUD />
             </Suspense>
             <SelectiveBloomEffect
-                    layer={1}
+                layer={1}
             />
         </Fragment>
     )

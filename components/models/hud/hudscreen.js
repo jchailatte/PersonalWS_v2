@@ -47,20 +47,6 @@ const HUDScreen = props => {
                     transparent={true}
                 />
             </mesh>
-            <mesh
-                position={[1, 0, 0.1]}
-            >
-                <planeGeometry
-                    args={[17, 15]}
-                    attach="geometry"
-                />
-                <meshPhongMaterial
-                    attach="material"
-                    color="black"
-                    opacity={0.5}
-                    transparent={true}
-                />
-            </mesh>
         </Fragment>
     );
 };

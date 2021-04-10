@@ -15,7 +15,6 @@ import paths from '@/public/json/paths.json';
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
 //maybe add a conversion for mobile  version (can be done later)
 
-const logoPosition = [15, 5, 0];
 const controlPosition = [15.5, -5.5, 0.5];
 
 const Hud = () => {
@@ -28,6 +27,7 @@ const Hud = () => {
     const [level, setLevel] = useState(paths);
     const [selected, setSelected] = useState(0);
     const options = Object.keys(level).length;
+
 
     // const selectUp = () => {
     //     if (selected - 1 >= 0) {
@@ -84,13 +84,8 @@ const Hud = () => {
 
     return (
         <Fragment>
-            {/* <HUDScreen /> */}
-            {/* <HUDLogo
-                logo={'/graphics/general/logo.png'}
-                position={logoPosition}
-            /> */}
-            <HUDFrame />
-            {/* {console.log("render hud")} */}
+
+            
             {/* {Object.keys(level).map((route, i) => (
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
