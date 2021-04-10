@@ -6,8 +6,8 @@ import FantasySky from '@/components/models/fantasySky';
 import Lantern from '@/components/models/lantern';
 import BinaryRing from '@/components/models/binaryRing';
 import Hud from '@/components/models/hud/hud';
+import Loader from '@/components/three/Loader';
 
-import Hud2 from '@/components/models/hud/hud2';
 
 import SelectiveBloomEffect from '@/components/three/SelectiveBloomEffect';
 
@@ -40,6 +40,7 @@ const HUDWorld = () => {
     return (
         <Fragment>
             <PerspectiveCamera
+                makeDefault
                 fov={80}
                 position={[1, 0, 15]}
             />
@@ -49,10 +50,9 @@ const HUDWorld = () => {
                 maxDistance={50}
             />
             <Suspense
-                fallback={null}
+                fallback={<Loader />}
             >
                 <Hud />
-                <Hud2 />
                 <FantasySky />
                 <Lanterns />
                 <BinaryRing
@@ -62,9 +62,9 @@ const HUDWorld = () => {
                     direction={-1}
                 />
             </Suspense>
-            {/* <SelectiveBloomEffect
+            <SelectiveBloomEffect
                     layer={1}
-            /> */}
+            />
         </Fragment>
     )
 }

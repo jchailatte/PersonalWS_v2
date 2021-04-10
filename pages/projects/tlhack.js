@@ -17,7 +17,15 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 
-import champions from '../../public/json/champions10-22-1.json';
+import champions from '@/public/json/champions10-22-1.json';
+
+export async function getStaticProps() {
+    return {
+        props: {
+            padding: false
+        }
+    };
+}
 
 const useStyles = makeStyles(theme => ({
     side1: {
@@ -147,7 +155,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'SFF'
     },
     wavepadding: {
-        paddingTop: '16vh'
+        paddingTop: '16.8vh'
     },
     rotatingBlue: {
         animation: '$rotate 6s linear'
@@ -156,7 +164,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'scaleX(-1)'
     },
     champCards: {
-        height: '55vh',
+        height: '56vh',
         width: '7vw'
     },
     gradientBorder: {

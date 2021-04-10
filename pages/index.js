@@ -7,6 +7,8 @@ import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import Info from '@/components/general/info';
 import HUDWorld from '@/components/models/hudWorld';
 
+import { Canvas } from '@react-three/fiber';
+
 const useStyles = makeStyles(theme => ({
     root: {
         height: 'calc(100vh - 64px)',
@@ -47,20 +49,16 @@ const Index = () => {
                 className={classes.ThreeDAvatar}
                 fontSize="large"
             />
-            <HUDWorld
-                r3f
-            />
-            {/* <div
-                className={classes.root}
+            <Canvas
+                style={{
+                    height: 'calc(100vh - 64px)',
+                    width: '100vw'
+                }}
             >
-                <Canvas
-                    //concurrent is causing the triple render (dunno if performance boost or not?)
-                    camera={{ position: [1, 0, 15], fov: 80 }}
-                    colorManagement
-                    concurrent
-                    shadowMap
-                > */}
-    
+                <HUDWorld
+                //r3f
+                />
+            </Canvas>
 
         </Fragment >
     );

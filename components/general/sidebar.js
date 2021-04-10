@@ -45,14 +45,6 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.leavingScreen
         })
     },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen
-        })
-    },
     menuButton: {
         marginRight: theme.spacing(2)
     },
@@ -153,15 +145,13 @@ const Sidebar = props => {
         >
             <CssBaseline />
             <AppBar
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open
-                })}
+                className={classes.appBar}
                 position="fixed"
             >
                 <Toolbar>
                     <IconButton
                         aria-label="open drawer"
-                        className={clsx(classes.menuButton, open && classes.hide)}
+                        className={classes.menuButton}
                         color="inherit"
                         edge="start"
                         onClick={handleDrawerOpen}
