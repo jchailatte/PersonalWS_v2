@@ -1,72 +1,55 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment } from 'react';
+import * as THREE from 'three';
+import { useFrame } from '@react-three/fiber';
 
-import SVGExtrude from '@/components/three/SVGExtrude';
+import { LightningStrike } from 'three-stdlib';
 
 const HUDFrame = () => {
 
-    const corner1Props = useMemo(() => ({
-        groupProps: {
-            position: [-5, -12, -1],
-            scale: [-0.1, 0.1, 0.1]
-        },
-        material: () =>
-            <meshPhongMaterial
-                attach="material"
-                color="black"
-                emissive="#008b8b"
-                shininess={10}
-            />,
-    }), []);
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime();
+        lightning.update(time)
+    })
 
-    const corner2Props = useMemo(() => ({
-        groupProps: {
-            position: [5, 12, -1],
-            scale: [0.1, -0.1, 0.1]
-        },
-        material: () =>
-            <meshPhongMaterial
-                attach="material"
-                color="black"
-                emissive="#008b8b"
-                shininess={10}
-            />,
-    }), []);
+    const distance = 9.5;
 
-    const frameProps = useMemo(() => ({
-        groupProps: {
-            position: [0, 0, 0],
-            scale: [0.0825, 0.055, 0.05]
-        },
-        material: () =>
-            <meshPhongMaterial
-                attach="material"
-                color="black"
-                emissive="#008b8b"
-                shininess={10}
-            />,
+    const rayParams = {
 
-    }), []);
+        sourceOffset: new THREE.Vector3(distance, 1.75, distance),
+        destOffset: new THREE.Vector3(distance, -1.75, distance),
+        radius0: 0.2,
+        radius1: 0.2,
+        minRadius: 0.3,
+        maxIterations: 7,
+        isEternal: true,
+
+        timeScale: 0.7,
+
+        propagationTimeFactor: 0.05,
+        vanishingTimeFactor: 0.95,
+        subrayPeriod: 3.5,
+        subrayDutyCycle: 0.6,
+        maxSubrayRecursion: 3,
+        ramification: 7,
+        recursionProbability: 0.6,
+
+        roughness: 0.8,
+        straightness: 0.6
+    };
+
+    const lightning = new LightningStrike(rayParams);
 
     return (
         <Fragment>
-            <SVGExtrude
-                {...corner1Props}
-                depth={10}
-                layer={1}
-                url='/svgs/hud/hudcorner1.svg'
-            />
-            <SVGExtrude
-                {...corner2Props}
-                depth={10}
-                layer={1}
-                url='/svgs/hud/hudcorner1.svg'
-            />
-            <SVGExtrude
-                {...frameProps}
-                layer={1}
-                recenter={true}
-                url='/svgs/hud/border.svg'
-            />
+            <mesh
+                geometry={lightning}
+                layers={1}
+            >
+                <meshBasicMaterial
+                    attach="material"
+                    color="cyan"
+                />
+            </mesh>
         </Fragment>
     );
 };

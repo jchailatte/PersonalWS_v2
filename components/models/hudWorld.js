@@ -2,16 +2,20 @@ import { Fragment, useMemo, useLayoutEffect, Suspense } from 'react';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
-import FantasySky from '@/components/models/fantasySky';
-import Lantern from '@/components/models/lantern';
-import BinaryRing from '@/components/models/binaryRing';
+import FantasySky from './fantasySky';
+import Lantern from './lantern';
+import BinaryRing from './binaryRing';
+import Cube from './cube';
+import Loader from '@/components/three/loader';
+
+import HUDFace1 from './hud/hudFace1'
+
 import HUD from '@/components/models/hud/hud';
-import Loader from '@/components/three/Loader';
 import HUDFrame from '@/components/models/hud/hudFrame';
 import HUDLogo from '@/components/models/hud/hudLogo';
 import HUDScreen from '@/components/models/hud/hudScreen';
 
-import SelectiveBloomEffect from '@/components/three/SelectiveBloomEffect';
+import SelectiveBloomEffect from '@/components/three/selectiveBloomEffect';
 
 const Lanterns = () => {
     const data = useMemo(() => {
@@ -42,7 +46,7 @@ const HUDWorld = () => {
         <Fragment>
             <PerspectiveCamera
                 fov={80}
-                position={[1, 0, 15]}
+                position={[0, 0, 17]}
                 makeDefault
             />
             <ambientLight />
@@ -61,12 +65,9 @@ const HUDWorld = () => {
                 <BinaryRing
                     direction={-1}
                 />
-                <HUDLogo 
-                    logo={'/graphics/general/logo.png'} 
-                />
-                <HUDFrame />
-                <HUDScreen/>
-                <HUD />
+                <Cube />
+                {/* <HUDFrame/> */}
+                <HUDFace1/>
             </Suspense>
             <SelectiveBloomEffect
                 layer={1}

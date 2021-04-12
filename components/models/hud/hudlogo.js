@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as THREE from 'three';
 import { useFrame, useLoader } from '@react-three/fiber';
 
-import SVGExtrude from '@/components/three/SVGExtrude';
+import SVGExtrude from '@/components/three/svgExtrude';
 
 const HUDLogo = (props) => {
     const circle1 = useRef();

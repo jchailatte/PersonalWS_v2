@@ -1,5 +1,5 @@
   
-const withTM = require('next-transpile-modules')(['three', '@react-three/drei']);
+const withTM = require('next-transpile-modules')(['three']);
 
 //refer to this once they update to @react-three/fiber and see what can be used
 //https://github.com/pmndrs/react-three-next

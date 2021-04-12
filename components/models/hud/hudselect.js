@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from '@react-three/drei';
 
-import SVGExtrude from '../../three/SVGExtrude';
+import SVGExtrude from '../../three/svgExtrude';
 
 const HUDSelect = props => {
     const [hover, setHover] = useState(false);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import SVGExtrude from '../../three/SVGExtrude';
+import SVGExtrude from '../../three/svgExtrude';
 
 const HUDArrow = (props) => {
     const [hover, setHover] = useState(false);

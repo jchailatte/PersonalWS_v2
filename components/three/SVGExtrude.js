@@ -4,8 +4,6 @@ import * as THREE from 'three';
 import { useLoader } from '@react-three/fiber';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
-
-//might have to wrap this in a memo?
 const SVGExtrude = forwardRef((props, ref) => {
     const data = useLoader(SVGLoader, props.url);
     const shapes = useMemo(() => data.paths.flatMap((g) => g.toShapes([props.isCCW, props.noHoles])), [data.paths, props.isCCW, props.noHoles]);

@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
 import PropTypes from 'prop-types';
 
-import useStore from '@/utils/hooks/useStore'
+import useStore from '@/utils/store/store'
 
 const LCanvas = (props) => {
 

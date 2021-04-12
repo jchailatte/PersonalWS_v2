@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useMemo } from 'react';
-import { Text } from '@react-three/drei';
+import { Text, Html } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
+import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import HUDScreen from './hudScreen.js';
 import HUDLogo from './hudLogo.js';
@@ -15,9 +17,15 @@ import paths from '@/public/json/paths.json';
 //potentially change the sci fi design to lean more toward oriental designs such as the chinese/japanese lattice :D (would match the lanterns better)
 //maybe add a conversion for mobile  version (can be done later)
 
-const controlPosition = [15.5, -5.5, 0.5];
+const useStyles = makeStyles(theme => ({
+    text: {
+        color: "cyan"
+    }
+}));
+
 
 const Hud = () => {
+    const classes = useStyles();
     const fontType = '/fonts/Iceland-Regular.ttf';
 
     //eventually switch to a dolly (hopefully three js will implement prgrammatic support w/ orthographic)
@@ -85,7 +93,33 @@ const Hud = () => {
     return (
         <Fragment>
 
-            
+            <mesh
+                position={[1, 0, 0.1]}
+                layer={1}
+            >
+                <planeGeometry
+                    args={[17, 15]}
+                    attach="geometry"
+                />
+                <meshPhongMaterial
+                    attach="material"
+                    color="black"
+                    opacity={0.5}
+                    transparent={true}
+                />
+                <Html
+                    distanceFactor={10}
+                    position={[0, 0, 0.5]}
+                    transform
+                >
+                    <Typography
+                        className={classes.text}
+                        variant= "h3"
+                    >
+                        test
+                    </Typography>
+                </Html>
+            </mesh>
             {/* {Object.keys(level).map((route, i) => (
                 //note: rmber to truncate strings later on :D
                 //oh and fix the ">" to look nicer future me
