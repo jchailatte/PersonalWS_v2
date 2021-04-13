@@ -13,7 +13,7 @@ import Header from '@/utils/general/header';
 //import useStore from '@/utils/hooks/useStore';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-typist/dist/Typist.css';
+import '@/css/Typist.css';
 
 // let LCanvas = null
 // if (process.env.NODE_ENV === 'production') {

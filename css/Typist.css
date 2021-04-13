@@ -1,0 +1,18 @@
+/*
+    Custom react-typist css animation
+*/
+
+.Typist .Cursor {
+	display: inline-block;
+}
+
+.Typist .Cursor--blinking {
+	opacity: 1;
+	animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+	to {
+		visibility: hidden;
+	}
+}

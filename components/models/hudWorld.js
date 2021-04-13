@@ -2,11 +2,11 @@ import { Fragment, useMemo, useLayoutEffect, Suspense } from 'react';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
+import Loader from '@/components/three/loader';
 import FantasySky from './fantasySky';
 import Lantern from './lantern';
 import BinaryRing from './binaryRing';
 import Cube from './cube';
-import Loader from '@/components/three/loader';
 
 import HUDFace1 from './hud/hudFace1'
 

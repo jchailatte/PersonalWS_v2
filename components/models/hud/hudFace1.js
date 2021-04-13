@@ -3,12 +3,14 @@ import { Html } from '@react-three/drei';
 import { Typography, makeStyles } from '@material-ui/core';
 import Typist from 'react-typist';
 
-const useStyles = makeStyles((theme) => ({
+import * as THREE from 'three';
+
+const useStyles = makeStyles(() => ({
     text: {
         color: "cyan",
         fontFamily: "Iceland",
-        width: '260px',
-    }, 
+        width: '400px',
+    },
     disable: {
         userSelect: 'none',
         pointerEvents: 'none'
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     '@font-face': {
         fontFamily: 'Iceland',
         src: `url("/fonts/Iceland-Regular.ttf") format("truetype")`
-    }
+    },
 }));
 
 const HUDFace1 = (props) => {
@@ -41,37 +43,40 @@ const HUDFace1 = (props) => {
                     className={classes.disable}
                     distanceFactor={10}
                     position={[0, 0, -0.5]}
+                    style={{
+                        pointerEvents: 'none',
+                        userSelect: 'none'
+                    }}
                     center
                     transform
                 >
                     <Typography
                         align="center"
                         className={classes.text}
-                        variant="h2"
+                        variant="h1"
                     >
                         <Typist
                             cursor={{
                                 blink: true,
-                                element: '_'
+                                element: '_',
                             }}
                         >
                             Hi!
                             <Typist.Delay
-                                ms={800}
+                                ms={900}
                             />
-                            <Typist.Backspace 
-                                count={3} 
-                                delay={1500} 
+                            <Typist.Backspace
+                                count={3}
+                                delay={1500}
                             />
                             My name is Jonathan Chai
-                            <Typist.Backspace 
-                                count={24} 
-                                delay={2000} 
+                            <Typist.Backspace
+                                count={24}
+                                delay={2000}
                             />
                             Welcome to my world
                         </Typist >
                     </Typography>
-
                 </Html>
             </mesh>
         </Fragment >
