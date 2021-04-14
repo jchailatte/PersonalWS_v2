@@ -13,7 +13,6 @@ import HUDFace3 from './hud/hudFace3';
 
 import HUD from '@/components/models/hud/hud';
 import HUDFrame from '@/components/models/hud/hudFrame';
-import HUDLogo from '@/components/models/hud/hudLogo';
 import HUDScreen from '@/components/models/hud/hudScreen';
 
 import SelectiveBloomEffect from '@/components/three/selectiveBloomEffect';

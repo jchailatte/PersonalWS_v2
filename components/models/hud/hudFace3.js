@@ -1,9 +1,7 @@
-import { Fragment, useRef, useEffect } from 'react';
+import { Fragment, useRef } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 
-
-import HUDLogo from './hudLogo';
 import SVGExtrude from '@/components/three/svgExtrude';
 
 const logoPosition = [0, 0, -10];
@@ -86,7 +84,6 @@ const HUDFace1 = () => {
                     />
                 </mesh>
             </group>
-
         </Fragment >
     )
 
