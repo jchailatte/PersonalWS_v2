@@ -2,7 +2,7 @@ import { useMemo, forwardRef, useImperativeHandle, useLayoutEffect, useRef } fro
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
 import { useLoader } from '@react-three/fiber';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+import { SVGLoader } from 'three-stdlib';
 
 const SVGExtrude = forwardRef((props, ref) => {
     const data = useLoader(SVGLoader, props.url);
@@ -10,21 +10,24 @@ const SVGExtrude = forwardRef((props, ref) => {
     const Material = useMemo(() => props.material, [props.material]);
     const internalRef = useRef();
 
+    const scaleX = props.groupProps.scale[0] || 1;
+    const scaleY = props.groupProps.scale[1] || 1;
+    
     useLayoutEffect(() => {
         if (props.recenter) {
             const box = new THREE.Box3().setFromObject(internalRef.current);
             const size = new THREE.Vector3();
             box.getSize(size);
 
-            const xOffset = (size.x / -2) * (1 / props.groupProps.scale[0]);
-            const yOffset = (size.y / -2) * (1 / props.groupProps.scale[1]);
+            const xOffset = (size.x / -2) * (1 / scaleX);
+            const yOffset = (size.y / -2) * (1 / scaleY);
 
             internalRef.current.children.forEach(item => {
                 item.position.x = xOffset;
                 item.position.y = yOffset;
             });
         }
-    }, [props.groupProps.scale, props.recenter]);
+    }, [props.recenter, scaleX, scaleY]);
 
     useImperativeHandle(ref, () => internalRef.current, [internalRef]);
 
@@ -60,7 +63,7 @@ SVGExtrude.propTypes = {
     recenter: PropTypes.bool,
     url: PropTypes.string.isRequired,
     isCCW: PropTypes.bool,
-    noHoles: PropTypes.bool
+    noHoles: PropTypes.bool,
 };
 
 SVGExtrude.defaultProps = {
@@ -69,7 +72,9 @@ SVGExtrude.defaultProps = {
     extrudeSettings: { bevelEnabled: false },
     recenter: false,
     isCCW: true,
-    noHoles: true
+    noHoles: true,
+    groupProps: {},
+    meshProps: {},
 };
 
 export default SVGExtrude;

@@ -8,7 +8,8 @@ import Lantern from './lantern';
 import BinaryRing from './binaryRing';
 import Cube from './cube';
 
-import HUDFace1 from './hud/hudFace1'
+import HUDFace1 from './hud/hudFace1';
+import HUDFace3 from './hud/hudFace3';
 
 import HUD from '@/components/models/hud/hud';
 import HUDFrame from '@/components/models/hud/hudFrame';
@@ -68,6 +69,7 @@ const HUDWorld = () => {
                 <Cube />
                 {/* <HUDFrame/> */}
                 <HUDFace1/>
+                <HUDFace3 />
             </Suspense>
             <SelectiveBloomEffect
                 layer={1}

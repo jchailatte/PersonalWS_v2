@@ -1,8 +1,7 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, } from 'react';
 import { Html } from '@react-three/drei';
 import { Typography, makeStyles } from '@material-ui/core';
 import Typist from 'react-typist';
-
 import * as THREE from 'three';
 
 const useStyles = makeStyles(() => ({
@@ -21,7 +20,9 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const HUDFace1 = (props) => {
+//maybe write custom typist animation since it's using depreciated stuff
+
+const HUDFace1 = () => {
     const classes = useStyles();
 
     return (
@@ -37,10 +38,10 @@ const HUDFace1 = (props) => {
                     attach="material"
                     color="black"
                     opacity={0.5}
+                    side={THREE.DoubleSide}
                     transparent={true}
                 />
                 <Html
-                    className={classes.disable}
                     distanceFactor={10}
                     position={[0, 0, -0.5]}
                     style={{
