@@ -7,6 +7,7 @@ import Info from '@/components/general/info';
 import HUDWorld from '@/components/models/hudWorld';
 
 import { Canvas } from '@react-three/fiber';
+import { Loader } from '@react-three/drei';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -52,7 +53,7 @@ const Index = () => {
             >
                 <HUDWorld />
             </Canvas>
-
+            <Loader />
         </Fragment >
     );
 };

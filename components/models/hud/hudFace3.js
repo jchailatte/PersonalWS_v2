@@ -14,7 +14,7 @@ const material = () => <meshPhongMaterial
     shininess={1}
 />;
 
-const HUDFace1 = () => {
+const HUDFace3 = () => {
     const upperCircle = useRef();
     const lowerCircle = useRef();
 
@@ -90,4 +90,4 @@ const HUDFace1 = () => {
 }
 
 
-export default HUDFace1;
+export default HUDFace3;

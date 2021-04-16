@@ -5,7 +5,6 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import HUDScreen from './hudScreen.js';
-import HUDLogo from './hudLogo.js';
 import HUDFrame from './hudFrame.js';
 import HUDArrow from './hudArrow.js';
 import HUDButton from './hudButton.js';

@@ -2,14 +2,16 @@ import { Fragment, useMemo, useLayoutEffect, Suspense } from 'react';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
-import Loader from '@/components/three/loader';
+//import Loader from '@/components/three/loader';
 import FantasySky from './fantasySky';
 import Lantern from './lantern';
 import BinaryRing from './binaryRing';
 import Cube from './cube';
 
 import HUDFace1 from './hud/hudFace1';
+import HUDFace2 from './hud/hudFace2';
 import HUDFace3 from './hud/hudFace3';
+
 
 import HUD from '@/components/models/hud/hud';
 import HUDFrame from '@/components/models/hud/hudFrame';
@@ -44,18 +46,8 @@ const HUDWorld = () => {
 
     return (
         <Fragment>
-            <PerspectiveCamera
-                fov={80}
-                position={[0, 0, 17]}
-                makeDefault
-            />
-            <ambientLight />
-            <OrbitControls
-                enablePan={false}
-                maxDistance={50}
-            />
             <Suspense
-                fallback={<Loader />}
+                fallback={null}
             >
                 <FantasySky />
                 <Lanterns />
@@ -67,9 +59,20 @@ const HUDWorld = () => {
                 />
                 <Cube />
                 {/* <HUDFrame/> */}
-                <HUDFace1/>
+                <HUDFace1 />
+                <HUDFace2 />
                 <HUDFace3 />
+                <ambientLight />
+                <OrbitControls
+                    enablePan={false}
+                    maxDistance={50}
+                />
             </Suspense>
+            <PerspectiveCamera
+                fov={80}
+                position={[0, 0, 17]}
+                makeDefault
+            />
             <SelectiveBloomEffect
                 layer={1}
             />

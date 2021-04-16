@@ -43,7 +43,7 @@ const HUDFace1 = () => {
                 />
                 <Html
                     distanceFactor={10}
-                    position={[0, 0, -0.5]}
+                    position={[0, 0, 0.5]}
                     style={{
                         pointerEvents: 'none',
                         userSelect: 'none'
