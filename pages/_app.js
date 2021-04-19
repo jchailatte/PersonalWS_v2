@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 //import dynamic from 'next/dynamic';
-//import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -10,7 +10,7 @@ import Sidebar from '@/components/general/sidebar';
 import Background from '@/components/general/background';
 
 import Header from '@/utils/general/header';
-//import useStore from '@/utils/hooks/useStore';
+import useStore from '@/utils/store/store';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import '@/css/Typist.css';
@@ -51,7 +51,7 @@ import '@/css/Typist.css';
 
 
 const App = ({ Component, pageProps }) => {
-    //const router = useRouter();
+    const router = useRouter();
 
     // const r3fArr = [];
     // const compArr = [];
@@ -72,9 +72,9 @@ const App = ({ Component, pageProps }) => {
         }
     }, []);
 
-    // useEffect(() => {
-    //     useStore.setState({ router })
-    // }, [router])
+    useEffect(() => {
+        useStore.setState({ router })
+    }, [router])
 
     return (
         <React.Fragment>

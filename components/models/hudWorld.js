@@ -51,12 +51,8 @@ const HUDWorld = () => {
             >
                 <FantasySky />
                 <Lanterns />
-                <BinaryRing
-                    direction={1}
-                />
-                <BinaryRing
-                    direction={-1}
-                />
+  
+                <BinaryRing/>
                 <Cube />
                 {/* <HUDFrame/> */}
                 <HUDFace1 />

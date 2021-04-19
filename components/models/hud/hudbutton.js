@@ -52,7 +52,7 @@ const HUDButton = props => {
                 />}
                 recenter={true}
                 scale={[0.1, 0.1, 0.1]}
-                url={'/svgs/hud/button0.svg'}
+                url={'/svgs/hud/button1.svg'}
             />
             <mesh
                 onPointerDown={props.onClick}

@@ -159,6 +159,7 @@ const Sidebar = props => {
                         <MenuIcon />
                     </IconButton>
                     <Typography
+                        //todo: make this link back to homepage
                         className={classes.fontStyle}
                         variant="h4"
                         noWrap

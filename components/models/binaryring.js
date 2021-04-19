@@ -13,16 +13,11 @@ import { useGLTF } from '@react-three/drei';
 
 const BinaryRing = (props) => {
     const { nodes, materials } = useGLTF('/models/binaryRing.glb');
-    const group = useRef();
     const halo1 = useRef();
     const halo2 = useRef();
     const halo3 = useRef();
 
-    useFrame(state => {
-        const time = state.clock.getElapsedTime();
-        group.current.rotation.y = props.direction * Math.sin(time / 4);
-        group.current.rotation.x = props.direction * Math.cos(time / 4) + 5;
-
+    useFrame(() => {
         halo1.current.rotation.z = halo1.current.rotation.z - 0.0015;
         halo2.current.rotation.z = halo2.current.rotation.z + 0.002;
         halo3.current.rotation.z = halo3.current.rotation.z + 0.0005;
@@ -32,7 +27,6 @@ const BinaryRing = (props) => {
         <group
             dispose={null}
             position={props.position}
-            ref={group}
             rotation={props.rotation}
             scale={props.scale}
         >
@@ -86,8 +80,7 @@ BinaryRing.propTypes = {
 
 BinaryRing.defaultProps = {
     scale: [30, 30, 30],
-    direction: 1,
-    rotation: [Math.PI / 2, 0, 0],
+    rotation: [Math.PI / 2, Math.PI , 0],
     color: 'teal',
     emissive: 'blue'
 };
