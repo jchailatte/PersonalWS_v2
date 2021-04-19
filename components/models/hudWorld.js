@@ -11,11 +11,9 @@ import Cube from './cube';
 import HUDFace1 from './hud/hudFace1';
 import HUDFace2 from './hud/hudFace2';
 import HUDFace3 from './hud/hudFace3';
-
-
-import HUD from '@/components/models/hud/hud';
-import HUDFrame from '@/components/models/hud/hudFrame';
-import HUDScreen from '@/components/models/hud/hudScreen';
+import HUDFace4 from './hud/hudFace4';
+import HUDFace5 from './hud/hudFace5';
+import HUDFace6 from './hud/hudFace6';
 
 import SelectiveBloomEffect from '@/components/three/selectiveBloomEffect';
 
@@ -51,16 +49,18 @@ const HUDWorld = () => {
             >
                 <FantasySky />
                 <Lanterns />
-  
                 <BinaryRing/>
                 <Cube />
-                {/* <HUDFrame/> */}
                 <HUDFace1 />
                 <HUDFace2 />
                 <HUDFace3 />
+                <HUDFace4 />
+                <HUDFace5 />
+                <HUDFace6 />
+
                 <ambientLight />
                 <OrbitControls
-                    enablePan={false}
+//                    enablePan={false}
                     maxDistance={50}
                 />
             </Suspense>
