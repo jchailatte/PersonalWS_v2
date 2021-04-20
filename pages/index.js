@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 
 import Info from '@/components/general/info';
-import HUDWorld from '@/components/model/hudWorld';
+import HUDWorld from '@/components/models/hudWorld';
 
 import { Canvas } from '@react-three/fiber';
 import { Loader } from '@react-three/drei';

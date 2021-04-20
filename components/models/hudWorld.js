@@ -4,10 +4,10 @@ import { useThree } from '@react-three/fiber';
 
 import SelectiveBloomEffect from '../three/selectiveBloomEffect';
 //import Loader from '@/components/three/loader';
-import FantasySky from './fantasySkyModel';
-import Lantern from './lanternModel';
-import BinaryRing from './binaryRingModel';
-import Cube from './cubeModel';
+import FantasySky from './fantasySky';
+import Lantern from './lantern';
+import BinaryRing from './binaryRing';
+import Cube from './cube';
 
 import HUDFace1 from './hud/hudFace1';
 import HUDFace2 from './hud/hudFace2';
