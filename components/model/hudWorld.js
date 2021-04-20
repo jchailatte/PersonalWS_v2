@@ -2,6 +2,7 @@ import { Fragment, useMemo, useLayoutEffect, Suspense } from 'react';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
+import SelectiveBloomEffect from '../three/selectiveBloomEffect';
 //import Loader from '@/components/three/loader';
 import FantasySky from './fantasySkyModel';
 import Lantern from './lanternModel';
@@ -15,8 +16,6 @@ import HUDFace4 from './hud/hudFace4';
 import HUDFace5 from './hud/hudFace5';
 import HUDFace6 from './hud/hudFace6';
 //import HUDFrame from './hud/hudFrame';
-
-import SelectiveBloomEffect from '../three/selectiveBloomEffect';
 
 const Lanterns = () => {
     const data = useMemo(() => {
