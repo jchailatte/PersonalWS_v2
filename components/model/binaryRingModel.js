@@ -12,7 +12,7 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 const BinaryRing = (props) => {
-    const { nodes, materials } = useGLTF('/models/binaryRing.glb');
+    const { nodes, materials } = useGLTF('/models/binaryring.glb');
     const halo1 = useRef();
     const halo2 = useRef();
     const halo3 = useRef();
@@ -67,7 +67,7 @@ const BinaryRing = (props) => {
     );
 };
 
-useGLTF.preload('/models/binaryRing.glb');
+useGLTF.preload('/models/binaryring.glb');
 
 BinaryRing.propTypes = {
     color: PropTypes.string.isRequired,

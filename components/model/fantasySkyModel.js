@@ -11,7 +11,7 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 const FantasySky = props => {
-    const { nodes, materials } = useGLTF('/models/fantasySky.glb');
+    const { nodes, materials } = useGLTF('/models/fantasysky.glb');
     const group = useRef();
 
     useFrame(() => {
@@ -35,6 +35,6 @@ const FantasySky = props => {
     );
 };
 
-useGLTF.preload('/models/fantasySky.glb');
+useGLTF.preload('/models/fantasysky.glb');
 
 export default FantasySky;
