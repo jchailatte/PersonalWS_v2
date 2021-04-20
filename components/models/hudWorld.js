@@ -3,17 +3,19 @@ import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
 //import Loader from '@/components/three/loader';
-import FantasySky from './fantasySky';
-import Lantern from './lantern';
-import BinaryRing from './binaryRing';
-import Cube from './cube';
+import FantasySky from './fantasySkyModel';
+import Lantern from './lanternModel';
+import BinaryRing from './binaryRingModel';
+import Cube from './cubeModel';
 
 import HUDFace1 from './hud/hudFace1';
 import HUDFace2 from './hud/hudFace2';
 import HUDFace3 from './hud/hudFace3';
 import HUDFace4 from './hud/hudFace4';
-import HUDFace5 from './hud/hudFace5';
+import HUDFace5 from './hud/hudFace5'; 
 import HUDFace6 from './hud/hudFace6';
+//import HUDFrame from './hud/hudFrame';
+
 
 import SelectiveBloomEffect from '@/components/three/selectiveBloomEffect';
 
@@ -49,24 +51,29 @@ const HUDWorld = () => {
             >
                 <FantasySky />
                 <Lanterns />
-                <BinaryRing/>
-                <Cube />
-                <HUDFace1 />
-                <HUDFace2 />
-                <HUDFace3 />
-                <HUDFace4 />
-                <HUDFace5 />
-                <HUDFace6 />
+                <group
+                    rotation={[-Math.PI / 16, Math.PI / 16, 0]}
+                >
+                    <BinaryRing />
+                    <Cube />
+                    <HUDFace1 />
+                    <HUDFace2 />
+                    <HUDFace3 />
+                    <HUDFace4 />
+                    <HUDFace5 />
+                    <HUDFace6 />
+                    {/* <HUDFrame /> */}
+                </group>
 
                 <ambientLight />
                 <OrbitControls
-//                    enablePan={false}
+                    enablePan={false}
                     maxDistance={50}
                 />
             </Suspense>
             <PerspectiveCamera
                 fov={80}
-                position={[0, 0, 17]}
+                position={[0, 0, 19]}
                 makeDefault
             />
             <SelectiveBloomEffect

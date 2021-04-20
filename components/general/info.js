@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Fab, Modal, Paper } from '@material-ui/core';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     fab: {
         position: 'absolute',
         bottom: theme.spacing(2),
@@ -14,7 +14,17 @@ const useStyles = makeStyles(theme => ({
     modal: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+    }, 
+    paper: {
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+        [theme.breakpoints.up('md')]:{
+            maxWidth: '50vw'
+        },
+        [theme.breakpoints.down('md')]:{
+            maxWidth: '80vw'
+        }
     }
 }));
 
@@ -46,7 +56,9 @@ const Info = props => {
                 onClose={handleClose}
                 open={open}
             >
-                <Paper>
+                <Paper
+                    className={classes.paper}
+                >
                     {props.children}
                 </Paper>
             </Modal>

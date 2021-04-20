@@ -114,7 +114,7 @@ export default function About() {
                                     variant="h4"
                                 >
                                     Currently, the JavaScript frameworks of choice I am working with
-                                    are Three.js and Next.js (yup this site is a combination of
+                                    are Three.js and Next.js (this site is a combination of
                                     both) and I am very interested in being able to combine art with
                                     code.
                                 </Typography>
@@ -127,10 +127,9 @@ export default function About() {
                                 </Typography>
                                 <br />
                                 <Typography
-                                    variant="h4"
+                                    variant="h5"
                                 >
-                                    PS. I got asked this a few times so I guess I&#39;ll mention it
-                                    here, yup the background was drawn by me :)
+                                    PS. I got asked this a few times but yes the background was drawn by me
                                 </Typography>
                             </Grid>
                         </div>

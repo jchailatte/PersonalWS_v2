@@ -46,8 +46,9 @@ const HUDFace1 = () => {
                     position={[0, 0, 0.5]}
                     style={{
                         pointerEvents: 'none',
-                        userSelect: 'none'
+                        userSelect: 'none',
                     }}
+                    zIndexRange={[100, 0]}
                     center
                     transform
                 >

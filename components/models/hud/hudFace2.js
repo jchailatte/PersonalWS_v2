@@ -105,6 +105,7 @@ const HUDFace2 = () => {
                     className={classes.screenSize}
                     distanceFactor={10}
                     position={[0, 0, 0.5]}
+                    zIndexRange={[100, 0]}
                     center
                     transform
                 >
