@@ -10,10 +10,6 @@
             ]
         }
     },
-    "include": [
-        "components",
-        "pages",
-    ],
     "exclude": [
         "node_modules"
     ]
