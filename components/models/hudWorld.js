@@ -12,7 +12,7 @@ import HUDFace1 from './hud/hudFace1';
 import HUDFace2 from './hud/hudFace2';
 import HUDFace3 from './hud/hudFace3';
 import HUDFace4 from './hud/hudFace4';
-import HUDFace5 from './hud/hudFace5'; 
+import HUDFace5 from './hud/hudFace5';
 import HUDFace6 from './hud/hudFace6';
 //import HUDFrame from './hud/hudFrame';
 
