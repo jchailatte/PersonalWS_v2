@@ -16,7 +16,6 @@ import HUDFace5 from './hud/hudFace5';
 import HUDFace6 from './hud/hudFace6';
 //import HUDFrame from './hud/hudFrame';
 
-
 import SelectiveBloomEffect from '@/components/three/selectiveBloomEffect';
 
 const Lanterns = () => {
