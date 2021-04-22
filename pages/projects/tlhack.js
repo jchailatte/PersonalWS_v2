@@ -18,6 +18,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 
 import champions from '@/public/json/champions10-22-1.json';
+import Info from '@/components/general/info';
 
 export async function getStaticProps() {
     return {
@@ -369,6 +370,9 @@ export default function Index() {
     };
 
     const reset = () => {
+        setTeam(initialState);
+        setSelected({});
+
         setTrigger(false);
         setFade(0);
         setDisappear(false);
@@ -384,23 +388,25 @@ export default function Index() {
             return;
         }
 
-        const team1string = `${team['Top1'].champion}%2C${team['Jung1'].champion}%2C${team['Mid1'].champion}%2C${team['Bot1'].champion}%2C${team['Sup1'].champion}`;
-        const team2string = `${team['Top2'].champion}%2C${team['Jung2'].champion}%2C${team['Mid2'].champion}%2C${team['Bot2'].champion}%2C${team['Sup2'].champion}`;
+        setPercent(80);
+        setTurn(true);
+        // const team1string = `${team['Top1'].champion}%2C${team['Jung1'].champion}%2C${team['Mid1'].champion}%2C${team['Bot1'].champion}%2C${team['Sup1'].champion}`;
+        // const team2string = `${team['Top2'].champion}%2C${team['Jung2'].champion}%2C${team['Mid2'].champion}%2C${team['Bot2'].champion}%2C${team['Sup2'].champion}`;
 
-        fetch(`${process.env.TLHACK}/compare_teams?team_1=${team1string}&team_2=${team2string}`)
-            .then(data => {
-                return data.json();
-            })
-            .then(data => {
-                const chance = data.win_chance;
-                setPercent(chance);
-                if (chance > 50) {
-                    setTurn(true);
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        // fetch(`${process.env.TLHACK}/compare_teams?team_1=${team1string}&team_2=${team2string}`)
+        //     .then(data => {
+        //         return data.json();
+        //     })
+        //     .then(data => {
+        //         const chance = data.win_chance;
+        //         setPercent(chance);
+        //         if (chance > 50) {
+        //             setTurn(true);
+        //         }
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
     }, [trigger]);
 
     const fightOnClick = () => {
@@ -439,6 +445,23 @@ export default function Index() {
 
     return (
         <React.Fragment>
+            <Info>
+                <Typography
+                    variant="h6"
+                >
+                    <u>
+                        Notes
+                    </u>
+                </Typography>
+                <Typography
+                    variant="body1"
+                >
+                    The server for this project uses TensorFlow which my Digital Ocean droplet has a hard time handling.
+                    So, the server for this project is disabled and the result is set to a default 80% 😅.
+                    <br />
+                    This project was also done during League&#39;s <code>10.22.1</code> patch so all the data is inaccurate now anyways.
+                </Typography>
+            </Info>
             <Fade
                 in={open}
             >
@@ -578,9 +601,9 @@ export default function Index() {
                                     fontFamily: "'Big Shoulders Stencil Text', cursive",
                                     color: 'white'
                                 }}
-                                variant="h1"
+                                variant="h2"
                             >
-                                {percent}
+                                {percent}%
                             </Typography>
                         </Grid>
                         <Grid
