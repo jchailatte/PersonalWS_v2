@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -446,21 +446,23 @@ export default function Index() {
     return (
         <React.Fragment>
             <Info>
-                <Typography
-                    variant="h6"
-                >
-                    <u>
-                        Notes
-                    </u>
-                </Typography>
-                <Typography
-                    variant="body1"
-                >
-                    The server for this project uses TensorFlow which my Digital Ocean droplet has a hard time handling.
-                    So, the server for this project is disabled and the result is set to a default 80% 😅.
-                    <br />
-                    This project was also done during League&#39;s <code>10.22.1</code> patch so all the data is inaccurate now anyways.
-                </Typography>
+                <Fragment>
+                    <Typography
+                        variant="h6"
+                    >
+                        <u>
+                            Notes
+                        </u>
+                    </Typography>
+                    <Typography
+                        variant="body1"
+                    >
+                        The server for this project uses TensorFlow which my Digital Ocean droplet has a hard time handling.
+                        So, the server for this project is disabled and the result is set to a default 80% 😅.
+                        <br />
+                        This project was also done during League&#39;s <code>10.22.1</code> patch so all the data is inaccurate now anyways.
+                    </Typography>
+                </Fragment>
             </Info>
             <Fade
                 in={open}
@@ -520,13 +522,13 @@ export default function Index() {
                                     </Grid>
                                 );
                             })}
-                        </Grid>
+                        </Grid >
                         <div
                             className={classes.gradientBorder}
                         />
-                    </Paper>
-                </Fade>
-            </Modal>
+                    </Paper >
+                </Fade >
+            </Modal >
             <Modal
                 className={classes.modal}
                 onClose={handleModalClose2}
@@ -808,6 +810,6 @@ export default function Index() {
                     </Grid>
                 </Grid>
             </Grid>
-        </React.Fragment>
+        </React.Fragment >
     );
 }

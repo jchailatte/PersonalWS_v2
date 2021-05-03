@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
 import { makeStyles, Typography } from '@material-ui/core';
-import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
+import { ThreeDRotation } from '@material-ui/icons';
 
 import Info from '@/components/general/info';
 import HUDWorld from '@/components/models/hudWorld';
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     ThreeDAvatar: {
         position: 'absolute',
         bottom: theme.spacing(3),
-        right: theme.spacing(10),
+        right: theme.spacing(11),
         color: 'white',
         zIndex: 100
     }
@@ -49,10 +49,10 @@ const Index = () => {
                     <Typography
                         variant="body1"
                     >
-                        Fantasy Sky Background by Hannes Delbeke <br/>
-                        Rhetorician by engine9 <br/>
-                        Impossible Cube by tomciomalina <br/>
-                        Lanterns lowpoly models homework 11 by Bansheeva <br/>
+                        Fantasy Sky Background by Hannes Delbeke <br />
+                        Rhetorician by engine9 <br />
+                        Impossible Cube by tomciomalina <br />
+                        Lanterns lowpoly models homework 11 by Bansheeva <br />
                     </Typography>
                     <Typography
                         variant="h6"
@@ -64,10 +64,10 @@ const Index = () => {
                     <Typography
                         variant="body1"
                     >
-                        The general theme I was going for was some type of sci-fi UI that mimiced 
-                        a hologram. This is actually my second iteration of this homepage since the 
+                        The general theme I was going for was some type of sci-fi UI that mimiced
+                        a hologram. This is actually my second iteration of this homepage since the
                         first one did not really showcase the 3D aspect. Here is what the first iteration
-                        looked like. 
+                        looked like.
                     </Typography>
                     <Image
                         alt="homepagev1"
@@ -78,7 +78,7 @@ const Index = () => {
                     />
                 </Fragment>
             </Info>
-            <ThreeDRotationIcon
+            <ThreeDRotation
                 className={classes.ThreeDAvatar}
                 fontSize="large"
             />

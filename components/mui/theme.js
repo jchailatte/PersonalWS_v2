@@ -8,7 +8,7 @@ const theme = responsiveFontSizes(
                 main: '#000000'
             },
             secondary: {
-                main: '#000000'
+                main: '#00FFFF'
             },
             error: {
                 main: red.A400

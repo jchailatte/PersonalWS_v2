@@ -24,7 +24,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex'
     },
@@ -43,14 +43,15 @@ const useStyles = makeStyles(theme => ({
     },
     drawerPaper: {
         width: drawerWidth,
-        backgroundColor: '#708090'
+        backgroundColor: "black"
     },
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
-        //...theme.mixins.toolbar, 
+        //...theme.mixins.toolbar,
+        // revert this once canvas autosizing is fixed 
         minHeight: '64px',
         justifyContent: 'flex-end'
     },
@@ -59,7 +60,9 @@ const useStyles = makeStyles(theme => ({
         marginLeft: -drawerWidth
     },
     contentFilter: {
-        filter: 'brightness(50%)'
+        filter: 'brightness(50%)',
+        userSelect: 'none',
+        pointerEvents: 'none'
     },
     fontStyle: {
         fontFamily: 'Iceland',
@@ -149,7 +152,7 @@ const Sidebar = props => {
                     <Typography
                         //todo: make this link back to homepage
                         className={classes.fontStyle}
-                        variant="h4"
+                        variant="h5"
                         noWrap
                     >
                         Jonathan Chai
@@ -170,11 +173,14 @@ const Sidebar = props => {
                 >
                     <IconButton
                         onClick={handleDrawerClose}
+                        style={{color: 'cyan'}}
                     >
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
-                <Divider />
+                <Divider
+                //todo: make this cyan -> prob will have to override class
+                />
                 <List
                     id="mainsb"
                 >

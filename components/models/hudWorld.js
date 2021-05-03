@@ -71,7 +71,7 @@ const HUDWorld = () => {
             </Suspense>
             <PerspectiveCamera
                 fov={80}
-                position={[0, 0, 19]}
+                position={[0, 0, 20]}
                 makeDefault
             />
             <SelectiveBloomEffect
