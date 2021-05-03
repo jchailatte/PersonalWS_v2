@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 
 import Info from '@/components/general/info';

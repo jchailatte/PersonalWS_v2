@@ -3,10 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import {AppBar, Toolbar, Drawer} from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -18,19 +15,12 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CodeIcon from '@material-ui/icons/Code';
-//import CopyrightIcon from '@material-ui/icons/Copyright';
 import DescriptionIcon from '@material-ui/icons/Description';
-//import EmailIcon from '@material-ui/icons/Email';
-//import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-//import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-//import ForumIcon from '@material-ui/icons/Forum';
 import GithubIcon from '@material-ui/icons/GitHub';
 import HomeIcon from '@material-ui/icons/Home';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-//import MeetingRoomIcon from '@material-ui/icons/MeetingRoomRounded';
 import MenuIcon from '@material-ui/icons/Menu';
-//import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 const drawerWidth = 240;
 
@@ -40,10 +30,6 @@ const useStyles = makeStyles(theme => ({
     },
     appBar: {
         height: '64px',
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        })
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -56,14 +42,16 @@ const useStyles = makeStyles(theme => ({
         flexShrink: 0
     },
     drawerPaper: {
-        width: drawerWidth
+        width: drawerWidth,
+        backgroundColor: '#708090'
     },
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
+        //...theme.mixins.toolbar, 
+        minHeight: '64px',
         justifyContent: 'flex-end'
     },
     content: {
@@ -74,7 +62,8 @@ const useStyles = makeStyles(theme => ({
         filter: 'brightness(50%)'
     },
     fontStyle: {
-        fontFamily: 'Iceland'
+        fontFamily: 'Iceland',
+        color: 'cyan'
     },
     padding: {
         padding: theme.spacing(3)
@@ -143,7 +132,6 @@ const Sidebar = props => {
         <div
             className={classes.root}
         >
-            <CssBaseline />
             <AppBar
                 className={classes.appBar}
                 position="fixed"
@@ -204,7 +192,11 @@ const Sidebar = props => {
                                 selected={item.text === props.selected}
                                 button
                             >
-                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemIcon
+                                    style={{color: 'cyan'}}
+                                >
+                                    {item.icon}
+                                </ListItemIcon>
                                 <ListItemText
                                     primary={item.text}
                                     primaryTypographyProps={{
@@ -228,7 +220,11 @@ const Sidebar = props => {
                             target="_blank"
                             button
                         >
-                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemIcon
+                                style={{color: 'cyan'}}
+                            >
+                                {item.icon}
+                            </ListItemIcon>
                             <ListItemText
                                 primary={item.text}
                                 primaryTypographyProps={{
