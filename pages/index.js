@@ -73,6 +73,7 @@ const Index = () => {
                         alt="homepagev1"
                         height={500}
                         layout="responsive"
+                        priority={true}
                         src="/graphics/general/homepagev1.jpg"
                         width={982}
                     />

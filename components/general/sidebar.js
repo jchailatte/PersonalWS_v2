@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Drawer} from '@material-ui/core';
+import { AppBar, Toolbar, Drawer } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -21,6 +21,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuIcon from '@material-ui/icons/Menu';
+
+//potential idea: make links into bubbles that cascade down in a curve 
 
 const drawerWidth = 240;
 
@@ -173,13 +175,14 @@ const Sidebar = props => {
                 >
                     <IconButton
                         onClick={handleDrawerClose}
-                        style={{color: 'cyan'}}
+                        style={{ color: 'cyan' }}
                     >
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
                 <Divider
-                //todo: make this cyan -> prob will have to override class
+                    style={{ background: 'cyan' }}
+                    variant='middle'
                 />
                 <List
                     id="mainsb"
@@ -199,7 +202,7 @@ const Sidebar = props => {
                                 button
                             >
                                 <ListItemIcon
-                                    style={{color: 'cyan'}}
+                                    style={{ color: 'cyan' }}
                                 >
                                     {item.icon}
                                 </ListItemIcon>
@@ -214,7 +217,10 @@ const Sidebar = props => {
                         </Link>
                     ))}
                 </List>
-                <Divider />
+                <Divider
+                    style={{ background: 'cyan' }}
+                    variant='middle'
+                />
                 <List>
                     {footer.map((item, index) => (
                         <ListItem
@@ -227,7 +233,7 @@ const Sidebar = props => {
                             button
                         >
                             <ListItemIcon
-                                style={{color: 'cyan'}}
+                                style={{ color: 'cyan' }}
                             >
                                 {item.icon}
                             </ListItemIcon>
