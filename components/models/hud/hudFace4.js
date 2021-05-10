@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
 const HUDFace4 = () => {
     const classes = useStyles();
 
+
+    //maybe slap the contact form onto this side if reCaptcha doesn't freak out 
+    //will have to test load times to make sure it doesnt increase but shouldnt be an issue hopefully
     return (
         <Fragment>
             <mesh

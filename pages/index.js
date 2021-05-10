@@ -65,9 +65,10 @@ const Index = () => {
                         variant="body1"
                     >
                         The general theme I was going for was some type of sci-fi UI that mimiced
-                        a hologram. This is actually my second iteration of this homepage since the
-                        first one did not really showcase the 3D aspect. Here is what the first iteration
-                        looked like.
+                        a hologram. This is actually my third iteration of this website since the first 
+                        one looked awful(it was done with 2D canvas animations instead of 3D) and the second 
+                        one didn&#39;t really showcase the 3D aspect. Here&#39;s what the second interation 
+                        looked like. 
                     </Typography>
                     <Image
                         alt="homepagev1"
