@@ -6,14 +6,13 @@ import { ThreeDRotation } from '@material-ui/icons';
 import Info from '@/components/general/info';
 import HUDWorld from '@/components/models/hudWorld';
 
-import { Canvas } from '@react-three/fiber';
 import { Loader } from '@react-three/drei';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        height: 'calc(100vh - 64px)',
-        width: '100vw'
-    },
+    // root: {
+    //     height: 'calc(100vh - 64px)',
+    //     width: '100vw'
+    // },
     ThreeDAvatar: {
         position: 'absolute',
         bottom: theme.spacing(3),
@@ -65,10 +64,10 @@ const Index = () => {
                         variant="body1"
                     >
                         The general theme I was going for was some type of sci-fi UI that mimiced
-                        a hologram. This is actually my third iteration of this website since the first 
-                        one looked awful(it was done with 2D canvas animations instead of 3D) and the second 
-                        one didn&#39;t really showcase the 3D aspect. Here&#39;s what the second interation 
-                        looked like. 
+                        a hologram. This is actually my third iteration of this website since the first
+                        one looked awful(it was done with 2D canvas animations instead of 3D) and the second
+                        one didn&#39;t really showcase the 3D aspect. Here&#39;s what the second interation
+                        looked like.
                     </Typography>
                     <Image
                         alt="homepagev1"
@@ -84,15 +83,9 @@ const Index = () => {
                 className={classes.ThreeDAvatar}
                 fontSize="large"
             />
-            <Canvas
-                style={{
-                    height: 'calc(100vh - 64px)',
-                    width: '100vw'
-                }}
-                concurrent
-            >
-                <HUDWorld />
-            </Canvas>
+            <HUDWorld
+                r3f
+            />
             <Loader />
         </Fragment >
     );

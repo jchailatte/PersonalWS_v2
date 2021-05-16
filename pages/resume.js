@@ -1,42 +1,32 @@
-import React from 'react';
+import {Fragment} from 'react';
 import Head from 'next/head';
-import NoSSR from '@material-ui/core/NoSsr';
+import { makeStyles } from '@material-ui/core/styles';
 
-import PDFViewer from '../components/general/pdfviewer';
-import { useResize } from '../utils/hooks/useResize';
+const useStyles = makeStyles(theme => ({
 
-//later update to latest version of react-pdf and fix all the bugs that crop up with it -.-
+}));
 
-export async function getStaticProps() {
-    return {
-        props: {
-            selected: 'Resume'
-        }
-    };
-}
-
-export default function Resume() {
-    const dimensions = useResize('content');
+export default function About() {
+    const classes = useStyles();
 
     return (
-        <React.Fragment>
+        <Fragment>
             <Head>
                 <title
                     key="title"
-                >Jonathan Chai - Resume
+                >
+                    Resume
                 </title>
             </Head>
-            <NoSSR>
-                <div
-                    style={{ width: '100vw' }}
-                >
-                    <PDFViewer
-                        pageNumber={1}
-                        url={'/doc/res.pdf'}
-                        width={0.8 * dimensions.width}
-                    />
-                </div>
-            </NoSSR>
-        </React.Fragment>
+            <a
+                href={'/doc/res.pdf'}
+                rel="noreferrer"
+                target="_blank"
+            >
+                Resume
+            </a>
+                          
+
+        </Fragment>
     );
 }

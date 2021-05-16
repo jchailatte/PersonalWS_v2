@@ -65,7 +65,8 @@ export default function About() {
             <Head>
                 <title
                     key="title"
-                >Jonathan Chai - About
+                >
+                    About
                 </title>
             </Head>
             <Grid

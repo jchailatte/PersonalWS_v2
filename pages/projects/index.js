@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
@@ -99,7 +100,13 @@ export default function Project() {
 
     return (
         <Fragment>
-
+            <Head>
+                <title
+                    key="title"
+                >
+                    Projects
+                </title>
+            </Head>
             <Grid
                 spacing={3}
                 container

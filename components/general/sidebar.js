@@ -70,9 +70,6 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Iceland',
         color: 'cyan'
     },
-    padding: {
-        padding: theme.spacing(3)
-    },
     '@font-face': {
         fontFamily: 'Iceland',
         src: `url("/fonts/Iceland-Regular.ttf") format("truetype")`
@@ -198,7 +195,6 @@ const Sidebar = props => {
                                 disabled={item.disable}
                                 key={index}
                                 onClick={handleDrawerClose}
-                                selected={item.text === props.selected}
                                 button
                             >
                                 <ListItemIcon
@@ -229,6 +225,7 @@ const Sidebar = props => {
                             disabled={item.disable}
                             href={item.href}
                             key={index}
+                            rel="noreferrer"
                             target="_blank"
                             button
                         >
@@ -251,7 +248,6 @@ const Sidebar = props => {
             <main
                 className={clsx(classes.content, {
                     [classes.contentFilter]: open,
-                    [classes.padding]: props.padding
                 })}
                 id="content"
             >
@@ -265,13 +261,7 @@ const Sidebar = props => {
 };
 
 Sidebar.propTypes = {
-    selected: PropTypes.string,
-    padding: PropTypes.bool,
     children: PropTypes.element
-};
-
-Sidebar.defaultProps = {
-    padding: true
 };
 
 export default Sidebar;

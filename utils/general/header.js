@@ -35,6 +35,11 @@ const Header = () => {
                 href="/graphics/general/logo.ico"
                 rel="icon"
             />
+
+            <meta property="og:image" content="/graphics/general/logo.png" />
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:width" content="200" />
+            <meta property="og:image:height" content="200" />
         </Head>
     )
 }

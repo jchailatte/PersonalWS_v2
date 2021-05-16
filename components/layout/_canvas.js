@@ -6,13 +6,14 @@ import PropTypes from 'prop-types';
 import useStore from '@/utils/store/store'
 
 const LCanvas = (props) => {
-
+    const dom = useStore((state) => state.dom)
     return (
         <Canvas
-            onCreated={({ events }) => {
-                useStore.setState({ events })
-            }}
+            mode='concurrent'
+            onCreated={(state) => state.events.connect(dom.current)}
             style={{
+                position: 'absolute',
+                top: 0,
                 height: 'calc(100vh - 64px)',
                 width: '100vw'
             }}
