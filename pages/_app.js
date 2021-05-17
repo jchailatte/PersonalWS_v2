@@ -41,6 +41,10 @@ const App = ({ Component, pageProps }) => {
         }
     })
 
+    useEffect(()=>{
+        console.log(compArr.length);
+    },[compArr]);
+
     useEffect(() => {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side');
@@ -65,7 +69,13 @@ const App = ({ Component, pageProps }) => {
                         <div
                             style={{ position: 'relative' }}
                         >
-                            {compArr && <Dom>{compArr}</Dom>}
+                            {compArr &&
+                                <Dom
+                                    padding={pageProps.padding}
+                                >
+                                    {compArr}
+                                </Dom>
+                            }
                             {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
                         </div>
                     </Sidebar>

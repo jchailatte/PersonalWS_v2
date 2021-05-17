@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Fragment } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,6 +18,9 @@ import Button from '@material-ui/core/Button';
 
 import champions from '@/public/json/champions10-22-1.json';
 import Info from '@/components/general/info';
+
+//something wrong in this file might have to throw it and rewrite it from scratch
+//to incrementally find the damn error
 
 export async function getStaticProps() {
     return {
@@ -349,8 +351,8 @@ export default function Index() {
     const [fade, setFade] = useState(0);
     const [percent, setPercent] = useState(50);
     const [currentCard, setCurrentCard] = useState(0);
-    const [trigger, setTrigger] = useState(false);
-    const isFirstRun = React.useRef(true);
+    //const [trigger, setTrigger] = useState(false);
+    //const isFirstRun = React.useRef(true);
 
     const handleModalOpen = () => {
         setOpenModal(true);
@@ -373,7 +375,7 @@ export default function Index() {
         setTeam(initialState);
         setSelected({});
 
-        setTrigger(false);
+        //setTrigger(false);
         setFade(0);
         setDisappear(false);
         setRun(false);
@@ -381,33 +383,32 @@ export default function Index() {
         setPercent(50);
     };
 
-    //Hacky fix lol
-    useEffect(() => {
-        if (isFirstRun.current) {
-            isFirstRun.current = false;
-            return;
-        }
+    //  useEffect(() => {
+    //     if (isFirstRun.current) {
+    //         isFirstRun.current = false;
+    //         return;
+    //     }
 
-        setPercent(80);
-        setTurn(true);
-        // const team1string = `${team['Top1'].champion}%2C${team['Jung1'].champion}%2C${team['Mid1'].champion}%2C${team['Bot1'].champion}%2C${team['Sup1'].champion}`;
-        // const team2string = `${team['Top2'].champion}%2C${team['Jung2'].champion}%2C${team['Mid2'].champion}%2C${team['Bot2'].champion}%2C${team['Sup2'].champion}`;
+    //     setPercent(80);
+    //     setTurn(true);
+    //     const team1string = `${team['Top1'].champion}%2C${team['Jung1'].champion}%2C${team['Mid1'].champion}%2C${team['Bot1'].champion}%2C${team['Sup1'].champion}`;
+    //     const team2string = `${team['Top2'].champion}%2C${team['Jung2'].champion}%2C${team['Mid2'].champion}%2C${team['Bot2'].champion}%2C${team['Sup2'].champion}`;
 
-        // fetch(`${process.env.TLHACK}/compare_teams?team_1=${team1string}&team_2=${team2string}`)
-        //     .then(data => {
-        //         return data.json();
-        //     })
-        //     .then(data => {
-        //         const chance = data.win_chance;
-        //         setPercent(chance);
-        //         if (chance > 50) {
-        //             setTurn(true);
-        //         }
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
-    }, [trigger]);
+    //     fetch(`${process.env.TLHACK}/compare_teams?team_1=${team1string}&team_2=${team2string}`)
+    //         .then(data => {
+    //             return data.json();
+    //         })
+    //         .then(data => {
+    //             const chance = data.win_chance;
+    //             setPercent(chance);
+    //             if (chance > 50) {
+    //                 setTurn(true);
+    //             }
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         });
+    // }, [trigger]);
 
     const fightOnClick = () => {
         let flag = false;
@@ -424,9 +425,10 @@ export default function Index() {
             setFade(800);
             setDisappear(true);
             setRun(true);
-            setTrigger(prevState => {
-                !prevState;
-            });
+
+            //replacing the trigger
+            setPercent(80);
+            setTurn(true);
         }
     };
 
@@ -444,7 +446,7 @@ export default function Index() {
     };
 
     return (
-        <React.Fragment>
+        <Fragment>
             <Info>
                 <Fragment>
                     <Typography
@@ -810,6 +812,6 @@ export default function Index() {
                     </Grid>
                 </Grid>
             </Grid>
-        </React.Fragment >
+        </Fragment >
     );
 }

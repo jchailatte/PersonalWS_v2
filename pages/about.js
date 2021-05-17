@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -46,22 +46,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export async function getStaticProps() {
-    return {
-        props: {
-            selected: 'About',
-            quote:
-                'Potions had a cooldown. What was the best way to drink potions to keep up your endurance during battle? That itself was a type of knowledge.',
-            by: "The King's Avatar"
-        }
-    };
-}
-
 export default function About() {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
+        <Fragment>
             <Head>
                 <title
                     key="title"
@@ -158,6 +147,6 @@ export default function About() {
                     </Hidden>
                 </Grid>
             </Grid>
-        </React.Fragment>
+        </Fragment>
     );
 }

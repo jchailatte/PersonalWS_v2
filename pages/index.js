@@ -1,12 +1,15 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { makeStyles, Typography } from '@material-ui/core';
 import { ThreeDRotation } from '@material-ui/icons';
+import { Loader } from '@react-three/drei';
 
 import Info from '@/components/general/info';
-import HUDWorld from '@/components/models/hudWorld';
 
-import { Loader } from '@react-three/drei';
+const HUDWorld = dynamic(()=>import ('@/components/models/hudWorld'),{
+    ssr: false,
+});
 
 const useStyles = makeStyles(theme => ({
     // root: {
@@ -21,15 +24,6 @@ const useStyles = makeStyles(theme => ({
         zIndex: 100
     }
 }));
-
-export async function getStaticProps() {
-    return {
-        props: {
-            selected: 'Home',
-            padding: false
-        }
-    };
-}
 
 const Index = () => {
     const classes = useStyles();
@@ -86,7 +80,7 @@ const Index = () => {
             <HUDWorld
                 r3f
             />
-            <Loader />
+            <Loader/>
         </Fragment >
     );
 };

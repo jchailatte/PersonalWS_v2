@@ -1,8 +1,8 @@
-import {Fragment} from 'react';
+import { Fragment } from 'react';
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 
 }));
 
@@ -25,8 +25,6 @@ export default function About() {
             >
                 Resume
             </a>
-                          
-
         </Fragment>
     );
 }
