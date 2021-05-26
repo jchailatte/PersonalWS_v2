@@ -6,22 +6,21 @@ import { ThreeDRotation } from '@material-ui/icons';
 import { Loader } from '@react-three/drei';
 
 import Info from '@/components/general/info';
+import Attribution from '@/components/general/attribution';
 
-const HUDWorld = dynamic(()=>import ('@/components/models/hudWorld'),{
+const HUDWorld = dynamic(() => import('@/components/models/hudWorld'), {
     ssr: false,
 });
 
 const useStyles = makeStyles(theme => ({
-    // root: {
-    //     height: 'calc(100vh - 64px)',
-    //     width: '100vw'
-    // },
     ThreeDAvatar: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: theme.spacing(3),
         right: theme.spacing(11),
         color: 'white',
-        zIndex: 100
+    },
+    pointer: {
+        pointerEvents: 'auto'
     }
 }));
 
@@ -30,7 +29,9 @@ const Index = () => {
 
     return (
         <Fragment>
-            <Info>
+            <Info
+            //className={classes.pointer}
+            >
                 <Fragment>
                     <Typography
                         variant="h6"
@@ -42,10 +43,38 @@ const Index = () => {
                     <Typography
                         variant="body1"
                     >
-                        Fantasy Sky Background by Hannes Delbeke <br />
-                        Rhetorician by engine9 <br />
-                        Impossible Cube by tomciomalina <br />
-                        Lanterns lowpoly models homework 11 by Bansheeva <br />
+                        <Attribution
+                            author='Hannes Delbeke'
+                            authorLink='https://sketchfab.com/han'
+                            item='Fantasy Sky Background'
+                            itemLink='https://sketchfab.com/3d-models/fantasy-sky-background-15c79bb2fc1147128039fe4ff90fd5a0'
+                            license='CC BY 4.0'
+                            licenseLink='https://creativecommons.org/licenses/by/4.0/'
+                        />
+                        <Attribution
+                            author='engine9'
+                            authorLink='https://sketchfab.com/engine9'
+                            item='Rhetorician'
+                            itemLink='https://sketchfab.com/3d-models/rhetorician-a89f035291d843069d73988cc0e25399'
+                            license='CC BY 4.0'
+                            licenseLink='https://creativecommons.org/licenses/by/4.0/'
+                        />
+                        <Attribution
+                            author='tomciomalina'
+                            authorLink='https://sketchfab.com/tomciomalina'
+                            item='Impossible Cube'
+                            itemLink='https://sketchfab.com/3d-models/impossible-cube-044a6f65abc14b959ff636ce0f37a858'
+                            license='CC BY 4.0'
+                            licenseLink='https://creativecommons.org/licenses/by/4.0/'
+                        />
+                        <Attribution
+                            author='Bansheeva'
+                            authorLink='https://sketchfab.com/Bansheeva'
+                            item='Lanterns lowpoly models homework 11'
+                            itemLink='https://sketchfab.com/3d-models/lanterns-lowpoly-models-homework-11-e7d36f6ce9824228b787204591f6f356'
+                            license='CC BY 4.0'
+                            licenseLink='https://creativecommons.org/licenses/by/4.0/'
+                        />
                     </Typography>
                     <Typography
                         variant="h6"
@@ -80,7 +109,7 @@ const Index = () => {
             <HUDWorld
                 r3f
             />
-            <Loader/>
+            <Loader />
         </Fragment >
     );
 };
