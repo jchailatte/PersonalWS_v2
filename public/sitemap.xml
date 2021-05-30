@@ -27,8 +27,4 @@
     <loc>http://localhost:3000/projects/tlhack</loc>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <loc>http://localhost:3000/rooms/audiovisualizer</loc>
-    <changefreq>monthly</changefreq>
-  </url>
 </urlset>

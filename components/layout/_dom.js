@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
         minHeight: 'calc(100vh - 64px)',
         width: '100vw',
         zIndex: 10, 
+        pointerEvents: 'none'
     },
     padding: {
         padding: theme.spacing(3),

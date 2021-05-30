@@ -12,15 +12,20 @@ const HUDWorld = dynamic(() => import('@/components/models/hudWorld'), {
     ssr: false,
 });
 
+// export async function getStaticProps() {
+//     return {
+//         props: {
+//             orbitControls: true
+//         }
+//     };
+// }
+
 const useStyles = makeStyles(theme => ({
     ThreeDAvatar: {
         position: 'fixed',
         bottom: theme.spacing(3),
         right: theme.spacing(11),
         color: 'white',
-    },
-    pointer: {
-        pointerEvents: 'auto'
     }
 }));
 
@@ -29,9 +34,7 @@ const Index = () => {
 
     return (
         <Fragment>
-            <Info
-            //className={classes.pointer}
-            >
+            <Info>
                 <Fragment>
                     <Typography
                         variant="h6"

@@ -41,10 +41,6 @@ const App = ({ Component, pageProps }) => {
         }
     })
 
-    useEffect(()=>{
-        console.log(compArr.length);
-    },[compArr]);
-
     useEffect(() => {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side');
