@@ -11,10 +11,13 @@ const useStyles = makeStyles(theme => ({
         minHeight: 'calc(100vh - 64px)',
         width: '100vw',
         zIndex: 10, 
-        pointerEvents: 'none'
+        //pointerEvents: 'none'
     },
     padding: {
         padding: theme.spacing(3),
+    },
+    disablePointer: {
+        pointerEvents: 'none'
     }
 }));
 
@@ -26,7 +29,8 @@ const Dom = (props) => {
     return (
         <div
             className={clsx(classes.root, {
-                [classes.padding] : props.padding
+                [classes.padding] : props.padding,
+                [classes.disablePointer] : props.canvasInteraction
             })}
             ref={ref}
         >
@@ -37,11 +41,13 @@ const Dom = (props) => {
 
 Dom.propTypes = {
     children: PropTypes.node,
-    padding: PropTypes.bool
+    padding: PropTypes.bool,
+    canvasInteraction: PropTypes.bool
 };
 
 Dom.defaultProps = {
-    padding: true
+    padding: true,
+    canvasInteraction: false
 };
 
 export default Dom;

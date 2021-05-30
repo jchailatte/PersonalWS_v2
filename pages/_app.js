@@ -67,6 +67,7 @@ const App = ({ Component, pageProps }) => {
                         >
                             {compArr &&
                                 <Dom
+                                    canvasInteraction={pageProps.canvasInteraction}
                                     padding={pageProps.padding}
                                 >
                                     {compArr}

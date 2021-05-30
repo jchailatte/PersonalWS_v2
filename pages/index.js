@@ -12,13 +12,13 @@ const HUDWorld = dynamic(() => import('@/components/models/hudWorld'), {
     ssr: false,
 });
 
-// export async function getStaticProps() {
-//     return {
-//         props: {
-//             orbitControls: true
-//         }
-//     };
-// }
+export async function getStaticProps() {
+    return {
+        props: {
+            canvasInteraction: true
+        }
+    };
+}
 
 const useStyles = makeStyles(theme => ({
     ThreeDAvatar: {

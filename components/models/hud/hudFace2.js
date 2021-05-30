@@ -78,9 +78,9 @@ const HUDFace2 = () => {
             setLevel(paths);
         }
         else {
-            //         //basically iterate through paths using prevLevel from 0 to length - 1
-            //         //then pop last element from prevLevel
-            //         //can implement later
+            //basically iterate through paths using prevLevel from 0 to length - 1
+            //then pop last element from prevLevel
+            //can implement later
         }
     }
 
@@ -139,7 +139,7 @@ const HUDFace2 = () => {
                             //note: rmber to truncate strings later on :D
                             //ideally it would scroll left to right and repeat
 
-                            //also rmber to clamp it so that it doesn't exceed 5/6, refer to slice above
+                            //also rmber to clamp it so that it doesn't exceed 5/6 options, refer to slice above
                             <div
                                 className={classes.buttonRow}
                                 key={"option" + i}

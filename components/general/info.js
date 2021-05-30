@@ -71,6 +71,4 @@ Info.propTypes = {
     children: PropTypes.element.isRequired
 };
 
-Info.defaultProps = {};
-
 export default Info;
