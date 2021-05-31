@@ -292,7 +292,7 @@ const useStyles = makeStyles(theme => ({
 
 const positions = ['Top', 'Jung', 'Mid', 'Bot', 'Sup'];
 
-export default function Index() {
+const TLHack = () => {
     const classes = useStyles();
     const portrait = '/graphics/tlhack/portraitbg.jpg';
 
@@ -815,3 +815,14 @@ export default function Index() {
         </Fragment >
     );
 }
+
+const TLHackWrapper = () =>{
+
+    return (
+        <Fragment>
+            <TLHack/>
+        </Fragment>
+    )
+}
+
+export default TLHackWrapper;

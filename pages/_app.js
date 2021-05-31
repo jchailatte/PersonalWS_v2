@@ -27,19 +27,39 @@ if (process.env.NODE_ENV === 'production') {
 //https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
 //https://github.com/pmndrs/react-three-next/blob/main/src/pages/_app.jsx
 
-const App = ({ Component, pageProps }) => {
-    const router = useRouter();
+const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
+    let r3fArr = [];
+    let compArr = [];
 
-    const r3fArr = [];
-    const compArr = [];
-
-    Children.forEach(Component(pageProps).props.children, (child) => {
+    Children.forEach(comp(pageProps).props.children, (child) => {
         if (child.props && child.props.r3f) {
             r3fArr.push(child)
         } else {
             compArr.push(child)
         }
     })
+
+    return (
+        <Fragment>
+            {compArr &&
+                <Dom
+                    canvasInteraction={pageProps.canvasInteraction}
+                    padding={pageProps.padding}
+                >
+                    {compArr}
+                </Dom>
+            }
+            {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
+        </Fragment >
+    )
+}
+
+const App = ({ Component, pageProps = {} }) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        useStore.setState({ router })
+    }, [router])
 
     useEffect(() => {
         // Remove the server-side injected CSS.
@@ -48,10 +68,6 @@ const App = ({ Component, pageProps }) => {
             jssStyles.parentElement.removeChild(jssStyles);
         }
     }, []);
-
-    useEffect(() => {
-        useStore.setState({ router })
-    }, [router])
 
     return (
         <Fragment>
@@ -65,15 +81,10 @@ const App = ({ Component, pageProps }) => {
                         <div
                             style={{ position: 'relative' }}
                         >
-                            {compArr &&
-                                <Dom
-                                    canvasInteraction={pageProps.canvasInteraction}
-                                    padding={pageProps.padding}
-                                >
-                                    {compArr}
-                                </Dom>
-                            }
-                            {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
+                            <ForwardPropsToR3fComponent
+                                comp={Component}
+                                pageProps={pageProps}
+                            />
                         </div>
                     </Sidebar>
                 </Background>
@@ -81,6 +92,11 @@ const App = ({ Component, pageProps }) => {
         </Fragment>
     );
 }
+
+ForwardPropsToR3fComponent.propTypes = {
+    comp: PropTypes.elementType.isRequired,
+    pageProps: PropTypes.object.isRequired
+};
 
 App.propTypes = {
     Component: PropTypes.elementType.isRequired,

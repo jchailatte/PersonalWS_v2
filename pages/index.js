@@ -112,7 +112,7 @@ const Index = () => {
             <HUDWorld
                 r3f
             />
-            <Loader />
+            <Loader/>
         </Fragment >
     );
 };
