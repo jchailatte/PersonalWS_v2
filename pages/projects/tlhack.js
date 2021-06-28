@@ -816,8 +816,7 @@ const TLHack = () => {
     );
 }
 
-const TLHackWrapper = () =>{
-
+const TLHackPage = () =>{
     return (
         <Fragment>
             <TLHack/>
@@ -825,4 +824,4 @@ const TLHackWrapper = () =>{
     )
 }
 
-export default TLHackWrapper;
+export default TLHackPage;
