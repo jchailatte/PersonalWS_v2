@@ -85,7 +85,9 @@ const App = ({ Component, pageProps = {} }) => {
                 theme={theme}
             >
                 <CssBaseline />
-                <Background>
+                <Background
+                    url={pageProps.backgroundurl}
+                >
                     <Sidebar>
                         <div
                             style={{ position: "relative" }}

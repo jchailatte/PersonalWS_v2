@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 //note: replace this later or at least replace the background
 // also organize the graphics folder
 
-const useStyles = makeStyles(theme => ({
+const useStyles = (props) => makeStyles(theme => ({
     container: {
         backgroundColor: '#f7f1e1',
-        backgroundImage: `url('/graphics/homepage.gif')`,
+        backgroundImage: `url(${props.url})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Background(props) {
-    const classes = useStyles();
+    const classes = useStyles(props)();
 
     return (
         <div
@@ -35,5 +35,11 @@ export default function Background(props) {
 }
 
 Background.propTypes = {
-    children: PropTypes.element
+    children: PropTypes.element,
+    url: PropTypes.string
 };
+
+Background.defaultProps = {
+    url: '/graphics/homepage.gif',
+};
+

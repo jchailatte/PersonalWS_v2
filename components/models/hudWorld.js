@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useLayoutEffect, Suspense } from 'react';
+import { Fragment, useMemo, useLayoutEffect, Suspense, useRef } from 'react';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 

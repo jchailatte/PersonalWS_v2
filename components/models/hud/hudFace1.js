@@ -43,6 +43,7 @@ const HUDFace1 = () => {
                 />
                 <Html
                     distanceFactor={10}
+                    occlude={true}
                     position={[0, 0, 0.5]}
                     style={{
                         pointerEvents: 'none',
@@ -85,6 +86,5 @@ const HUDFace1 = () => {
     )
 
 }
-
 
 export default HUDFace1;
