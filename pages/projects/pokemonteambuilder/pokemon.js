@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Grid,
@@ -6,19 +7,24 @@ import {
     FormControl,
     Select,
     MenuItem,
+    Typography,
     InputLabel,
     Button,
     Modal,
     Fade,
     Paper,
+    CardActionArea,
 } from '@material-ui/core';
 
+import SelectModal from '@/components/pokebuilder/selectModal';
+
 import usePokestore from '@/utils/store/pokestore';
+import useStore from '@/utils/store/store';
 
 export async function getStaticProps() {
     return {
         props: {
-            backgroundurl: '/graphics/pokebuilder/pokebackground.jpg'
+            backgroundurl: '/graphics/pokebuilder/pokebackground.jpg',
         }
     };
 }
@@ -36,84 +42,185 @@ const useStyles = makeStyles(theme => ({
         maxHeight: '90vh',
         overflowY: 'scroll'
     },
+    pokemonSelect: {
+        display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'center'
+    },
+    pokemonImage: {
+        width: '100%',
+        height: 'auto'
+    },
+    cardStyle: {
+        padding: '2rem',
+        textAlign: 'center'
+    }
 }));
 
-const Index = () => {
+const pokeSpriteUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+const initialState = { 
+    abilities: [],
+    types: [],
+}
+
+const Pokemon = () => {
     const classes = useStyles();
 
+    const router = useRouter();
+    const { pos } = router.query;
     const { team, region } = usePokestore((state) => state);
     const [open, setOpen] = useState(false);
-    const [pokemonList, setPokemonList] = useState({});
+    const [pokemon, setPokemon] = useState("Click to Select Pokemon");
+    const [pokemonID, setPokemonID] = useState(0);
+    const [pokemonData, setPokemonData] = useState(initialState);
+    const [pokemonImage, setPokemonImage] = useState("/graphics/pokebuilder/defaultPokemon.png");
+    const [ability, setAbility] = useState("");
 
-    const handleClose = () => {
+    const selectPokemon = (id, name) => {
+        setPokemonID(id);
+        setPokemonImage(`${pokeSpriteUrl}${id}.png`);
+        //setPokemonImage(`https://img.pokemondb.net/artwork/large/${name}.jpg`)
+        setPokemon(name.toUpperCase());
         setOpen(false);
     };
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const getPokemonList = async () => {
-        const response = await fetch(
-            `https://pokeapi.co/api/v2/pokedex/${region}`,
-            {
-                method: 'GET',
-                cache: 'default',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-        ).then(response => response.json())
-            .then(data => {
-                setPokemonList(data.pokemon_entries)
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    };
-
     useEffect(() => {
-        handleOpen();
-        getPokemonList();
-    }, [])
+        const getPokemon = async () => {
+            const response = await fetch(
+                `https://pokeapi.co/api/v2/pokemon/${pokemonID}`,
+                {
+                    method: 'GET',
+                    cache: 'default',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            ).then(response => response.json())
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            setPokemonData(response);
+        };
+
+        if (pokemonID != 0) {
+            getPokemon();
+        }
+    }, [pokemonID])
 
     return (
         <Fragment>
-            <Modal
-                className={classes.modal}
-                onClose={handleClose}
+            <SelectModal
                 open={open}
-                closeAfterTransition
+                pokeSpriteUrl={pokeSpriteUrl}
+                selectPokemon={selectPokemon}
+                setOpen={setOpen}
+            />
+            <Grid
+                spacing={3}
+                container
             >
-                <Fade
-                    in={open}
+                <Grid
+                    lg={4}
+                    item
                 >
-                    <Paper
-                        className={classes.paperModal}
+                    <Card>
+                        <CardActionArea
+                            className={classes.cardStyle}
+                            onClick={() => setOpen(true)}
+                        >
+                            <img
+                                alt="pokemon"
+                                className={classes.pokemonImage}
+                                src={pokemonImage}
+                            />
+                            <Typography
+                                variant="h6"
+                            >
+                                {pokemon}
+                            </Typography>
+                        </CardActionArea>
+                    </Card>
+                </Grid>
+                <Grid
+                    lg={8}
+                    item
+                >
+                    <Card
+                        className={classes.cardStyle}
                     >
                         <Grid
-                            justify="center"
                             container
                         >
-
-                                {pokemonList && pokemonList.map((entry, i) => {
-                                    return (
-                                        <Grid
-                                            key={i}
-                                            item
+                            <Grid
+                                item
+                            >
+                                <Typography>
+                                    Type:
+                                </Typography>
+                                {pokemonData.types.map((obj)=>{
+                                        return(
+                                            // https://www.serebii.net/pokedex-bw/type/water.gif
+                                            obj.type.name
+                                        )
+                                    })}
+                            </Grid>
+                            <Grid
+                                xs={12}
+                                item
+                            >
+                                <FormControl
+                                    variant="outlined"
+                                >
+                                    <InputLabel>
+                                        Abilities
+                                    </InputLabel>
+                                    <Select
+                                        label="Abilities"
+                                        onChange={(e)=>setAbility(e.target.value)}
+                                        value={ability}
+                                        autoWidth
+                                    >
+                                        <MenuItem
+                                            value={""}
                                         >
-                                            <img
-                                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${entry.entry_number}.png`}
-                                            />
-                                        </Grid>
-                                    )
-                                })}
+                                            <em>None</em>
+                                        </MenuItem>
+                                        {pokemonData.abilities.map((item, i) => {
+                                            return (
+                                                <MenuItem
+                                                    key={"select" + i}
+                                                    value={item.ability.name}
+                                                >
+                                                    {item.ability.name.toUpperCase()}
+                                                </MenuItem>
+                                            )
+                                        })}
+                                    </Select>
+                                </FormControl>
+                            </Grid>
                         </Grid>
-                    </Paper >
-                </Fade >
-            </Modal >
+                    </Card>
+                </Grid>
+                <Grid
+                    xs={12}
+                    container
+                    item
+                >
+                    <Paper>
+                        moves
+                    </Paper>
+                </Grid>
+            </Grid>
         </Fragment >
     )
 }
 
-export default Index;
+const PokemonPage = () => {
+    return (
+        <Fragment>
+            <Pokemon />
+        </Fragment>
+    )
+}
+
+export default PokemonPage;
