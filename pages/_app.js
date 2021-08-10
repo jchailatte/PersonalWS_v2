@@ -4,8 +4,10 @@ import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
+import { CacheProvider } from '@emotion/react';
 
 import theme from "@/components/mui/theme";
+import createEmotionCache from '@/components/mui/createEmotionCache';
 import Sidebar from "@/components/general/sidebar";
 import Background from "@/components/general/background";
 import Dom from "@/components/layout/_dom";
@@ -24,8 +26,10 @@ if (process.env.NODE_ENV === "production") {
     LCanvas = require("@/components/layout/_canvas").default;
 }
 
-//https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
+//https://github.com/mui-org/material-ui/blob/next/examples/nextjs/pages/_app.js
 //https://github.com/pmndrs/react-three-next/blob/main/src/pages/_app.jsx
+
+const clientSideEmotionCache = createEmotionCache();
 
 const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
     let r3fArr = [];
@@ -63,7 +67,7 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
     }
 };
 
-const App = ({ Component, pageProps = {} }) => {
+const App = ({ Component, emotionCache = clientSideEmotionCache, pageProps = {} }) => {
     const router = useRouter();
 
     useEffect(() => {
@@ -80,26 +84,30 @@ const App = ({ Component, pageProps = {} }) => {
 
     return (
         <Fragment>
-            <Header />
-            <ThemeProvider
-                theme={theme}
+            <CacheProvider
+                value={emotionCache}
             >
-                <CssBaseline />
-                <Background
-                    url={pageProps.backgroundurl}
+                <Header />
+                <ThemeProvider
+                    theme={theme}
                 >
-                    <Sidebar>
-                        <div
-                            style={{ position: "relative" }}
-                        >
-                            <ForwardPropsToR3fComponent
-                                comp={Component}
-                                pageProps={pageProps}
-                            />
-                        </div>
-                    </Sidebar>
-                </Background>
-            </ThemeProvider>
+                    <CssBaseline />
+                    <Background
+                        url={pageProps.backgroundurl}
+                    >
+                        <Sidebar>
+                            <div
+                                style={{ position: "relative" }}
+                            >
+                                <ForwardPropsToR3fComponent
+                                    comp={Component}
+                                    pageProps={pageProps}
+                                />
+                            </div>
+                        </Sidebar>
+                    </Background>
+                </ThemeProvider>
+            </CacheProvider>
         </Fragment>
     );
 };
@@ -111,6 +119,7 @@ ForwardPropsToR3fComponent.propTypes = {
 
 App.propTypes = {
     Component: PropTypes.elementType.isRequired,
+    emotionCache: PropTypes.object,
     pageProps: PropTypes.object.isRequired,
 };
 

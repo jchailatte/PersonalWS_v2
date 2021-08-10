@@ -21,11 +21,16 @@
     },
     "homepage": "https://github.com/jchailatte/PersonalWS_v2#readme",
     "dependencies": {
-        "@material-ui/core": "^4.11.4",
+        "@emotion/cache": "^11.4.0",
+        "@emotion/react": "^11.4.1",
+        "@emotion/server": "^11.4.0",
+        "@emotion/styled": "^11.3.0",
+        "@material-ui/core": "^4.12.3",
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.58",
         "@react-three/drei": "^6.2.0",
-        "@react-three/fiber": "^7.0.1",
+        "@react-three/fiber": "^7.0.6",
+        "clsx": "^1.1.1",
         "globby": "^11.0.4",
         "next": "^11.0.0",
         "next-transpile-modules": "^8.0.0",
@@ -35,8 +40,8 @@
         "react-typist": "^2.0.5",
         "three": "^0.129.0",
         "three-stdlib": "^2.3.0",
-        "webpack": "^5.40.0",
-        "zustand": "^3.5.2"
+        "webpack": "^5.49.0",
+        "zustand": "^3.5.7"
     },
     "devDependencies": {
         "eslint": "^7.29.0",
