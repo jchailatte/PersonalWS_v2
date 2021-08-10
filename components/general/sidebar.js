@@ -110,11 +110,11 @@ const footer = [
         icon: <GithubIcon />,
         href: 'https://github.com/jchailatte'
     },
-    {
-        text: 'LinkedIn',
-        icon: <LinkedInIcon />,
-        href: 'https://www.linkedin.com/in/jchailatte/'
-    }
+    // {
+    //     text: 'LinkedIn',
+    //     icon: <LinkedInIcon />,
+    //     href: 'https://www.linkedin.com/in/jchailatte/'
+    // }
 ];
 
 const Sidebar = props => {

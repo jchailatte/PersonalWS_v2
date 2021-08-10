@@ -20,7 +20,6 @@ const theme = responsiveFontSizes(
         typography: {
             fontFamily: "'Raleway', san-serif"
         },
-        overrides: {},
         props: {
             MuiButton: {
                 color: 'primary'

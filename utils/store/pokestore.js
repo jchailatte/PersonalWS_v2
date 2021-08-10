@@ -1,7 +1,9 @@
 import create from 'zustand';
+import { devtools } from 'zustand/middleware'
 
-const Pokestore = create((set) => {
+const Pokestore = create(devtools((set) => {
     return {
+        teamID: "",
         team: [
             {},
             {},
@@ -11,11 +13,19 @@ const Pokestore = create((set) => {
             {}
         ],
         region: 2,
-        // setPokemon: (pos, pokemon) => {
-        //     state.team[pos] = pokemon
-        // },
-        setRegion: (gen) => set({region: gen}),
+        setPokemonTeam: (pos, pokemon) => {
+            set(state => {
+                let newArr = [...state.team];
+                newArr[pos] = pokemon;
+                return (
+                    {team: newArr}
+                )
+            })
+        },
+        setRegion: (gen) => set({ region: gen }),
+        setTeamID: (id) => set({teamID: id}),
+        newTeam: (newTeam) => set({team : newTeam})
     }
-});
+}));
 
-export default Pokestore;
+export default Pokestore
