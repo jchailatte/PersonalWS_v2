@@ -28,11 +28,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/projects/pokemonbuilder.js</loc>
+    <loc>http://localhost:3000/projects/pokemonbuilder</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/projects/pokemonbuilder/pokemon.js</loc>
+    <loc>http://localhost:3000/projects/pokemonbuilder/pokemon</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

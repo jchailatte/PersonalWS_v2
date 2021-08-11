@@ -56,25 +56,25 @@ const InfoCard = (props) => {
                                 item
                             >
                                 <Grid
-                                    container
                                     alignItems="center"
                                     spacing={2}
+                                    container
                                 >
                                     <Grid
-                                        item
                                         xs={2}
+                                        item
                                     >
                                         <Typography>
                                             Type:
                                         </Typography>
                                     </Grid>
                                     <Grid
-                                        item
                                         style={{
                                             display: 'flex',
                                             justifyContent: 'space-evenly'
                                         }}
                                         xs={10}
+                                        item
                                     >
                                         {props.pokemon.type.map((item, i) => {
                                             return (

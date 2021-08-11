@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -9,13 +9,20 @@ import {
     Select,
     MenuItem,
     InputLabel,
-    Button
 } from '@material-ui/core';
 import { ControlPoint } from '@material-ui/icons';
 
 import InfoCard from '@/components/pokebuilder/infoCard';
 
 import usePokestore from '@/utils/store/pokestore';
+
+export async function getStaticProps() {
+    return {
+        props: {
+            backgroundurl: '/graphics/pokebuilder/pokebackground.jpg'
+        }
+    };
+}
 
 const useStyles = makeStyles(theme => ({
     regionSelect: {
@@ -26,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         padding: theme.spacing(3),
         textAlign: 'center',
-        minHeight: '25vh',
+        minHeight: '20vh',
         height: '100%'
     }
 }));
@@ -58,43 +65,6 @@ const Index = () => {
                 spacing={3}
                 container
             >
-                <Grid
-                    item
-                    md={6}
-                >
-                    <Button
-//                        onClick={}
-                        style={{ width: '100%' }}
-                        variant="contained"
-                    >
-                        Save Team
-                    </Button>
-                </Grid>
-                {/* <Grid
-                    item
-                    md={6}
-                >
-                    <Button
-                        onClick={!session ? signIn : signOut}
-                        style={{ width: '100%' }}
-                        variant="contained"
-                    >
-                        {!session ? "Log In" : "Log Out"}
-                    </Button>
-                </Grid> */}
-                <Grid
-                    item
-                    xs={12}
-                >
-                    <Link href="/teamselect">
-                        <Button
-                            style={{ width: '100%' }}
-                            variant="contained"
-                        >
-                            Select Team
-                        </Button>
-                    </Link>
-                </Grid>
                 <Grid
                     xs={12}
                     item
@@ -135,7 +105,9 @@ const Index = () => {
                     return (
                         <Grid
                             key={i}
-                            xs={6}
+                            md={6}
+                            sm={12}
+                            xs={12}
                             item
                         >
                             {Object.keys(pokemon).length === 0 ?
@@ -145,7 +117,7 @@ const Index = () => {
                                     >
                                         <Link
                                             href={{
-                                                pathname: `/pokemon`,
+                                                pathname: `pokemonbuilder/pokemon`,
                                                 query: { pos: i }
                                             }}
                                         >
@@ -171,4 +143,12 @@ const Index = () => {
     )
 }
 
-export default Index;
+const IndexPage = () => {
+    return (
+        <Fragment>
+            <Index/>
+        </Fragment>
+    )
+}
+
+export default IndexPage;

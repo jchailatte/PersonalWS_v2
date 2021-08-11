@@ -7,7 +7,6 @@ import { CssBaseline } from "@material-ui/core";
 
 import theme from "@/components/mui/theme";
 import Sidebar from "@/components/general/sidebar";
-import Background from "@/components/general/background";
 import Dom from "@/components/layout/_dom";
 
 import Header from "@/utils/general/header";
@@ -47,6 +46,7 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
                     <Dom
                         canvasInteraction={pageProps.canvasInteraction}
                         padding={pageProps.padding}
+                        url={pageProps.backgroundurl}
                     >
                         {compArr}
                     </Dom>
@@ -87,20 +87,12 @@ const App = ({ Component, pageProps = {} }) => {
                 theme={theme}
             >
                 <CssBaseline />
-                <Background
-                    url={pageProps.backgroundurl}
-                >
-                    <Sidebar>
-                        <div
-                            style={{ position: "relative" }}
-                        >
-                            <ForwardPropsToR3fComponent
-                                comp={Component}
-                                pageProps={pageProps}
-                            />
-                        </div>
-                    </Sidebar>
-                </Background>
+                <Sidebar>
+                    <ForwardPropsToR3fComponent
+                        comp={Component}
+                        pageProps={pageProps}
+                    />
+                </Sidebar>
             </ThemeProvider>
         </Fragment>
     );

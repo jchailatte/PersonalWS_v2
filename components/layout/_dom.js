@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import useStore from '@/utils/store/store';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = (props) => makeStyles(theme => ({
     root: {
         position: 'absolute',
         minHeight: 'calc(100vh - 64px)',
@@ -17,11 +17,24 @@ const useStyles = makeStyles(theme => ({
     },
     disablePointer: {
         pointerEvents: 'none'
+    },
+    container: {
+        backgroundColor: '#f7f1e1',
+        backgroundImage: `url(${props.url})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        //backgroundSize: 'cover',
+        [theme.breakpoints.up('md')]: {
+            backgroundPosition: 'right'
+        },
+        [theme.breakpoints.down('md')]: {
+            backgroundPosition: '80%'
+        }
     }
 }));
 
 const Dom = (props) => {
-    const classes = useStyles();
+    const classes = useStyles(props)();
 
     const ref = useRef(null);
     useEffect(() => {
@@ -30,11 +43,12 @@ const Dom = (props) => {
 
     return (
         <div
-            className={clsx(classes.root, {
+            className={clsx(classes.root, classes.container, {
                 [classes.padding]: props.padding,
                 [classes.disablePointer]: props.canvasInteraction
             })}
             ref={ref}
+            id="dombackground"
         >
             {props.children}
         </div>
@@ -49,7 +63,8 @@ Dom.propTypes = {
 
 Dom.defaultProps = {
     padding: true,
-    canvasInteraction: false
+    canvasInteraction: false,
+    url: '/graphics/homepage.gif',
 };
 
 export default Dom;

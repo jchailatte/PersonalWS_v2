@@ -11,6 +11,15 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+export async function getStaticProps() {
+    return {
+        props: {
+            selected: 'Projects',
+            padding: false,
+        }
+    };
+}
+
 const useStyles = makeStyles(() => ({
     media: {
         objectFit: 'contain'
@@ -22,6 +31,16 @@ const useStyles = makeStyles(() => ({
 }));
 
 const items = [
+    {
+        text: 'Pokemon Team Builder',
+        image: '/graphics/pokemonbuilder.png',
+        blurb: 'Project done for an interview which I coded in around 3 days. Basically a full-stack application with everything from OAuth to a database. Functionality-wise, it is not to fancy where a user can construct a pokemon team using data from the pokeapi.',
+        note: 'A bunch of functionality was removed since I do not want to maintain it',
+        button1: 'Demo',
+        button2: 'GitHub',
+        href1: 'projects/pokemonbuilder',
+        href2: 'https://github.com/jchailatte/pokemonbuilder'
+    },
     {
         text: 'Outdrafted',
         image: '/graphics/outdrafted.jpg',
@@ -88,14 +107,6 @@ const items = [
     }
 ];
 
-export async function getStaticProps() {
-    return {
-        props: {
-            selected: 'Projects',
-        }
-    };
-}
-
 export default function Project() {
     const classes = useStyles();
 
@@ -108,6 +119,9 @@ export default function Project() {
                     Projects
                 </title>
             </Head>
+            <div
+                style={{padding: 40}}
+            >
             <Grid
                 spacing={3}
                 container
@@ -194,6 +208,7 @@ export default function Project() {
                     </Grid>
                 ))}
             </Grid>
+            </div>
         </Fragment>
     );
 }

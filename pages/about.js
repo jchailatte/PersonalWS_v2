@@ -97,7 +97,7 @@ export default function About() {
                                 >
                                     My name is Jonathan Chai, that&#39;s me to the right, and I am a
                                     software engineer that graduated from the University of Southern
-                                    California and currently looking for a job (yay for Covid).
+                                    California.
                                 </Typography>
                                 <br />
                                 <Typography
