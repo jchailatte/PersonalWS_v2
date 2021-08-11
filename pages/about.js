@@ -88,16 +88,25 @@ export default function About() {
                                 item
                             >
                                 <Typography
-                                    variant="h4"
-                                >Hello!
+                                    variant="h3"
+                                >
+                                    <b>
+                                        Hello!
+                                    </b>
                                 </Typography>
                                 <br />
                                 <Typography
                                     variant="h4"
                                 >
-                                    My name is Jonathan Chai, that&#39;s me to the right, and I am a
-                                    software engineer that graduated from the University of Southern
-                                    California.
+                                    My name is Jonathan Chai and I am a graduate from the University of Southern
+                                    California(USC) with a BS is Computer Science.
+                                </Typography>
+                                <br />
+                                <Typography
+                                    variant="h4"
+                                >
+                                    I mainly specialize is frontend work utilizing JavaScipt and the React framework but I also
+                                    have experience in other parts of the tech stack such as using Spring Boot and Docker.
                                 </Typography>
                                 <br />
                                 <Typography
@@ -106,21 +115,15 @@ export default function About() {
                                     Currently, the JavaScript frameworks of choice I am working with
                                     are Three.js and Next.js (this site is a combination of
                                     both) and I am very interested in being able to combine art with
-                                    code.
+                                    code. 
                                 </Typography>
                                 <br />
-                                <Typography
-                                    variant="h4"
-                                >
-                                    My main hobbies include reading light novels and playing video
-                                    games like League of Legends and TeamFight Tactics.
-                                </Typography>
-                                <br />
-                                <Typography
+
+                                {/* <Typography
                                     variant="h5"
                                 >
                                     PS. I got asked this a few times but yes the background was drawn by me
-                                </Typography>
+                                </Typography> */}
                             </Grid>
                         </div>
                     </Grid>
