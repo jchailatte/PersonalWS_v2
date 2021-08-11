@@ -98,8 +98,8 @@ export default function About() {
                                 <Typography
                                     variant="h4"
                                 >
-                                    My name is Jonathan Chai and I am a graduate from the University of Southern
-                                    California(USC) with a BS is Computer Science.
+                                    My name is Jonathan Chai and I am a developer with several years of experience within the IT industry. 
+
                                 </Typography>
                                 <br />
                                 <Typography
