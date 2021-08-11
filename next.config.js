@@ -6,5 +6,8 @@ module.exports = withTM({
             require('./scripts/generate-sitemap');
         }
         return config;
+    },
+    eslint: {
+        ignoreDuringBuilds: true
     }
 });
