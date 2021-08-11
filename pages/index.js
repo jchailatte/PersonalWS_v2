@@ -15,7 +15,8 @@ const HUDWorld = dynamic(() => import('@/components/models/hudWorld'), {
 export async function getStaticProps() {
     return {
         props: {
-            canvasInteraction: true
+            canvasInteraction: true,
+            threed: true,
         }
     };
 }

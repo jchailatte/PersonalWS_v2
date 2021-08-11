@@ -43,12 +43,12 @@ const Dom = (props) => {
 
     return (
         <div
-            className={clsx(classes.root, classes.container, {
+            className={clsx(classes.root, {
+                [classes.container] : !props.threed,
                 [classes.padding]: props.padding,
                 [classes.disablePointer]: props.canvasInteraction
             })}
             ref={ref}
-            id="dombackground"
         >
             {props.children}
         </div>
@@ -58,10 +58,12 @@ const Dom = (props) => {
 Dom.propTypes = {
     children: PropTypes.node,
     padding: PropTypes.bool,
-    canvasInteraction: PropTypes.bool
+    canvasInteraction: PropTypes.bool,
+    threed: PropTypes.bool
 };
 
 Dom.defaultProps = {
+    threed: false,
     padding: true,
     canvasInteraction: false,
     url: '/graphics/homepage.gif',

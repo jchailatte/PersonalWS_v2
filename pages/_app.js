@@ -46,6 +46,7 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
                     <Dom
                         canvasInteraction={pageProps.canvasInteraction}
                         padding={pageProps.padding}
+                        threed={pageProps.threed}
                         url={pageProps.backgroundurl}
                     >
                         {compArr}
@@ -88,10 +89,14 @@ const App = ({ Component, pageProps = {} }) => {
             >
                 <CssBaseline />
                 <Sidebar>
+                    <div 
+                        style={{position:'relative'}}
+                    >
                     <ForwardPropsToR3fComponent
                         comp={Component}
                         pageProps={pageProps}
                     />
+                    </div>
                 </Sidebar>
             </ThemeProvider>
         </Fragment>
