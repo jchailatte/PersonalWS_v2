@@ -87,11 +87,11 @@ const sbitems = [
         icon: <AccountBoxIcon />,
         href: '/about'
     },
-    {
-        text: 'Resume',
-        icon: <DescriptionIcon />,
-        href: '/resume'
-    },
+    // {
+    //     text: 'Resume',
+    //     icon: <DescriptionIcon />,
+    //     href: '/resume'
+    // },
     {
         text: 'Projects',
         icon: <CodeIcon />,

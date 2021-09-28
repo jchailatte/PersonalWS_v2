@@ -16,10 +16,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/resume</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>http://localhost:3000/projects</loc>
     <changefreq>monthly</changefreq>
   </url>
