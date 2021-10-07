@@ -98,26 +98,30 @@ export default function About() {
                                 <Typography
                                     variant="h4"
                                 >
-                                    My name is Jonathan Chai and I am a developer with several years of experience within the IT industry. 
+                                    My name is Jonathan Chai and I am a software developer. 
 
                                 </Typography>
                                 <br />
                                 <Typography
                                     variant="h4"
                                 >
-                                    I mainly specialize is frontend work utilizing JavaScipt and the React framework but I also
-                                    have experience in other parts of the tech stack such as using Spring Boot and Docker.
+                                    I mainly specialize is frontend work utilizing JavaScipt and the React framework but I am also familiar 
+                                    with other parts of the tech stack using stuff like Spring Boot and Docker. I was a backend engineer before 
+                                    transitioning to focus more on the frontend. 
                                 </Typography>
                                 <br />
                                 <Typography
                                     variant="h4"
                                 >
-                                    Currently, the JavaScript frameworks of choice I am working with
-                                    are Three.js and Next.js (this site is a combination of
-                                    both) and I am very interested in being able to combine art with
-                                    code. 
+                                    Currently, the JavaScript frameworks of choice I am experimenting with
+                                    are Three.js and Next.js (basically this website). My main interests are in combining some artsy graphic stuff with code. 
                                 </Typography>
                                 <br />
+                                <Typography
+                                    variant="h5"
+                                >
+                                    Version 3.0 of this website is in the works c:
+                                </Typography>
 
                                 {/* <Typography
                                     variant="h5"
